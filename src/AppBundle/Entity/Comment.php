@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->note;
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -34,6 +42,20 @@ class Comment
      * @ORM\Column(name="note", type="integer")
      */
     private $note;
+
+    /**
+     * Many comments have one user
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
+     */
+    private $user;
+
+    /**
+     * Many comments have one advert
+     *
+     * @ORM\ManyToOne(targetEntity="Advert", inversedBy="comments")
+     */
+    private $advert;
 
 
     /**

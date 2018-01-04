@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Reservation
 {
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id;
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -34,6 +42,20 @@ class Reservation
      * @ORM\Column(name="status", type="string", length=45)
      */
     private $status;
+
+    /**
+     * Many reservations have one user
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="reservations")
+     */
+    private $user;
+
+    /**
+     * Many reservations have one advert
+     *
+     * @ORM\ManyToOne(targetEntity="Advert", inversedBy="reservations")
+     */
+    private $advert;
 
 
     /**

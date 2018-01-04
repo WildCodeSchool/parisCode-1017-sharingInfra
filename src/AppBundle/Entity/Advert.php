@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Advert
 {
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -62,6 +70,41 @@ class Advert
      * @ORM\Column(name="price", type="integer")
      */
     private $price;
+
+    /**
+     * Many adverts have one user
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="adverts")
+     */
+    private $user;
+
+    /**
+     * One advert has many reservations
+     *
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="advert")
+     */
+    private $reservations;
+
+    /**
+     * One advert has many comments
+     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="advert")
+     */
+    private $comments;
+
+    /**
+     * Many adverts have many characteristics
+     *
+     * @ORM\ManyToMany(targetEntity="Characteristic")
+     */
+    private $characteristics;
+
+    /**
+     * Many adverts have many pictures
+     *
+     * @ORM\ManyToMany(targetEntity="Picture")
+     */
+    private $pictures;
 
 
     /**

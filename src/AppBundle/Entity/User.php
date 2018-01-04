@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->firstname . " " . $this->name;
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -62,6 +70,34 @@ class User
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
+    /**
+     * One user has many reservations
+     *
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="user")
+     */
+    private $reservations;
+
+    /**
+     * One user has many adverts
+     *
+     * @ORM\OneToMany(targetEntity="Advert", mappedBy="user")
+     */
+    private $adverts;
+
+    /**
+     * One user has many comments
+     *
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+     */
+    private $comments;
+
+    /**
+     * One user has many picture
+     *
+     * @ORM\OneToOne(targetEntity="Picture")
+     */
+    private $picture;
 
 
     /**
