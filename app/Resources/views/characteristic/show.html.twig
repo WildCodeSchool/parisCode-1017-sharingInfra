@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Characteristic</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ characteristic.id }}</td>
+            </tr>
+            <tr>
+                <th>Equipments</th>
+                <td>{{ characteristic.equipments }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('characteristic_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('characteristic_edit', { 'id': characteristic.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

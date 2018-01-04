@@ -17,7 +17,7 @@ class Picture
      */
     public function __toString()
     {
-        return $this->url;
+        return $this->id;
     }
 
     /**
@@ -35,6 +35,13 @@ class Picture
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
+
+    /**
+     * One picture has one user
+     *
+     * @ORM\OneToOne(targetEntity="User", mappedBy="picture")
+     */
+    private $user;
 
 
     /**
@@ -70,28 +77,5 @@ class Picture
     {
         return $this->url;
     }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Picture
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }
+

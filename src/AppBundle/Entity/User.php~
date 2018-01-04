@@ -367,26 +367,26 @@ class User
 
 
     /**
-     * Set picture
+     * Set url
      *
-     * @param \AppBundle\Entity\Picture $picture
+     * @param \AppBundle\Entity\Picture $url
      *
      * @return User
      */
-    public function setPicture(\AppBundle\Entity\Picture $picture = null)
+    public function setUrl(\AppBundle\Entity\Picture $url = null)
     {
-        $this->picture = $picture;
+        $this->url = $url;
 
         return $this;
     }
 
     /**
-     * Get picture
+     * Get url
      *
      * @return \AppBundle\Entity\Picture
      */
-    public function getPicture()
+    public function getUrl()
     {
-        return $this->picture;
+        return $this->url;
     }
 }
