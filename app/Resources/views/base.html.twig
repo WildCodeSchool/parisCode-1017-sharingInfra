@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hobbea</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/style.scss')}}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+{% block nav %}
+    <nav>
+        <ul>
+            <li><a href="#"><img src="{{ asset('assets/pictures/logo hobbea.png')}}" height="100px"></a></li>
+            <li><a href="#">Inscription</a></li>
+            <li><a href="#">Connexion</a></li>
+            <li><a href="#">Aide</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+{% block content %}{% endblock %}
+{% block javascripts %}{% endblock %}
+<footer>
+    <ul>
+        <li><a href="#">Aide</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Twitter</a></li>
+
+    </ul>
+</footer>
+</body>
 </html>
