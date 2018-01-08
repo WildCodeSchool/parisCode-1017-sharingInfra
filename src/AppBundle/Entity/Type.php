@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Type
 {
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->gearType;
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

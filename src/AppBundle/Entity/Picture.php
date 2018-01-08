@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class Picture
 {
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id;
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
