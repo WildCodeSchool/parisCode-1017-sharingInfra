@@ -2,23 +2,37 @@
 # https://symfony.com/doc/current/security.html
 security:
 
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    # The bundle's packaged user provider service is available via the alias fos_userbundle.
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
 
+    # A firewall named main is declared. By specifying form_login we tell Symfony that any time a request is made
+    # to this firewall that leads to the user needing to authenticate himself, the user will be redirected to a form
+    # where he will be able to enter his credentials.
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
         main:
-            anonymous: ~
-            # activate different ways to authenticate
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
+            logout:       true
+            anonymous:    true
 
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+    # We specify the credentials necessary for users trying to access specific parts of your application.
+    # We specify that any request matching the /login pattern or starting with /register or /resetting
+    # have been made available to anonymous users.
+    # We specify that any request beginning with /admin will require a user to have the ROLE_ADMIN role.
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
