@@ -81,7 +81,7 @@ class User extends BaseUser
     private $comments;
 
     /**
-     * One user has many picture
+     * One user has one picture
      *
      * @ORM\OneToOne(targetEntity="Picture")
      */
