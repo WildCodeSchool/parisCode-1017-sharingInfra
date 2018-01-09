@@ -1,4 +1,5 @@
-var Encore = require('@symfony/webpack-encore');
+const Encore = require('@symfony/webpack-encore');
+const path = require('path');
 
 Encore
 // the project directory where all compiled assets will be stored
@@ -8,7 +9,7 @@ Encore
     .setPublicPath('/build')
 
     // will create web/build/app.js and web/build/app.css
-    .addEntry('app', './assets/js/app.js')
+    .addEntry('main', path.join(__dirname, 'web', 'assets', 'js', 'main.js'))
 
     // allow sass/scss files to be processed
     .enableSassLoader()
