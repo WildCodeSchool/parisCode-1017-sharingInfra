@@ -10,6 +10,7 @@ Encore
 
     // will create web/build/app.js and web/build/app.css
     .addEntry('main', path.join(__dirname, 'web', 'assets', 'js', 'main.js'))
+    .addEntry('style', path.join(__dirname, 'web', 'assets', 'css', 'style.scss'))
 
     // allow sass/scss files to be processed
     .enableSassLoader()
