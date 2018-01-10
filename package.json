@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "add": "^2.0.6",
+    "jquery": "^3.2.1",
     "less": "^2.7.3",
     "node-sass": "^4.7.2",
     "npm": "^5.6.0",

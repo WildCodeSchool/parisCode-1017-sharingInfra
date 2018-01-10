@@ -1,4 +1,5 @@
 {
-  "build/main.css": "/build/main.css",
-  "build/main.js": "/build/main.js"
+  "build/main.js": "/build/main.js",
+  "build/style.css": "/build/style.css",
+  "build/style.js": "/build/style.js"
 }
