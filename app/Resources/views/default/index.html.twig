@@ -5,15 +5,29 @@
     {# Jumbotron #}
         <header class="homepage--jumbotron">
 
+                <div class="jumbotron">
+
+                    <h1 class="text-center">Restez sportifs pendant vos vacances !</h1>
+                    <div class="homepage--searchbox text-center">
+                        {# <form method="get" action="#}{# Browsing action route to be detailed in Controller#}{#">
+                           <input name="destination" placeholder="Entrez votre destination">
+                           <button type="submit" class="btn-default">Rechercher</button>
+                           </form>#}
+
+                        {{ form(form) }}
+                    </div>
+                </div>
+
+
             {# Cover picture #}
-            <img src="{{ asset('assets/pictures/tennis.jpg') }}" class="cover-picture">
+            {#<img src="{{ asset('assets/pictures/tennis.jpg') }}" class="cover-picture">#}
             {# End of cover picture #}
 
             {# Introduction #}
-            <div class="text-header text-center cover-gradient">
+           {# <div class="text-header text-center cover-gradient">
                 <h1 class="homepage--maintitle">Restez sportifs pendant vos vacances !</h1>
                 <p class="homepage--mainintroduction">Avec Hobbea, louez une piscine ou un court de tennis chez des
-                    particuliers.</p>
+                    particuliers.</p>#}
                 {# End of introduction #}
 
                 {# Search box #}
