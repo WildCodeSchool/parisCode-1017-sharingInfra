@@ -36,4 +36,38 @@ class Characteristic
      */
     private $equipment;
 
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set equipment.
+     *
+     * @param string $equipment
+     *
+     * @return Characteristic
+     */
+    public function setEquipment($equipment)
+    {
+        $this->equipment = $equipment;
+
+        return $this;
+    }
+
+    /**
+     * Get equipment.
+     *
+     * @return string
+     */
+    public function getEquipment()
+    {
+        return $this->equipment;
+    }
 }

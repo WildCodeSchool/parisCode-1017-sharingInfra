@@ -4,26 +4,32 @@
 
     {# Jumbotron #}
         <header class="homepage--jumbotron">
+
             {# Cover picture #}
             <img src="{{ asset('assets/pictures/tennis.jpg') }}" class="cover-picture">
             {# End of cover picture #}
+
             {# Introduction #}
             <div class="text-header text-center cover-gradient">
                 <h1 class="homepage--maintitle">Restez sportifs pendant vos vacances !</h1>
                 <p class="homepage--mainintroduction">Avec Hobbea, louez une piscine ou un court de tennis chez des
                     particuliers.</p>
                 {# End of introduction #}
+
                 {# Search box #}
                 <div class="homepage--searchbox">
-                    <form method="get" action="{# Browsing action route to be detailed in Controller#}">
+{#                    <form method="get" action="#}{# Browsing action route to be detailed in Controller#}{#">
                         <input name="destination" placeholder="Entrez votre destination">
                         <button type="submit" class="btn-default">Rechercher</button>
-                    </form>
+                    </form>#}
+                    {{ form(form) }}
                 </div>
                 {# End of search box#}
+
             </div>
         </header>
     {# End of jumbotron #}
+
     {# Highlights #}
     <section>
         <div class="container homepage--highlights">
@@ -46,6 +52,7 @@
             </div>
         </div>
         {# End of highlights #}
+
         {# Owner benefits #}
         <div class="container homepage--benefits">
             <h2 class="homepage--subtitle">Propriétaires, gagnez jusqu'à 1.000.000 euros par an</h2>
@@ -55,5 +62,6 @@
             </div>
         </div>
         {# End of owner benefits #}
+
     </section>
 {% endblock %}
