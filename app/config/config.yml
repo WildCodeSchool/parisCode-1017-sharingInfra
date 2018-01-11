@@ -24,12 +24,14 @@ framework:
     session:
         # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
         handler_id: session.handler.native_file
-        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        save_path: /var/lib/php/sessions
     fragments: ~
     http_method_override: true
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig']
 
 # Twig Configuration
 twig:
@@ -60,8 +62,16 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
-    spool: { type: memory }
+    transport: gmail
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
+
+# FOSUserBundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main # Firewall name as configured in security.yml
+    user_class: AppBundle\Entity\User
+    # The default email address to use when the bundle send a registration confirmation to the user.
+    from_email:
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"

@@ -1,35 +1,105 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>Hobbea</title>
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('assets/css/style.scss')}}">
-    {% endblock %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-</head>
-<body>
-{% block nav %}
-    <nav>
-        <ul>
-            <li><a href="#"><img src="{{ asset('assets/pictures/logo hobbea.png')}}" height="100px"></a></li>
-            <li><a href="#">Inscription</a></li>
-            <li><a href="#">Connexion</a></li>
-            <li><a href="#">Aide</a></li>
-        </ul>
-    </nav>
-{% endblock %}
-{% block content %}{% endblock %}
-{% block javascripts %}{% endblock %}
-<footer>
-    <ul>
-        <li><a href="#">Aide</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Mentions légales</a></li>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Twitter</a></li>
+<html lang="fr">
 
-    </ul>
-</footer>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hobbea</title>
+
+    <!-- TODO: Favicons
+        ================================================== -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Stylesheet
+        ================================================== -->
+    <link rel="stylesheet" href="{{ asset('build/style.css') }}">
+{#
+    <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
+#}
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
+    <script type="text/javascript" src="{{ asset('assets/js/modernizr.custom.js') }}"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+
+<!-- Navigation -->
+{% block nav %}
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand" href="base.html.twig">
+                <img src="{{ asset('assets/pictures/hobbea_logo.png') }}" alt="logo hobbea" class="logo-navbar" width="150em">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('fos_user_registration_register') }}" class="page-scroll">INSCRIPTION</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}" class="page-scroll">CONNEXION</a></li>
+                <li><a href="#" class="page-scroll">AIDE</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block footer %}
+
+    <footer>
+        <ul>
+            <li><a href="#">Aide</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter</a></li>
+
+        </ul>
+    </footer>
+
+{% endblock %}
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ asset('assets/js/jquery.1.11.1.js') }}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="{{ asset('assets/js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/SmoothScroll.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/jquery.counterup.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/waypoints.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/jquery.prettyPhoto.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/jquery.isotope.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/jqBootstrapValidation.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/contact_me.js') }}"></script>
+
+<!-- Javascripts -->
+<script type="text/javascript" src="{{ asset('assets/js/main.js') }}/main.js"></script>
+
+{% block javascripts %}{% endblock %}
+
 </body>
 </html>

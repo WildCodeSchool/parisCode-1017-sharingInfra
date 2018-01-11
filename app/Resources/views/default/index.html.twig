@@ -1,8 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-{% endblock %}
+{% block content %}
 
-{% block stylesheets %}
-
+    {# Jumbotron #}
+        <header class="homepage--jumbotron">
+            {# Cover picture #}
+            <img src="{{ asset('assets/pictures/tennis.jpg') }}" class="cover-picture">
+            {# End of cover picture #}
+            {# Introduction #}
+            <div class="text-header text-center cover-gradient">
+                <h1 class="homepage--maintitle">Restez sportifs pendant vos vacances !</h1>
+                <p class="homepage--mainintroduction">Avec Hobbea, louez une piscine ou un court de tennis chez des
+                    particuliers.</p>
+                {# End of introduction #}
+                {# Search box #}
+                <div class="homepage--searchbox">
+                    <form method="get" action="{# Browsing action route to be detailed in Controller#}">
+                        <input name="destination" placeholder="Entrez votre destination">
+                        <button type="submit" class="btn-default">Rechercher</button>
+                    </form>
+                </div>
+                {# End of search box#}
+            </div>
+        </header>
+    {# End of jumbotron #}
+    {# Highlights #}
+    <section>
+        <div class="container homepage--highlights">
+            <h2 class="homepage--subtitle">Nos coups de cœur</h2>
+            <div class="row">
+                <a href="{# showOneKindOfRoute #}">
+                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
+                        <img src="{# advert.url #}">
+                        <p>{# advert.title #}</p>
+                        <p>{# advert.address #}</p>
+                    </div>
+                </a>
+                <a href="{# showOneKindOfRoute #}">
+                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
+                        <img src="{# advert.url #}">
+                        <p>{# advert.title #}</p>
+                        <p>{# advert.address #}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {# End of highlights #}
+        {# Owner benefits #}
+        <div class="container homepage--benefits">
+            <h2 class="homepage--subtitle">Propriétaires, gagnez jusqu'à 1.000.000 euros par an</h2>
+            <div class="row">
+                <p>Donnez une seconde vie à vos infrastructures sportives et louez-les à des voyageurs.</p>
+                <button type="button" class="btn-default">+ d'informations</button>
+            </div>
+        </div>
+        {# End of owner benefits #}
+    </section>
 {% endblock %}
