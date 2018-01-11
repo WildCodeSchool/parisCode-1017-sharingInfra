@@ -16,7 +16,8 @@ class AdvertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('address', TextType::class, array(
-            'empty_data' => 'Entrez votre destination'
+            'label'=> false,
+
         ));
 
         $builder->add('submit', SubmitType::class);

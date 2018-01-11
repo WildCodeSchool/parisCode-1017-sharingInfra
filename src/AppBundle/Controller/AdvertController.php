@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Advert;
-use AppBundle\Entity\AdvertType;
+use AppBundle\Form\AdvertType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -28,18 +28,18 @@ class AdvertController extends Controller
 
         $form->handleRequest($request);
 
-        $advert = [];
+        $adverts = [];
         if ($form->isValid() && $form->isSubmitted()) {
             $data = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
 
-            $advert = $em->getRepository(Advert::class)->findByAddress($data['address']);
+            $adverts = $em->getRepository(Advert::class)->findByAddress($data['address']);
         }
 
 
-        return $this->render('search_results.html.twig', array(
-            'advert' => $advert,
+        return $this->render('default/search_results.html.twig', array(
+            'adverts' => $adverts,
             'form' => $form->createView()
         ));
     }
