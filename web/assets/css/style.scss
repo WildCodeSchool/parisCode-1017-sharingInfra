@@ -79,6 +79,16 @@ body {
     h1, h2 {
       color: white;
     }
+
+    .btn-primary{
+      background-color: $blue;
+      border-color: #16174f;
+    }
+
+    .btn-primary:hover{
+      background-color: $orange;
+      border-color: orange;
+    }
   }
 
   /* ================= FAQ ================= */
