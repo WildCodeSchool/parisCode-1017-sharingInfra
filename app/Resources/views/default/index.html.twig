@@ -1,47 +1,35 @@
 {% extends 'base.html.twig' %}
 
+
 {% block content %}
 
     {# Jumbotron #}
-        <header class="homepage--jumbotron">
+    <section>
 
-                <div class="jumbotron">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Restez sportifs pendant vos vacances !</h1>
+                <h2>Avec Hobbea, louez une piscine ou un court de tennis chez des particuliers.</h2>
+                {# Search box #}
 
-                    <h1 class="text-center">Restez sportifs pendant vos vacances !</h1>
-                    <div class="homepage--searchbox text-center">
-                        {# <form method="get" action="#}{# Browsing action route to be detailed in Controller#}{#">
-                           <input name="destination" placeholder="Entrez votre destination">
-                           <button type="submit" class="btn-default">Rechercher</button>
-                           </form>#}
+                {{ form_start(form) }}
 
-                        {{ form(form) }}
+                <div class="row">
+                    <div class="col-md-10">
+                        {{ form_widget(form.address) }}
+                    </div>
+                    <div class= col-md-2>
+                        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Go!</button>
+                        {{ form_end(form) }}
                     </div>
                 </div>
 
-
-            {# Cover picture #}
-            {#<img src="{{ asset('assets/pictures/tennis.jpg') }}" class="cover-picture">#}
-            {# End of cover picture #}
-
-            {# Introduction #}
-           {# <div class="text-header text-center cover-gradient">
-                <h1 class="homepage--maintitle">Restez sportifs pendant vos vacances !</h1>
-                <p class="homepage--mainintroduction">Avec Hobbea, louez une piscine ou un court de tennis chez des
-                    particuliers.</p>#}
-                {# End of introduction #}
-
-                {# Search box #}
-                <div class="homepage--searchbox">
-{#                    <form method="get" action="#}{# Browsing action route to be detailed in Controller#}{#">
-                        <input name="destination" placeholder="Entrez votre destination">
-                        <button type="submit" class="btn-default">Rechercher</button>
-                    </form>#}
-                    {{ form(form) }}
-                </div>
-                {# End of search box#}
-
             </div>
-        </header>
+            {# End of search box#}
+        </div>
+
+
+    </section>
     {# End of jumbotron #}
 
     {# Highlights #}
