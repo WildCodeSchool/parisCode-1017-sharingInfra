@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <img src="{{ asset('assets/pictures/doggo.jpg') }}" alt="good doggo" width="100%">
+
+    <div class="container-faq faq-div faq-parent">
+
+        <h2 class="faq-title">FOIRE AUX QUESTIONS</h2>
+
+        <div class="toggle faq-div">
+            <div class="toggle-title faq-div">
+                <h3 class="faq-question">
+                    <i></i>
+                    <span class="title-name">Comment ça marche ?</span>
+                </h3>
+            </div>
+            <div class="toggle-inner faq-div">
+                <p class="faq-answer">Ça marche comme ça.</p>
+            </div>
+        </div><!-- END OF TOGGLE -->
+
+        <div class="toggle faq-div">
+            <div class="toggle-title faq-div">
+                <h3 class="faq-question">
+                    <i></i>
+                    <span class="title-name">Pourquoi ?</span>
+                </h3>
+            </div>
+
+            <div class="toggle-inner faq-div">
+                <p class="faq-answer">Parce que.</p>
+            </div>
+        </div><!-- END OF TOGGLE -->
+
+        <div class="toggle faq-div">
+            <div class="toggle-title faq-div">
+                <h3 class="faq-question">
+                    <i></i>
+                    <span class="title-name">Ça va sinon ?</span>
+                </h3>
+            </div>
+
+            <div class="toggle-inner faq-div">
+                <p class="faq-answer">On fait aller.</p>
+            </div>
+        </div><!-- END OF TOGGLE -->
+
+        <h2 class="faq-title">UNE AUTRE QUESTION ? CONTACTEZ-NOUS !</h2>
+
+            <p class="faq-answer">Insérer ici le formulaire de contact</p>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        if( jQuery(".toggle .toggle-title").hasClass('active') ){
+            jQuery(".toggle .toggle-title.active").closest('.toggle').find('.toggle-inner').show();
+        }
+        jQuery(".toggle .toggle-title").click(function(){
+            if( jQuery(this).hasClass('active') ){
+                jQuery(this).removeClass("active").closest('.toggle').find('.toggle-inner').slideUp(200);
+            }
+            else{	jQuery(this).addClass("active").closest('.toggle').find('.toggle-inner').slideDown(200);
+            }
+        });
+    </script>
+
+{% endblock %}
