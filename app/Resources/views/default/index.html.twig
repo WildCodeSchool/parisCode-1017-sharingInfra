@@ -10,32 +10,30 @@
             <div class="container">
                 <h1>Restez sportifs pendant vos vacances !</h1>
                 <h2>Avec Hobbea, louez une piscine ou un court de tennis chez des particuliers.</h2>
-                {# Search box #}
 
+                {# Search box #}
                 {{ form_start(form) }}
 
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="form-group col-md-10 col-xs-12">
                         {{ form_widget(form.address) }}
                     </div>
-                    <div class= col-md-2>
+                    <div class="form-group col-md-2 col-xs-12">
                         <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Go!</button>
                         {{ form_end(form) }}
                     </div>
                 </div>
-
             </div>
             {# End of search box#}
         </div>
-
 
     </section>
     {# End of jumbotron #}
 
     {# Highlights #}
     <section>
-        <div class="container homepage--highlights">
-            <h2 class="homepage--subtitle">Nos coups de cœur</h2>
+        <div class="container">
+            <h2 class="">Nos coups de cœur</h2>
             <div class="row">
                 <a href="{# showOneKindOfRoute #}">
                     <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
@@ -56,12 +54,12 @@
         {# End of highlights #}
 
         {# Owner benefits #}
-        <div class="container homepage--benefits">
+        <div class="container">
             <h2 class="homepage--subtitle">Propriétaires, gagnez jusqu'à 1.000.000 euros par an</h2>
-            <div class="row">
+
                 <p>Donnez une seconde vie à vos infrastructures sportives et louez-les à des voyageurs.</p>
                 <button type="button" class="btn-default">+ d'informations</button>
-            </div>
+
         </div>
         {# End of owner benefits #}
 
