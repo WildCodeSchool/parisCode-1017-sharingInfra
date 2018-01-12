@@ -36,4 +36,14 @@ class DefaultController extends Controller
         return $this->render('default/faq.html.twig');
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/legal_mentions", name="legal_mentions")
+     */
+    public function legalMentionsAction()
+    {
+        return $this->render('default/legal_mentions.html.twig');
+    }
+
 }
