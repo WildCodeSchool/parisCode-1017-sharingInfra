@@ -17,10 +17,9 @@ class AdvertType extends AbstractType
     {
         $builder->add('address', TextType::class, array(
             'label'=> false,
+            'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre destination']
 
         ));
-
-        $builder->add('submit', SubmitType::class);
     }
 
     /**
