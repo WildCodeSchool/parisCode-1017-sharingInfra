@@ -67,22 +67,19 @@ body {
 
   /* ================= Header and search bar ================= */
 
+  /* Jumbotron */
 
+  .jumbotron {
+    background-image: url("../assets/pictures/tennis.jpg");
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-/* Jumbotron */
-
-.jumbotron{
-  background-image: url("/var/www/html/parisCode-1017-sharingInfra/web/assets/pictures/tennis.jpg");
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  h1, h2{
-    color: white;
+    h1, h2 {
+      color: white;
+    }
   }
-}
-
 
   /* ================= FAQ ================= */
 
@@ -92,7 +89,6 @@ body {
     width: 70%;
     margin: 7em auto;
   }
-
 
   $lightgrey: #dddddd;
   $textcolor: #4B4B4B;
@@ -173,6 +169,7 @@ body {
       }
     }
   }
+}
 
 
 
