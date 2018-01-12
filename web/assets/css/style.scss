@@ -65,6 +65,20 @@ body {
 
   }
 
+  footer{
+    background-color: $blue;
+    margin-top: 100px;
+    a{
+      color: white;
+    }
+    :hoover{
+      color: $orange;
+
+    }
+    li{
+      list-style: none;
+    }
+  }
   /* ================= Header and search bar ================= */
 
   /* Jumbotron */
