@@ -34,32 +34,70 @@
     <section>
         <div class="container">
             <h2 class="">Nos coups de cœur</h2>
+            {#<div class="row">
+                <a href="#}{# showOneKindOfRoute #}{#">
+                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
+                        <img src="#}{# advert.url #}{#">
+                        <p>#}{# advert.title #}{#</p>
+                        <p>#}{# advert.address #}{#</p>
+                    </div>
+                </a>
+                <a href="#}{# showOneKindOfRoute #}{#">
+                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
+                        <img src="#}{# advert.url #}{#">
+                        <p>#}{# advert.title #}{#</p>
+                        <p>#}{# advert.address #}{#</p>
+                    </div>
+                </a>
+            </div>#}
             <div class="row">
-                <a href="{# showOneKindOfRoute #}">
-                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
-                        <img src="{# advert.url #}">
-                        <p>{# advert.title #}</p>
-                        <p>{# advert.address #}</p>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{ asset('assets/pictures/piscine1.jpeg') }}" alt="..." width="100%">
+                        <div class="caption">
+                            <h3>Playa chez Bob - Hyères</h3>
+                            <p>Piscine avec palmiers</p>
+                        </div>
                     </div>
-                </a>
-                <a href="{# showOneKindOfRoute #}">
-                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
-                        <img src="{# advert.url #}">
-                        <p>{# advert.title #}</p>
-                        <p>{# advert.address #}</p>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{ asset('assets/pictures/piscine2.jpeg') }}" alt="..." width="100%">
+                        <div class="caption">
+                            <h3>Piscine à Paris - Paris</h3>
+                            <p>Piscine chauffée</p>
+                        </div>
                     </div>
-                </a>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{ asset('assets/pictures/tennis1.jpeg') }}" alt="..." width="100%">
+                        <div class="caption">
+                            <h3>Roland Garros privé - La Loupe</h3>
+                            <p>Venez-jouer!</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         {# End of highlights #}
-
-        {# Owner benefits #}
+    </section>
+    {# Owner benefits #}
+    <section>
         <div class="container">
-            <h2 class="homepage--subtitle">Propriétaires, gagnez jusqu'à 1.000.000 euros par an</h2>
+        <h2>Propriétaires, gagnez jusqu'à 1.000.000 euros par an</h2>
 
-                <p>Donnez une seconde vie à vos infrastructures sportives et louez-les à des voyageurs.</p>
-                <button type="button" class="btn-default">+ d'informations</button>
-
+        <p>Donnez une seconde vie à vos infrastructures sportives et louez-les à des voyageurs.</p>
+        <p>Illud tamen clausos vehementer angebat quod captis navigiis, quae frumenta vehebant per flumen, Isauri quidem
+            alimentorum copiis adfluebant, ipsi vero solitarum rerum cibos iam consumendo inediae propinquantis aerumnas
+            exitialis horrebant. </p>
+        <p>Quod si rectum statuerimus vel concedere amicis, quidquid velint, vel impetrare ab iis, quidquid velimus,
+            perfecta quidem sapientia si simus, nihil habeat res vitii; sed loquimur de iis amicis qui ante oculos sunt,
+            quos vidimus aut de quibus memoriam accepimus, quos novit vita communis. Ex hoc numero nobis exempla sumenda
+            sunt, et eorum quidem maxime qui ad sapientiam proxime accedunt.</p>
+        {#<button type="button" class="btn-default">+ d'informations</button>#}
         </div>
         {# End of owner benefits #}
 
