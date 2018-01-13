@@ -48,7 +48,36 @@
 
         <h2 class="faq-title">UNE AUTRE QUESTION ? CONTACTEZ-NOUS !</h2>
 
-            <p class="faq-answer">Insérer ici le formulaire de contact</p>
+        <div class="contact-form">
+
+            {{ form_start(form) }}
+
+            <div class="contact-input">
+                {{ form_widget(form.name) }}
+                {{ form_errors(form.name) }}
+            </div>
+            <div class="contact-input">
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+            </div>
+            <div class="contact-input">
+                {{ form_widget(form.message) }}
+                {{ form_errors(form.message) }}
+            </div>
+
+            {# Render CSRF token etc .#}
+            <div style="display:none">
+                {{ form_rest(form) }}
+            </div>
+
+            <div class="contact-input">
+                <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+                {{ form_end(form) }}
+            </div>
+
+            {{ form_end(form) }}
+
+        </div>
 
     </div>
 
@@ -57,14 +86,15 @@
 {% block javascripts %}
 
     <script>
-        if( jQuery(".toggle .toggle-title").hasClass('active') ){
+        if (jQuery(".toggle .toggle-title").hasClass('active')) {
             jQuery(".toggle .toggle-title.active").closest('.toggle').find('.toggle-inner').show();
         }
-        jQuery(".toggle .toggle-title").click(function(){
-            if( jQuery(this).hasClass('active') ){
+        jQuery(".toggle .toggle-title").click(function () {
+            if (jQuery(this).hasClass('active')) {
                 jQuery(this).removeClass("active").closest('.toggle').find('.toggle-inner').slideUp(200);
             }
-            else{	jQuery(this).addClass("active").closest('.toggle').find('.toggle-inner').slideDown(200);
+            else {
+                jQuery(this).addClass("active").closest('.toggle').find('.toggle-inner').slideDown(200);
             }
         });
     </script>
