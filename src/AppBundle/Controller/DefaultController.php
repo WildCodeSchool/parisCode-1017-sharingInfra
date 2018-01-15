@@ -45,13 +45,13 @@ class DefaultController extends Controller
 
             if($form->isValid()){
                 // Send mail
-                if($this->sendEmail($form->getData())){
+                if($this->sendEmail($form->getData())) {
 
                     // Everything OK, redirect to wherever you want ! :
 
                     return $this->redirectToRoute('faq');
-                }else{
-                    // An error ocurred, handle
+                } else{
+                    // An error occurred, handle
                     var_dump("Errooooor :(");
                 }
             }
@@ -78,7 +78,7 @@ class DefaultController extends Controller
      *
      * @Route("/mail", name="mail")
      */
-    public function sendEmail()
+    public function sendEmail($form)
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Demande d\'information')
@@ -86,7 +86,9 @@ class DefaultController extends Controller
             ->setTo('teamhobbea@gmail.com')
             ->setBody(
                 $this->renderView(
-                    'default/mail_template.html.twig'),
+                    'default/mail_template.html.twig', array(
+                        'form' => $form
+                )),
                 'text/html'
             );
 
