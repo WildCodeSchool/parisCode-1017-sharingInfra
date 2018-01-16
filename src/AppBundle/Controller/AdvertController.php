@@ -35,6 +35,8 @@ class AdvertController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $adverts = $em->getRepository(Advert::class)->findByAddress($data['address']);
+            $adverts = $em->getRepository(Advert::class)->findByCritere($data['address'], $data['type'], $data['date']);
+
         }
 
 
