@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\AdvertType;
+use AppBundle\Form\SearchType;
 use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,7 +15,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(AdvertType::class, null, [
+        $form = $this->createForm(SearchType::class, null, [
             'method' => 'GET',
             'action' => $this->get('router')->generate('resultspage')
         ]);

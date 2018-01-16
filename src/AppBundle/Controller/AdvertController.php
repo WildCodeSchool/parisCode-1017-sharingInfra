@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Advert;
-use AppBundle\Form\AdvertType;
+use AppBundle\Form\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,7 +22,7 @@ class AdvertController extends Controller
      */
     public function searchAction(Request $request)
     {
-        $form = $this->createForm(AdvertType::class, null, [
+        $form = $this->createForm(SearchType::class, null, [
             'method' => 'GET',
         ]);
 
