@@ -106,6 +106,13 @@ class Advert
      */
     private $pictures;
 
+    /**
+     * Many adverts have one type
+     *
+     * @ORM\ManyToOne(targetEntity="Type")
+     */
+    private $type;
+
 
     /**
      * Get id
@@ -437,5 +444,29 @@ class Advert
     public function getPictures()
     {
         return $this->pictures;
+    }
+
+    /**
+     * Set type.
+     *
+     * @param \AppBundle\Entity\Type|null $type
+     *
+     * @return Advert
+     */
+    public function setType(\AppBundle\Entity\Type $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type.
+     *
+     * @return \AppBundle\Entity\Type|null
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
