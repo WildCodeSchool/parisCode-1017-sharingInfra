@@ -31,16 +31,29 @@ body {
   footer {
     background-color: $blue;
     margin-top: 100px;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    font-size: 1.2em;
     a {
       color: white;
-    }
-    :hoover {
-      color: $orange;
 
+    }
+    a:hover {
+      color: $orange !important;
+      text-decoration: none;
     }
     li {
       list-style: none;
     }
+    h4{
+      color: white;
+    }
+    .social{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
   }
 
   /* ================= Header and search bar ================= */
