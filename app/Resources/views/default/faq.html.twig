@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <img src="{{ asset('assets/pictures/doggo.jpg') }}" alt="good doggo" width="100%">
+    <img src="{{ asset('assets/pictures/doggo-banner.jpg') }}" alt="good doggo" width="100%">
 
     <div class="container-faq faq-div faq-parent">
 
@@ -48,36 +48,40 @@
 
         <h2 class="faq-title">UNE AUTRE QUESTION ? CONTACTEZ-NOUS !</h2>
 
-        <div class="contact-form">
+        <form action="post">
 
-            {{ form_start(form) }}
+            <div class="contact-form">
 
-            <div class="contact-input">
-                {{ form_widget(form.name) }}
-                {{ form_errors(form.name) }}
-            </div>
-            <div class="contact-input">
-                {{ form_widget(form.email) }}
-                {{ form_errors(form.email) }}
-            </div>
-            <div class="contact-input">
-                {{ form_widget(form.message) }}
-                {{ form_errors(form.message) }}
-            </div>
+                {{ form_start(form) }}
 
-            {# Render CSRF token etc .#}
-            <div style="display:none">
-                {{ form_rest(form) }}
-            </div>
+                <div class="contact-input form-group">
+                    {{ form_widget(form.name) }}
+                    {{ form_errors(form.name) }}
+                </div>
+                <div class="contact-input form-group">
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+                <div class="contact-input form-group">
+                    {{ form_widget(form.message) }}
+                    {{ form_errors(form.message) }}
+                </div>
 
-            <div class="contact-input">
-                <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+                {# Render CSRF token etc .#}
+                <div style="display:none">
+                    {{ form_rest(form) }}
+                </div>
+
+                <div class="contact-input form-group">
+                    <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+                    {{ form_end(form) }}
+                </div>
+
                 {{ form_end(form) }}
+
             </div>
 
-            {{ form_end(form) }}
-
-        </div>
+        </form>
 
     </div>
 

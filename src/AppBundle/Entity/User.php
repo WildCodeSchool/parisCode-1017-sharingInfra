@@ -36,56 +36,56 @@ class User extends BaseUser
      *
      * @ORM\Column(name="name", type="string", length=45)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=45)
      */
-    private $firstname;
+    protected $firstname;
 
     /**
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=45)
      */
-    private $phone;
+    protected $phone;
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description;
+    protected $description;
 
     /**
      * One user has many reservations
      *
      * @ORM\OneToMany(targetEntity="Reservation", mappedBy="user")
      */
-    private $reservations;
+    protected $reservations;
 
     /**
      * One user has many adverts
      *
      * @ORM\OneToMany(targetEntity="Advert", mappedBy="user")
      */
-    private $adverts;
+    protected $adverts;
 
     /**
      * One user has many comments
      *
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      */
-    private $comments;
+    protected $comments;
 
     /**
      * One user has one picture
      *
      * @ORM\OneToOne(targetEntity="Picture")
      */
-    private $picture;
+    protected $picture;
 
 
     /**
