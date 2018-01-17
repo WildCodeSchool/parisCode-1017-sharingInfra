@@ -17,36 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 class AdvertController extends Controller
 {
     /**
-     * @Route("/res", name="resultspage")
-     * @Method({"GET", "POST"})
-     */
-    public function searchAction(Request $request)
-    {
-        $form = $this->createForm(SearchType::class, null, [
-            'method' => 'GET',
-        ]);
-
-        $form->handleRequest($request);
-
-        $adverts = [];
-        if ($form->isValid() && $form->isSubmitted()) {
-            $data = $form->getData();
-
-            $em = $this->getDoctrine()->getManager();
-
-            $adverts = $em->getRepository(Advert::class)->findByAddress($data['address']);
-            $adverts = $em->getRepository(Advert::class)->findByCritere($data['address'], $data['type'], $data['date']);
-
-        }
-
-
-        return $this->render('default/search_results.html.twig', array(
-            'adverts' => $adverts,
-            'form' => $form->createView()
-        ));
-    }
-
-    /**
      * Lists all advert entities.
      *
      * @Route("/", name="advert_index")
@@ -62,6 +32,7 @@ class AdvertController extends Controller
             'adverts' => $adverts,
         ));
     }
+
 
     /**
      * Creates a new advert entity.
