@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
 
-    {{ form(form) }}
 
     {% for advert in adverts %}
         <div>
             <div>
-                {#<img src="{{ advert.picture }}">
-                <p>{{ advert.type }}</p>#}
+                {#<img src="{{ advert.picture }}">#}
+                <p>{{ advert.type }}</p>
                 <p>{{ advert.title }}</p>
                 <p>{{ advert.address }}  {#{{ advert.rate }}</p>#}
             </div>

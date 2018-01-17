@@ -41,11 +41,11 @@
             <a href="{{ path('advert_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('advert_edit', { 'id': advert.id }) }}">Edit</a>
+            <a href="{{ path('advert_edit', { 'id': advert.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
