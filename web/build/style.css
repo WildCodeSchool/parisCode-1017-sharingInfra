@@ -4,6 +4,7 @@
 
 body {
   font-family: 'Catamaran', sans-serif;
+  min-height: 100vh;
   /* ================= Navigation ================= */
   /* ================= Header and search bar ================= */
   /* Jumbotron */
@@ -35,18 +36,32 @@ body nav .logo-navbar {
 body footer {
   background-color: #16174f;
   margin-top: 100px;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  font-size: 1.2em;
 }
 
 body footer a {
   color: white;
 }
 
-body footer :hover {
-  color: #FB6900;
+body footer a:hover {
+  color: #FB6900 !important;
+  text-decoration: none;
 }
 
 body footer li {
   list-style: none;
+}
+
+body footer h4 {
+  color: white;
+}
+
+body footer .social {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 body .jumbotron {
