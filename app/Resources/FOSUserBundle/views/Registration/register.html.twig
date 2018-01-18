@@ -1,3 +1,5 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
@@ -7,31 +9,37 @@
 
     <div class="container container-user">
 
-        <div class="formgroup">
-            {{ form_label(form.firstname) }}
-            {{ form_widget(form.firstname) }}
-            {{ form_errors(form.firstname) }}
-        </div>
+        <form action="{{ path('fos_user_registration_register') }}" method="post">
 
-        <div class="formgroup">
-            {{ form_label(form.name) }}
-            {{ form_widget(form.name) }}
-            {{ form_errors(form.name) }}
-        </div>
+            <div class="register-form">
 
-        <div class="formgroup">
-            {{ form_label(form.email) }}
-            {{ form_widget(form.email) }}
-            {{ form_errors(form.email) }}
-        </div>
+                <div class="formgroup contact-input">
+                    {{ form_widget(form.firstname) }}
+                    {{ form_errors(form.firstname) }}
+                </div>
 
-        <div class="formgroup">
-            {{ form_label(form.plainPassword) }}
-            {{ form_widget(form.plainPassword) }}
-            {{ form_errors(form.plainPassword) }}
-        </div>
+                <div class="formgroup contact-input">
+                    {{ form_widget(form.name) }}
+                    {{ form_errors(form.name) }}
+                </div>
 
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+                <div class="formgroup contact-input">
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+
+                <div class="formgroup contact-input">
+                    {{ form_widget(form.plainPassword) }}
+                    {{ form_errors(form.plainPassword) }}
+                </div>
+
+                <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn btn-primary btn-lg"/>
+
+            </div>
+
+            {{ form_end(form) }}
+
+        </form>
 
     </div>
 

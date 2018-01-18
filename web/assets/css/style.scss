@@ -71,7 +71,7 @@ body {
     a {
       color: white;
     }
-    :hoover {
+    :hover {
       color: $orange;
 
     }
@@ -240,13 +240,25 @@ body {
   .legal-strong {
     font-weight: bold;
   }
-
+}
 
   /* ================= USER ================= */
 
   .container-user {
     width: 70%;
-    margin-top: 20em;
-  }
 
-}
+    .contact-input {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    .btn-primary {
+      background-color: $blue;
+      border-color: #16174f;
+    }
+
+    .btn-primary:hover {
+      background-color: $orange;
+      border-color: orange;
+    }
+  }
