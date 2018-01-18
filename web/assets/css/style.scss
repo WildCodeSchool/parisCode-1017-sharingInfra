@@ -238,6 +238,13 @@ body {
     }
   }
 
+/* ================= HOMEPAGE ================= */
+  /*thumbnail fixed height */
+  .crush-img{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
 /* ================= ADVERT ================= */
   .advert-img{
     height: 70vh;
