@@ -212,7 +212,6 @@ body .container-user {
 
 body .container-user .contact-input {
   margin-top: 1em;
-  margin-bottom: 1em;
 }
 
 body .container-user .btn-primary {
@@ -223,6 +222,10 @@ body .container-user .btn-primary {
 body .container-user .btn-primary:hover {
   background-color: #FB6900;
   border-color: orange;
+}
+
+.container-user .checkbox {
+  margin-left: 1em;
 }
 
 body .advert-img {
