@@ -2,6 +2,9 @@
 
 {% block content %}
 
+    <div class="container container-user">
+
+        {# Selon que le user est authentifié ou non, affiche "Connexion" ou "Login" #}
         <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
@@ -12,6 +15,8 @@
                 <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             {% endif %}
         </div>
+
+    </div>
 
         {% if app.request.hasPreviousSession %}
             {% for type, messages in app.session.flashbag.all() %}
