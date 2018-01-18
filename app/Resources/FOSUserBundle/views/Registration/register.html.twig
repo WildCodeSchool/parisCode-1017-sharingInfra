@@ -3,9 +3,6 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
-    {#
-        {% include "@FOSUser/Registration/register_content.html.twig" %}
-    #}
 
     <div class="container container-user">
 
@@ -13,24 +10,34 @@
 
             <div class="register-form">
 
-                <div class="formgroup contact-input">
+                <div class="form-group contact-input">
                     {{ form_widget(form.firstname) }}
                     {{ form_errors(form.firstname) }}
                 </div>
 
-                <div class="formgroup contact-input">
+                <div class="form-group contact-input">
                     {{ form_widget(form.name) }}
                     {{ form_errors(form.name) }}
                 </div>
 
-                <div class="formgroup contact-input">
+                <div class="form-group contact-input">
                     {{ form_widget(form.email) }}
                     {{ form_errors(form.email) }}
                 </div>
 
-                <div class="formgroup contact-input">
+                <div class="form-group contact-input">
                     {{ form_widget(form.plainPassword) }}
                     {{ form_errors(form.plainPassword) }}
+                </div>
+
+                <div class="form-group contact-input">
+                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control input-lg'}}) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                </div>
+
+                <div class="form-group contact-input">
+                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-lg'}}) }}
+                    {{ form_errors(form.plainPassword.second) }}
                 </div>
 
                 <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn btn-primary btn-lg"/>

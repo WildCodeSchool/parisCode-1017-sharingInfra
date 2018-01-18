@@ -224,7 +224,6 @@ body {
 
     .contact-input {
       margin-top: 1em;
-      margin-bottom: 1em;
     }
 
     .btn-primary {
@@ -235,6 +234,10 @@ body {
     .btn-primary:hover {
       background-color: $orange;
       border-color: orange;
+    }
+
+    .checkbox {
+      margin-left: 1em;
     }
   }
 
