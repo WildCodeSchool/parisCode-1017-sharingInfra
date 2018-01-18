@@ -2,18 +2,15 @@
 
 {% block body %}
     <img src="{{ asset('assets/pictures/piscine1.jpeg') }}" alt="" class="advert-img">
-{#{{advert.pictures}}#}
-<div class="container">
-    <h1>{{ advert.title }}</h1>
+    {#{{advert.pictures}}#}
+    <div class="container">
+        <h1>{{ advert.title }}</h1>
+        <p>{{ advert.type }} à {{ advert.address }}</p>
+        <h2>Description</h2>
+        {{ advert.description }}
 
-
-
-                Description
-                {{ advert.description }}
-
-                {{ advert.address }}
-                Price
-                {{ advert.price }}
+        <h2>Prix</h2>
+        {{ advert.price }} € par heure
     </div>
 
 {% endblock %}
