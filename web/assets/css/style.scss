@@ -5,6 +5,10 @@ $blue: #16174f;
 body {
   font-family: 'Catamaran', sans-serif;
   min-height: 100vh;
+  display: flex;
+  -webkit-flex: flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
 
   /* ================= Navigation ================= */
 
@@ -27,7 +31,17 @@ body {
       position: relative;
       bottom: 10px;
     }
+
+
   }
+
+
+  @media screen and (min-width: 992px){
+    .navbar-fixed-top{
+      position: absolute;
+    }
+  }
+
 
   footer {
     background-color: $blue;
@@ -53,6 +67,12 @@ body {
       flex-direction: row;
       justify-content: space-around;
     }
+
+    @media screen and (max-width:990px) {
+      .no-display-mobile {
+        display: none;
+      }
+  }
 
   }
 

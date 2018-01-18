@@ -69,7 +69,7 @@
 
 <!-- Navigation -->
 {% block nav %}
-    <nav id="menu" class="navbar navbar-default">
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -107,13 +107,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <li><a href="{{ path('faq') }}">Aide</a></li>
+                    <li class="no-display-mobile"><a href="{{ path('faq') }}">Aide</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="{{ path('legal_mentions') }}">Mentions légales</a></li>
 
                 </div>
                 <div class="col-md-6 social">
-                    <h4>Suivez-nous</h4>
+                    <h4 class="no-display-mobile">Suivez-nous :</h4>
                     <li><a href="#"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i> Facebook
                         </a></li>
                     <li><a href="#"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i> Twitter</a></li>
