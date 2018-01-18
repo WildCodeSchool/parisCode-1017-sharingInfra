@@ -10,7 +10,7 @@
                 <div class="col-md-4 col-xs-12">
                     <div class="thumbnail">
                         {#Path to show one with id#}
-                        <a href="#"><img src="https://media.giphy.com/media/11Je0AsIHE2TW8/giphy.gif" alt="placeholder" width="100%"></a>
+                        <a href="{{ path('advert_show', { 'id': advert.id }) }}"><img src="https://media.giphy.com/media/11Je0AsIHE2TW8/giphy.gif" alt="placeholder" width="100%"></a>
                         {#<img src="{{ advert.picture }}">#}
                         <div class="caption">
                             <h4>{{ advert.title }}</h4>
