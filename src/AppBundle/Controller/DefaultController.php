@@ -2,11 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\AdvertType;
+use AppBundle\Entity\Advert;
+use AppBundle\Form\SearchType;
 use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class DefaultController extends Controller
 {
@@ -15,7 +17,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(AdvertType::class, null, [
+        $form = $this->createForm(SearchType::class, null, [
             'method' => 'GET',
             'action' => $this->get('router')->generate('resultspage')
         ]);
@@ -24,6 +26,36 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/res", name="resultspage")
+     * @Method({"GET", "POST"})
+     */
+    public function searchAction(Request $request)
+    {
+        $form = $this->createForm(SearchType::class, null, [
+            'method' => 'GET',
+        ]);
+
+        $form->handleRequest($request);
+
+        $adverts = [];
+        if ($form->isValid() && $form->isSubmitted()) {
+            $data = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+
+           $adverts = $em->getRepository(Advert::class)->findByAddress($data['address']);
+            /* $adverts = $em->getRepository(Advert::class)->findByCritere($data['address'], $data['type'], $data['date']);*/
+
+        }
+
+
+        return $this->render('default/search_results.html.twig', array(
+            'adverts' => $adverts,
+            'form' => $form->createView()
+        ));
     }
 
     /**

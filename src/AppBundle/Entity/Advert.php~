@@ -106,6 +106,13 @@ class Advert
      */
     private $pictures;
 
+    /**
+     * Many adverts have one type
+     *
+     * @ORM\ManyToOne(targetEntity="Type")
+     */
+    private $type;
+
 
     /**
      * Get id
