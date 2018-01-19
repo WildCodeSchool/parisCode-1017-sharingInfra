@@ -267,6 +267,16 @@ body {
     .checkbox {
       margin-left: 1em;
     }
+
+    #fos_user_registration_form_plainPassword {
+      input {
+        margin-bottom: 1em;
+      }
+
+      .control-label {
+        display: none;
+      }
+    }
   }
 
 /* ================= HOMEPAGE ================= */
