@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
 {% block body %}
-    <h1>Nouvelle annonce</h1>
 
+<div class="container">
+    <div class="col-md-12">
+        <h1>Nouvelle annonce</h1>
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Créer" />
@@ -13,4 +15,6 @@
             <a href="{{ path('advert_index') }}">Back to the list</a>
         </li>
     </ul>
+    </div>
+</div>
 {% endblock %}
