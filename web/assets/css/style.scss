@@ -1,9 +1,18 @@
 /* Variables */
 $orange: #FB6900;
 $blue: #16174f;
+html{
+  height: 100%;
 
 body {
   font-family: 'Catamaran', sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .wrap{
+    flex: 1 0 auto;
+  }
+
 
   /* ================= Navigation ================= */
 
@@ -25,6 +34,12 @@ body {
     .logo-navbar{
       position: relative;
       bottom: 10px;
+    }
+  }
+  
+  @media screen and (min-width: 992px){
+    .navbar-fixed-top{
+      position: absolute;
     }
   }
 
@@ -241,6 +256,13 @@ body {
     }
   }
 
+/* ================= HOMEPAGE ================= */
+  /*thumbnail fixed height */
+  .crush-img{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
 /* ================= ADVERT ================= */
   .advert-img{
     height: 70vh;
@@ -249,3 +271,4 @@ body {
   }
 
 } /* end of body */
+}
