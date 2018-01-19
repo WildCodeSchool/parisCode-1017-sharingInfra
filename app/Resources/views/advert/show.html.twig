@@ -1,52 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Advert</h1>
+    <img src="{{ asset('assets/pictures/piscine1.jpeg') }}" alt="" class="advert-img">
+    {#{{advert.pictures}}#}
+    <div class="container">
+        <h1>{{ advert.title }}</h1>
+        <p>{{ advert.type }} à {{ advert.address }}</p>
+        <h2>Description</h2>
+        {{ advert.description }}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ advert.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ advert.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ advert.description }}</td>
-            </tr>
-            <tr>
-                <th>Latitude</th>
-                <td>{{ advert.latitude }}</td>
-            </tr>
-            <tr>
-                <th>Longitude</th>
-                <td>{{ advert.longitude }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ advert.address }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ advert.price }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h2>Prix</h2>
+        {{ advert.price }} € par heure
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('advert_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('advert_edit', { 'id': advert.id }) }}">Modifier</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

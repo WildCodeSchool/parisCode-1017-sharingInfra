@@ -4,7 +4,6 @@ $blue: #16174f;
 
 body {
   font-family: 'Catamaran', sans-serif;
-  min-height: 100vh;
 
   /* ================= Navigation ================= */
 
@@ -61,7 +60,7 @@ body {
   /* Jumbotron */
 
   .jumbotron {
-    background-image: url("../assets/pictures/tennis.jpg");
+    background-image: url("../assets/pictures/tennis-banner.jpg");
     height: 85vh;
     display: flex;
     flex-direction: column;
@@ -174,7 +173,7 @@ body {
       }
     }
   }
-}
+
 
 /* Contact form */
 
@@ -241,3 +240,12 @@ body {
       margin-left: 1em;
     }
   }
+
+/* ================= ADVERT ================= */
+  .advert-img{
+    height: 70vh;
+    width: 100vw;
+    object-fit: cover;
+  }
+
+} /* end of body */
