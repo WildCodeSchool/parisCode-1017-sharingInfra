@@ -7,7 +7,7 @@ html{
 
   @media screen and (max-width: 767px) {
     body {
-      padding-top: 100px !important;
+      padding-top: 90px !important;
     }
   }
 
@@ -19,7 +19,6 @@ body {
   .wrap{
     flex: 1 0 auto;
   }
-
 
   /* ================= Navigation ================= */
 
@@ -289,7 +288,7 @@ body {
 /* ================= ADVERT ================= */
   .advert-img{
     height: 70vh;
-    width: 100vw;
+    width: 100%;
     object-fit: cover;
   }
 
