@@ -46,8 +46,8 @@ class DefaultController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-           $adverts = $em->getRepository(Advert::class)->findByAddress($data['address']);
-            /* $adverts = $em->getRepository(Advert::class)->findByCritere($data['address'], $data['type'], $data['date']);*/
+           //$adverts = $em->getRepository(Advert::class)->findByAddress($data['address']);
+            $adverts = $em->getRepository(Advert::class)->findByCriteria($data['address'], $data['type']);
 
         }
 
