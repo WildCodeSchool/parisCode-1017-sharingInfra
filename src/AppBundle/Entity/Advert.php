@@ -67,6 +67,20 @@ class Advert
     /**
      * @var int
      *
+     * @ORM\Column(name="zipcode", type="integer")
+     */
+    private $zipcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length="255")
+     */
+    private $city;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="price", type="integer")
      */
     private $price;
@@ -469,4 +483,37 @@ class Advert
     {
         return $this->type;
     }
+
+    /**
+     * @return int
+     */
+    public function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
+    /**
+     * @param int $zipcode
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
 }
