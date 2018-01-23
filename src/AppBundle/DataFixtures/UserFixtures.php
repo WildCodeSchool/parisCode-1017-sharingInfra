@@ -22,9 +22,33 @@ class UserFixtures extends Fixture
         $caroline->setFirstname('Caroline');
         $caroline->setName('Chuong');
         $caroline->setEmail('caroline.chuong@gmail.com');
-        $caroline->setPassword('1234');
+        $caroline->setPassword('4321');
         $manager->persist($caroline);
         $this->addReference('user-caroline', $caroline);
+
+        $emeline = new User();
+        $emeline->setFirstname('Emeline');
+        $emeline->setName('Ancel-Pirouelle');
+        $emeline->setEmail('eap@gmail.com');
+        $emeline->setPassword('1423');
+        $manager->persist($emeline);
+        $this->addReference('user-emeline', $emeline);
+
+        $cyrielle = new User();
+        $cyrielle->setFirstname('Cyrielle');
+        $cyrielle->setName('Huet');
+        $cyrielle->setEmail('cyr-huet@gmail.com');
+        $cyrielle->setPassword('5678');
+        $manager->persist($cyrielle);
+        $this->addReference('user-cyrielle', $cyrielle);
+
+        $valeriane = new User();
+        $valeriane->setFirstname('Valeriane');
+        $valeriane->setName('Aron');
+        $valeriane->setEmail('varon@gmail.com');
+        $valeriane->setPassword('8765');
+        $manager->persist($valeriane);
+        $this->addReference('user-valeriane', $valeriane);
 
         $manager->flush();
     }
