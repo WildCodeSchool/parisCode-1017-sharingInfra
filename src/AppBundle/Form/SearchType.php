@@ -17,9 +17,14 @@ class SearchType extends AbstractType
     {
         $builder->add('address', TextType::class, array(
             'label'=> false,
-            'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre destination']
-
+            'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre destination'],
+            'required' => false,
         ));
+        $builder->add('type', TextType::CLASS, [
+            'label' => false,
+            'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre type'],
+            'required' => false,
+        ]);
     }
 
     /**
