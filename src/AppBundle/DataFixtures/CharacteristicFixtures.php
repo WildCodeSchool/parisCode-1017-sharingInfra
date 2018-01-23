@@ -10,10 +10,21 @@ class CharacteristicFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $chiottes = new Characteristic();
-        $chiottes->setEquipment('chiottes');
+        //Create Characteristic restroom
+        $restroom = new Characteristic();
+        $restroom->setEquipment('restroom');
+        $manager->persist($restroom);
 
-        $manager->persist($chiottes);
+        $this->addReference('characteristic-restroom', $restroom);
+
+        //Create Characteristic cloakroom
+        $cloakroom = new Characteristic();
+        $cloakroom->setEquipment('cloakroom');
+        $manager->persist($cloakroom);
+
+        $this->addReference('characteristic-cloakroom', $cloakroom);
+
         $manager->flush();
     }
+
 }
