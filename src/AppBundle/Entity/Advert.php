@@ -100,9 +100,9 @@ class Advert
     private $characteristics;
 
     /**
-     * Many adverts have many pictures
+     * One advert have many pictures
      *
-     * @ORM\ManyToMany(targetEntity="Picture")
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="advert")
      */
     private $pictures;
 
