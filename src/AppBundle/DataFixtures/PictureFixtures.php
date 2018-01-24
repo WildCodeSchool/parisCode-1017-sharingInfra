@@ -52,6 +52,13 @@ class PictureFixtures extends Fixture
 
             $this->addReference('picture-nice', $nice);
 
+            //create new Picture neuilly
+            $neuilly = new Picture();
+            $neuilly->setUrl('https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Mairie_de_Neuilly-sur-Seine.JPG/280px-Mairie_de_Neuilly-sur-Seine.JPG');
+            $manager->persist($neuilly);
+
+            $this->addReference('picture-neuilly', $neuilly);
+
             $manager->flush();
     }
 
