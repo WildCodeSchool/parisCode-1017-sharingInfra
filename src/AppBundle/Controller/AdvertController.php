@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Advert;
 use AppBundle\Form\SearchType;
+use AppBundle\Service\GoogleMap;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -30,6 +31,7 @@ class AdvertController extends Controller
 
         return $this->render('advert/index.html.twig', array(
             'adverts' => $adverts,
+            'events_json' => json_encode($adverts)
         ));
     }
 
@@ -40,7 +42,7 @@ class AdvertController extends Controller
      * @Route("/new", name="advert_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, GoogleMap $googleMap)
     {
         $advert = new Advert();
         $form = $this->createForm('AppBundle\Form\AdvertType', $advert);
@@ -48,6 +50,9 @@ class AdvertController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $location = $googleMap->getLatLng($advert->getAddress(), $advert->getZipcode(), $advert->getCity());
+            $advert->setLatitude($location['lat']);
+            $advert->setLongitude($location['lng']);
             $em->persist($advert);
             $em->flush();
 
@@ -70,9 +75,14 @@ class AdvertController extends Controller
     {
         $deleteForm = $this->createDeleteForm($advert);
 
+        /*$location = $googleMap->getLatLng($advert->getAddress(), $advert->getZipcode(), $advert->getCity());
+        $advert->setLatitude($location['lat']);
+        $advert->setLongitude($location['lng']);*/
+
         return $this->render('advert/show.html.twig', array(
             'advert' => $advert,
             'delete_form' => $deleteForm->createView(),
+            'events_json' => json_encode($advert)
         ));
     }
 
@@ -82,13 +92,16 @@ class AdvertController extends Controller
      * @Route("/{id}/edit", name="advert_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Advert $advert)
+    public function editAction(Request $request, Advert $advert, GoogleMap $googleMap)
     {
         $deleteForm = $this->createDeleteForm($advert);
         $editForm = $this->createForm('AppBundle\Form\AdvertType', $advert);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $location = $googleMap->getLatLng($advert->getAddress(), $advert->getZipcode(), $advert->getCity());
+            $advert->setLatitude($location['lat']);
+            $advert->setLongitude($location['lng']);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('advert_edit', array('id' => $advert->getId()));

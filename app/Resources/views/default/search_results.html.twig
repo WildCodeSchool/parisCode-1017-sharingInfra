@@ -10,21 +10,56 @@
                 <div class="col-md-4 col-xs-12">
                     <div class="thumbnail">
                         {#Path to show one with id#}
-                        <a href="{{ path('advert_show', { 'id': advert.id }) }}"><img src="https://media.giphy.com/media/11Je0AsIHE2TW8/giphy.gif" alt="placeholder" class="crush-img"></a>
+                        <a href="{{ path('advert_show', { 'id': advert.id }) }}"><img
+                                    src="https://media.giphy.com/media/11Je0AsIHE2TW8/giphy.gif" alt="placeholder"
+                                    class="crush-img"></a>
                         {#<img src="{{ advert.picture }}">#}
                         <div class="caption">
                             <h4>{{ advert.title }}</h4>
                             <p class="type">{{ advert.type }}</p>
                             <p>{{ advert.price }}€/heure</p>
-                            <p class="text-right">{{ advert.address }}</p>
-                             {#{{ advert.rate }}</p>#}
+                            <p class="text-right">{{ advert.zipcode }} {{ advert.city }}</p>
+                            {#{{ advert.rate }}</p>#}
                         </div>
                     </div>
-
                 </div>
             {% endfor %}
         </div>
 
+        <div>
+                <section class="map">
+                    <h3>Carte</h3>
+                    <div id="map" style="height:400px; width: 100%;"></div>
+                </section>
+                <input id="markers_locations" type="hidden" value='{{ events_json }}'/>
+            </div>
 
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        function initMap() {
+            var options = {
+                zoom: 10,
+                center: {lat: 48.856614, lng: 2.3522219000000177}
+            };
+            var map = new google.maps.Map(document.getElementById('map'), options);
+            var markers = JSON.parse(document.querySelector('#markers_locations').value);
+            markers.map(function (marker) {
+                console.log(marker);
+                new google.maps.Marker({
+                    map: map,
+                    position: {lat: marker.lat, lng: marker.lng}
+                })
+            });
+        }
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCtKFN02dRtmY2eFP81FarwROMTEXq9Fc&callback=initMap">
+    </script>
+
 {% endblock %}

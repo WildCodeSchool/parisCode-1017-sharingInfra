@@ -13,12 +13,12 @@ use AppBundle\Entity\Advert;
  */
 class AdvertRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByCriteria($address, $type)
+    public function findByCriteria($city, $type)
     {
         $qb = $this->createQueryBuilder('a');
 
-        $qb->andWhere('a.address = :address');
-        $qb->setParameter('address', $address);
+        $qb->andWhere('a.city = :city');
+        $qb->setParameter('city', $city);
 
         $qb->join('a.type', 't');
         $qb->andWhere('t.gearType = :gearType');

@@ -14,7 +14,9 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
     {
         //Create Advert poolABordeaux
         $poolABordeaux = new Advert();
-        $poolABordeaux->setAddress('Bordeaux');
+        $poolABordeaux->setAddress('60 cours de Luze');
+        $poolABordeaux->setZipcode('33300');
+        $poolABordeaux->setCity('Bordeaux');
         $poolABordeaux->setTitle('Une piscine à Bordeaux');
         $poolABordeaux->setDescription('Une belle piscine à Bordeaux ! What else ?');
         $poolABordeaux->setPrice(45);
@@ -32,8 +34,10 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
 
 
         //Create Advert courtANice
-        $courtANice = new Advert();
+        $courtANice = new Advert('2 rue Jean Allègre');
         $courtANice->setAddress('Nice');
+        $courtANice->setZipcode('06000');
+        $courtANice->setCity('Nice');
         $courtANice->setTitle('Un court de tennis à Nice');
         $courtANice->setDescription('Un court de tennis à Nice! What else ?');
         $courtANice->setPrice(55);
@@ -58,8 +62,7 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
             TypeFixtures::class,
             PictureFixtures::class,
             CharacteristicFixtures::class,
-            CommentFixtures::class,
-            ReservationFixtures::class
+            CommentFixtures::class
         );
     }
 }
