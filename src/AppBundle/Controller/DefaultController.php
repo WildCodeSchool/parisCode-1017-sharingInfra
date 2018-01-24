@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Advert;
 use AppBundle\Form\SearchType;
 use AppBundle\Form\ContactType;
+use AppBundle\Service\GoogleMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,14 +48,13 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
 
            //$adverts = $em->getRepository(Advert::class)->findByAddress($data['address']);
-            $adverts = $em->getRepository(Advert::class)->findByCriteria($data['address'], $data['type']);
-
+            $adverts = $em->getRepository(Advert::class)->findByCriteria($data['city'], $data['type']);
         }
-
 
         return $this->render('default/search_results.html.twig', array(
             'adverts' => $adverts,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'events_json' => json_encode($adverts)
         ));
     }
 
