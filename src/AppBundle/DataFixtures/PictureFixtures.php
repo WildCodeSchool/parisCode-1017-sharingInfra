@@ -52,6 +52,20 @@ class PictureFixtures extends Fixture
 
             $this->addReference('picture-nice', $nice);
 
+            //create new Picture neuilly
+            $neuilly = new Picture();
+            $neuilly->setUrl('https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Mairie_de_Neuilly-sur-Seine.JPG/280px-Mairie_de_Neuilly-sur-Seine.JPG');
+            $manager->persist($neuilly);
+
+            $this->addReference('picture-neuilly', $neuilly);
+
+            //create new Picture brest
+            $brest = new Picture();
+            $brest->setUrl('http://www.tourismebretagne.com/var/crtbre/storage/images/media/images/decouvrir/explorer-les-destinations/brest-terres-oceanes/brest-telepherique/15148787-1-fre-FR/brest-telepherique_large_rwd.jpg');
+            $manager->persist($brest);
+
+            $this->addReference('picture-brest', $brest);
+
             $manager->flush();
     }
 

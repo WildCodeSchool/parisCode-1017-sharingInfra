@@ -4,9 +4,10 @@ namespace AppBundle\DataFixtures;
 
 use AppBundle\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -51,5 +52,12 @@ class UserFixtures extends Fixture
         $this->addReference('user-valeriane', $valeriane);
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return array(
+            PictureFixtures::class
+        );
     }
 }

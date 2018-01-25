@@ -12,7 +12,7 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        //Create Advert poolABordeaux
+//      Create Advert poolABordeaux
         $poolABordeaux = new Advert();
         $poolABordeaux->setAddress('60 cours de Luze');
         $poolABordeaux->setZipcode('33300');
@@ -26,11 +26,10 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $poolABordeaux->addPicture($this->getReference('picture-bordeaux'));
         $poolABordeaux->addCharacteristic($this->getReference('characteristic-restroom'));
         $poolABordeaux->setUser($this->getReference('user-cindy'));
-        $poolABordeaux->addComment($this->getReference('comment-awesome'));
-        $poolABordeaux->addReservation($this->getReference('resa-resa2'));
 
         $manager->persist($poolABordeaux);
 
+        $this->addReference('advert-pool-bordeaux', $poolABordeaux);
 
 
         //Create Advert courtANice
@@ -47,10 +46,47 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $courtANice->addPicture($this->getReference('picture-nice'));
         $courtANice->addCharacteristic($this->getReference('characteristic-cloakroom'));
         $courtANice->setUser($this->getReference('user-caroline'));
-        $courtANice->addComment($this->getReference('comment-awesome'));
-        $courtANice->addReservation($this->getReference('resa-resa1'));
 
         $manager->persist($courtANice);
+
+        $this->addReference('advert-tennis-nice', $courtANice);
+
+
+
+        //Create Advert courtANeuilly
+        $courtANeuilly = new Advert();
+        $courtANeuilly->setAddress('Neuilly');
+        $courtANeuilly->setTitle('Un court de tennis à Neuilly');
+        $courtANeuilly->setDescription('Un court de tennis à Neuilly! What else ?');
+        $courtANeuilly->setPrice(85);
+        $courtANeuilly->setLatitude(48.8846000);
+        $courtANeuilly->setLongitude(2.2696500);
+        $courtANeuilly->setType($this->getReference('type-tenniscourt'));
+        $courtANeuilly->addPicture($this->getReference('picture-neuilly'));
+        $courtANeuilly->addCharacteristic($this->getReference('characteristic-cloakroom'));
+        $courtANeuilly->setUser($this->getReference('user-emeline'));
+
+        $manager->persist($courtANeuilly);
+
+        $this->addReference('advert-tennis-neuilly', $courtANice);
+
+
+        //Create Advert poolABrest
+        $poolABrest = new Advert();
+        $poolABrest->setAddress('Brest');
+        $poolABrest->setTitle('Une piscine à Brest');
+        $poolABrest->setDescription('Un piscine à Brest! What else ?');
+        $poolABrest->setPrice(105);
+        $poolABrest->setLatitude(48.390394);
+        $poolABrest->setLongitude(-4.486076);
+        $poolABrest->setType($this->getReference('type-swimmingpool'));
+        $poolABrest->addPicture($this->getReference('picture-brest'));
+        $poolABrest->addCharacteristic($this->getReference('characteristic-restroom'));
+        $poolABrest->setUser($this->getReference('user-valeriane'));
+
+        $manager->persist($poolABrest);
+
+        $this->addReference('advert-pool-brest', $poolABrest);
 
         $manager->flush();
     }
@@ -61,8 +97,8 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
             UserFixtures::class,
             TypeFixtures::class,
             PictureFixtures::class,
-            CharacteristicFixtures::class,
-            CommentFixtures::class
+            CharacteristicFixtures::class
+
         );
     }
 }
