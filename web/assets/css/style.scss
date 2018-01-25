@@ -1,8 +1,15 @@
 /* Variables */
 $orange: #FB6900;
 $blue: #16174f;
+
 html{
   height: 100%;
+
+  @media screen and (max-width: 767px) {
+    body {
+      padding-top: 90px !important;
+    }
+  }
 
 body {
   font-family: 'Catamaran', sans-serif;
@@ -12,7 +19,6 @@ body {
   .wrap{
     flex: 1 0 auto;
   }
-
 
   /* ================= Navigation ================= */
 
@@ -37,10 +43,16 @@ body {
     }
   }
   
-  @media screen and (min-width: 992px){
-    .navbar-fixed-top{
-      position: absolute;
+  @media screen and (max-width: 767px){
+    .navbar{
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
     }
+
+
   }
 
   footer {
@@ -254,6 +266,16 @@ body {
     .checkbox {
       margin-left: 1em;
     }
+
+    #fos_user_registration_form_plainPassword {
+      input {
+        margin-bottom: 1em;
+      }
+
+      .control-label {
+        display: none;
+      }
+    }
   }
 
 /* ================= HOMEPAGE ================= */
@@ -266,7 +288,7 @@ body {
 /* ================= ADVERT ================= */
   .advert-img{
     height: 70vh;
-    width: 100vw;
+    width: 100%;
     object-fit: cover;
   }
 

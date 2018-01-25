@@ -2,6 +2,10 @@
 
 {% extends "@FOSUser/layout.html.twig" %}
 
+{#
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+#}
+
 {% block fos_user_content %}
 
     <div class="container container-user">
@@ -31,12 +35,12 @@
                 </div>
 
                 <div class="form-group contact-input">
-                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control input-lg'}}) }}
+                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control input-lg', 'placeholder': 'Choisissez un mot de passe'}}) }}
                     {{ form_errors(form.plainPassword.first) }}
                 </div>
 
                 <div class="form-group contact-input">
-                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-lg'}}) }}
+                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control input-lg', 'placeholder': 'Confirmez votre mot de passe'}}) }}
                     {{ form_errors(form.plainPassword.second) }}
                 </div>
 

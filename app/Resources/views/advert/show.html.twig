@@ -1,16 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <img src="{{ asset('assets/pictures/piscine1.jpeg') }}" alt="" class="advert-img">
     {#{{advert.pictures}}#}
     <div class="container">
         <h1>{{ advert.title }}</h1>
-        <p>{{ advert.type }} à {{ advert.address }}</p>
+        <p>{{ advert.type }} à {{ advert.city }}</p>
         <h2>Description</h2>
         {{ advert.description }}
-
+        {#<h2>Équipements</h2>#}
+        {#{{ advert.characteristics}}#}
         <h2>Prix</h2>
-        {{ advert.price }} € par heure
+        <p>{{ advert.price }} € par heure </p>
+
+        <section class="map">
+            <h2>Carte</h2>
+            <div id="map" style="height:400px; width: 100%;"></div>
+        </section>
+    <input id="markers_locations" type="hidden" value='{{ events_json }}' />
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        function initMap(){
+            var options = {
+                zoom:10,
+                center:{lat:48.856614,lng:2.3522219000000177}
+            };
+            var map = new google.maps.Map(document.getElementById('map'), options);
+            var markers = JSON.parse(document.querySelector('#markers_locations').value);
+            var marker = new google.maps.Marker({
+                position: markers,
+                map: map
+            });
+        }
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCtKFN02dRtmY2eFP81FarwROMTEXq9Fc&callback=initMap">
+    </script>
 
 {% endblock %}

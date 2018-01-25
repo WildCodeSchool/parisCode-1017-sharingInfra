@@ -1,21 +1,25 @@
 {% extends 'base.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block body %}
-    <h1>Modifier l'annonce</h1>
+    <div class="container">
+        <div class="col-md-12">
+            <h1>Modifier l'annonce</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Modifier" />
-    {{ form_end(edit_form) }}
+            {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input type="submit" value="Modifier"/>
+            {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
+
             <a href="{{ path('advert_index') }}">Back to the list</a>
-        </li>
-        <li>
+
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
+            <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+
+        </div>
+    </div>
 {% endblock %}

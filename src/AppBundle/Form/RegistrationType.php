@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use FOS\UserBundle\Util\LegacyFormHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -45,6 +46,23 @@ class RegistrationType extends AbstractType
                 'constraints' => array(
                     new NotBlank(array('message' => 'Merci de renseigner votre email.'))
                 )
+            ))
+            ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
+                'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
+                'options' => array('translation_domain' => 'FOSUserBundle'),
+                'first_options' => array(
+                    'label' => false,
+                    'attr' => array(
+                        'class' => 'form-control input-lg',
+                        'placeholder' => 'Choisissez un mot de passe'
+                    )),
+                'second_options' => array(
+                    'label' => false,
+                    'attr' => array(
+                        'class' => 'form-control input-lg',
+                        'placeholder' => 'Confirmez votre mot de passe'
+                    )),
+                'invalid_message' => 'fos_user.password.mismatch',
             ))
         ;
     }

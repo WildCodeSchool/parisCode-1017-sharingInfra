@@ -15,7 +15,7 @@ class SearchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('address', TextType::class, array(
+        $builder->add('city', TextType::class, array(
             'label'=> false,
             'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre destination'],
             'required' => false,

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * Advert
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="advert")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AdvertRepository")
  */
-class Advert
+class Advert implements JsonSerializable
 {
     /**
      * @return string
@@ -18,6 +19,32 @@ class Advert
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->characteristics = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by json_encode,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            "lat" => $this->latitude,
+            "lng" => $this->longitude
+        ];
     }
 
     /**
@@ -67,6 +94,20 @@ class Advert
     /**
      * @var int
      *
+     * @ORM\Column(name="zipcode", type="integer")
+     */
+    private $zipcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="price", type="integer")
      */
     private $price;
@@ -100,9 +141,9 @@ class Advert
     private $characteristics;
 
     /**
-     * Many adverts have many pictures
+     * One advert have many pictures
      *
-     * @ORM\ManyToMany(targetEntity="Picture")
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="advert")
      */
     private $pictures;
 
@@ -266,16 +307,6 @@ class Advert
     public function getPrice()
     {
         return $this->price;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->characteristics = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -469,4 +500,37 @@ class Advert
     {
         return $this->type;
     }
+
+    /**
+     * @return int
+     */
+    public function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
+    /**
+     * @param int $zipcode
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
 }
