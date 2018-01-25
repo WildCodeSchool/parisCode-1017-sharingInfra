@@ -16,7 +16,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
         $awesome->setComment('Oh-my-god, it was awesome');
         $awesome->setNote(4);
         $awesome->setUser($this->getReference('user-cindy'));
-        $awesome->setAdvert($this->getReference(''));
+        $awesome->setAdvert($this->getReference('advert-tennis-neuilly'));
 
         $manager->persist($awesome);
 
@@ -26,7 +26,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
         $lame = new Comment();
         $lame->setComment('Oh-my-god, it was lame af');
         $lame->setUser($this->getReference('user-caroline'));
-
+        $lame->setAdvert($this->getReference('advert-tennis-nice'));
         $lame->setNote(1);
 
         $manager->persist($lame);
@@ -37,6 +37,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
         $mockay = new Comment();
         $mockay->setComment('Mockay');
         $mockay->setUser($this->getReference('user-cyrielle'));
+        $mockay->setAdvert($this->getReference('advert-pool-bordeaux'));
         $mockay->setNote(2);
 
         $manager->persist($mockay);
@@ -47,6 +48,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
         $woop = new Comment();
         $woop->setComment('Woop woop ! Lovin\' it.');
         $woop->setUser($this->getReference('user-emeline'));
+        $woop->setAdvert($this->getReference('advert-pool-brest'));
         $woop->setNote(4);
 
         $manager->persist($woop);

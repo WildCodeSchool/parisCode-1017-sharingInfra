@@ -24,8 +24,6 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $poolABordeaux->addPicture($this->getReference('picture-bordeaux'));
         $poolABordeaux->addCharacteristic($this->getReference('characteristic-restroom'));
         $poolABordeaux->setUser($this->getReference('user-cindy'));
-        //$poolABordeaux->addComment($this->getReference('comment-awesome'));
-        //$poolABordeaux->addReservation($this->getReference('resa-resa2'));
 
         $manager->persist($poolABordeaux);
 
@@ -44,8 +42,6 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $courtANice->addPicture($this->getReference('picture-nice'));
         $courtANice->addCharacteristic($this->getReference('characteristic-cloakroom'));
         $courtANice->setUser($this->getReference('user-caroline'));
-        //$courtANice->addComment($this->getReference('comment-awesome'));
-        //$courtANice->addReservation($this->getReference('resa-resa1'));
 
         $manager->persist($courtANice);
 
@@ -65,13 +61,28 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $courtANeuilly->addPicture($this->getReference('picture-neuilly'));
         $courtANeuilly->addCharacteristic($this->getReference('characteristic-cloakroom'));
         $courtANeuilly->setUser($this->getReference('user-emeline'));
-        //$courtANeuilly->addComment($this->getReference('comment-awesome'));
-        //$courtANeuilly->addReservation($this->getReference('resa-resa3'));
 
         $manager->persist($courtANeuilly);
 
         $this->addReference('advert-tennis-neuilly', $courtANice);
 
+
+        //Create Advert poolABrest
+        $poolABrest = new Advert();
+        $poolABrest->setAddress('Brest');
+        $poolABrest->setTitle('Une piscine à Brest');
+        $poolABrest->setDescription('Un piscine à Brest! What else ?');
+        $poolABrest->setPrice(105);
+        $poolABrest->setLatitude(48.390394);
+        $poolABrest->setLongitude(-4.486076);
+        $poolABrest->setType($this->getReference('type-swimmingpool'));
+        $poolABrest->addPicture($this->getReference('picture-brest'));
+        $poolABrest->addCharacteristic($this->getReference('characteristic-restroom'));
+        $poolABrest->setUser($this->getReference('user-valeriane'));
+
+        $manager->persist($poolABrest);
+
+        $this->addReference('advert-pool-brest', $poolABrest);
 
         $manager->flush();
     }

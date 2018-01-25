@@ -86,6 +86,7 @@ class Reservation
      * Get date
      *
      * @return \DateTime
+
      */
     public function getDate()
     {

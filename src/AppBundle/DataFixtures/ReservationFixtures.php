@@ -20,7 +20,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
         //Create Reservation resa1
         $resa1 = new Reservation();
         $resa1->setStatus('pending');
-        $resa1->setDate(01-01-2018);
+        $resa1->setDate(new \DateTime());
         $resa1->setUser($this->getReference('user-emeline'));
         $resa1->setAdvert($this->getReference('advert-pool-bordeaux'));
         $manager->persist($resa1);
@@ -30,7 +30,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
         //Create Reservation resa2
         $resa2 = new Reservation();
         $resa2->setStatus('refused');
-        $resa2->setDate(2018-01-12);
+        $resa2->setDate(new \DateTime());
         $resa2->setUser($this->getReference('user-caroline'));
         $resa2->setAdvert($this->getReference('advert-tennis-nice'));
         $manager->persist($resa2);
@@ -41,7 +41,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
         //Create Reservation resa3
         $resa3 = new Reservation();
         $resa3->setStatus('accepted');
-        $resa3->setDate(2017-10-20);
+        $resa3->setDate(new \DateTime());
         $resa3->setUser($this->getReference('user-cyrielle'));
         $resa3->setAdvert($this->getReference('advert-tennis-neuilly'));
         $manager->persist($resa3);
