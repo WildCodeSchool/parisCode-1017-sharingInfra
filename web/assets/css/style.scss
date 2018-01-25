@@ -41,6 +41,17 @@ body {
       position: relative;
       bottom: 10px;
     }
+
+    .btn-hobbea{
+      background-color: $blue;
+      color: white !important;
+      font-weight: bold;
+    }
+
+    .btn-hobbea:hover {
+      background-color: $orange !important;
+      color: white !important;
+    }
   }
   
   @media screen and (max-width: 767px){
