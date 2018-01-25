@@ -15,7 +15,7 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
 //      Create Advert poolABordeaux
         $poolABordeaux = new Advert();
         $poolABordeaux->setAddress('60 cours de Luze');
-        $poolABordeaux->setZipcode('33300');
+        $poolABordeaux->setZipcode(33300);
         $poolABordeaux->setCity('Bordeaux');
         $poolABordeaux->setTitle('Une piscine à Bordeaux');
         $poolABordeaux->setDescription('Une belle piscine à Bordeaux ! What else ?');
@@ -33,12 +33,12 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
 
 
         //Create Advert courtANice
-        $courtANice = new Advert('2 rue Jean Allègre');
-        $courtANice->setAddress('Nice');
-        $courtANice->setZipcode('06000');
+        $courtANice = new Advert();
+        $courtANice->setAddress('2 rue Jean Allègre');
+        $courtANice->setZipcode(06000);
         $courtANice->setCity('Nice');
         $courtANice->setTitle('Un court de tennis à Nice');
-        $courtANice->setDescription('Un court de tennis à Nice! What else ?');
+        $courtANice->setDescription('Un court de tennis à Nice ! What else ?');
         $courtANice->setPrice(55);
         $courtANice->setLatitude(43.7101728);
         $courtANice->setLongitude(7.2619532);
@@ -55,9 +55,11 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
 
         //Create Advert courtANeuilly
         $courtANeuilly = new Advert();
-        $courtANeuilly->setAddress('Neuilly');
+        $courtANeuilly->setAddress('27 boulevard d\'Inkermann');
+        $courtANeuilly->setZipcode(92200);
+        $courtANeuilly->setCity('Neuilly-sur-Seine');
         $courtANeuilly->setTitle('Un court de tennis à Neuilly');
-        $courtANeuilly->setDescription('Un court de tennis à Neuilly! What else ?');
+        $courtANeuilly->setDescription('Un court de tennis à Neuilly ! What else ?');
         $courtANeuilly->setPrice(85);
         $courtANeuilly->setLatitude(48.8846000);
         $courtANeuilly->setLongitude(2.2696500);
@@ -73,9 +75,11 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
 
         //Create Advert poolABrest
         $poolABrest = new Advert();
-        $poolABrest->setAddress('Brest');
+        $poolABrest->setAddress('14 rue de Maissin');
+        $poolABrest->setZipcode(29200);
+        $poolABrest->setCity('Brest');
         $poolABrest->setTitle('Une piscine à Brest');
-        $poolABrest->setDescription('Un piscine à Brest! What else ?');
+        $poolABrest->setDescription('Une piscine à Brest ! What else ?');
         $poolABrest->setPrice(105);
         $poolABrest->setLatitude(48.390394);
         $poolABrest->setLongitude(-4.486076);
@@ -87,6 +91,25 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($poolABrest);
 
         $this->addReference('advert-pool-brest', $poolABrest);
+
+        //Create Advert poolAParis
+        $poolAParis = new Advert();
+        $poolAParis->setAddress('16 rue Thouin');
+        $poolAParis->setZipcode(75005);
+        $poolAParis->setCity('Paris');
+        $poolAParis->setTitle('Une piscine à Paris');
+        $poolAParis->setDescription('Une piscine à Brest ! What else ?');
+        $poolAParis->setPrice(85);
+        $poolAParis->setLatitude(48.8846000);
+        $poolAParis->setLongitude(2.2696500);
+        $poolAParis->setType($this->getReference('type-swimmingpool'));
+        $poolAParis->addPicture($this->getReference('picture-brest'));
+        $poolAParis->addCharacteristic($this->getReference('characteristic-cloakroom'));
+        $poolAParis->setUser($this->getReference('user-emeline'));
+
+        $manager->persist($poolAParis);
+
+        $this->addReference('advert-pool-paris', $poolAParis);
 
         $manager->flush();
     }
