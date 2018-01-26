@@ -2,7 +2,7 @@
 $orange: #FB6900;
 $blue: #16174f;
 
-html{
+html {
   height: 100%;
 
   @media screen and (max-width: 767px) {
@@ -11,31 +11,22 @@ html{
     }
   }
 
-body {
-  font-family: 'Catamaran', sans-serif;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  .wrap{
-    flex: 1 0 auto;
-  }
-
-  /* ================= Navigation ================= */
-
-  nav {
-    white-space: nowrap;
-    padding: 10px;
-    transition: all 0.8s;
-
-    a{
-      text-transform: uppercase;
-      color: $blue !important;
-      font-weight: bold;
+  body {
+    font-family: 'Catamaran', sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .wrap {
+      flex: 1 0 auto;
     }
 
-    a:hover {
-      color: $orange !important;
-    }
+    /* ================= Navigation ================= */
+
+
+    nav {
+      white-space: nowrap;
+      padding: 10px;
+      transition: all 0.8s;
 
     .logo-navbar{
       position: relative;
@@ -64,244 +55,294 @@ body {
     }
 
 
-  }
-
-  footer {
-    background-color: $blue;
-    margin-top: 100px;
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
-    font-size: 1.2em;
-    a {
-      color: white;
-    }
-    a:hover {
-      color: $orange !important;
-      text-decoration: none;
-    }
-    li {
-      list-style: none;
-    }
-    h4{
-      color: white;
-    }
-    .social{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-
-  }
-
-  /* ================= Header and search bar ================= */
-
-  /* Jumbotron */
-
-  .jumbotron {
-    background-image: url("../assets/pictures/tennis-banner.jpg");
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    h1, h2 {
-      color: white;
-    }
-
-    .btn-primary {
-      background-color: $blue;
-      border-color: #16174f;
-    }
-
-    .btn-primary:hover {
-      background-color: $orange;
-      border-color: orange;
-    }
-  }
-
-  /* ================= FAQ ================= */
-
-  /* Styles for page */
-
-  .container-faq {
-    width: 70%;
-    margin: auto;
-  }
-
-  $lightgrey: #dddddd;
-  $textcolor: #4B4B4B;
-
-  .faq-parent {
-
-    .faq-title {
-      margin-top: 3em;
-    }
-
-    .faq-answer {
-      text-align: left;
-      letter-spacing: 0px;
-      font-weight: 200;
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    /* Styles for Accordion */
-
-    .toggle {
-      &:last-child {
-        border-bottom: 1px solid $lightgrey;
+      a {
+        text-transform: uppercase;
+        color: $blue !important;
+        font-weight: bold;
       }
-      .toggle-title {
+
+      a:hover {
+        color: $orange !important;
+      }
+
+      .logo-navbar {
         position: relative;
-        display: block;
-        border-top: 1px solid $lightgrey;
-        margin-bottom: 6px;
-
-        .faq-question {
-          font-size: 20px;
-          margin: 0px;
-          line-height: 1;
-          cursor: pointer;
-          font-weight: 200;
-
-        }
-        &.active .faq-question {
-        }
-      }
-
-      .toggle-inner {
-        padding: 7px 25px 10px 25px;
-        display: none;
-        margin: -7px 0 6px;
-
-        .faq-div {
-          max-width: 100%;
-        }
-      }
-
-      .toggle-title {
-        .title-name {
-          display: block;
-          padding: 25px 25px 14px;
-        }
-
-        a i {
-          font-size: 22px;
-          margin-right: 5px;
-        }
-
-        i {
-          position: absolute;
-          background: url('http://arielbeninca.com/Storage/plus_minus.png') 0px -24px no-repeat;
-          width: 24px;
-          height: 24px;
-          -webkit-transition: all 0.3s ease;
-          -moz-transition: all 0.3s ease;
-          -o-transition: all 0.3s ease;
-          -ms-transition: all 0.3s ease;
-          transition: all 0.3s ease;
-          margin: 20px;
-          right: 0;
-        }
-
-        &.active i {
-          background: url('http://arielbeninca.com/Storage/plus_minus.png') 0px 0px no-repeat;
-        }
-
+        bottom: 10px;
       }
     }
-  }
 
+    @media screen and (max-width: 767px) {
+      .navbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+      }
 
-/* Contact form */
-
-.contact-form {
-  font-family: Catamaran, 'sans-serif';
-
-  .contact-input {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    width: 100%;
-  }
-
-  .btn-primary {
-    background-color: $blue;
-    border-color: #16174f;
-  }
-
-  .btn-primary:hover {
-    background-color: $orange;
-    border-color: orange;
-  }
-}
-
-/* ================= MENTIONS LÉGALES ================= */
-
-.legal-div {
-  width: 70%;
-  margin-top: 10em;
-  margin-bottom: 10em;
-
-  h4 {
-    margin-top: 2em;
-  }
-
-  .legal-italic {
-    font-style: italic;
-  }
-
-  .legal-strong {
-    font-weight: bold;
-  }
-}
-
-  /* ================= USER ================= */
-
-  .container-user {
-    width: 70%;
-
-    .contact-input {
-      margin-top: 1em;
     }
 
-    .btn-primary {
+    footer {
       background-color: $blue;
-      border-color: #16174f;
+      margin-top: 100px;
+      padding-top: 1.5em;
+      padding-bottom: 1.5em;
+      font-size: 1.2em;
+      a {
+        color: white;
+      }
+      a:hover {
+        color: $orange !important;
+        text-decoration: none;
+      }
+      li {
+        list-style: none;
+      }
+      h4 {
+        color: white;
+      }
+      .social {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+
     }
 
-    .btn-primary:hover {
-      background-color: $orange;
-      border-color: orange;
+    /* ================= Header and search bar ================= */
+
+    /* Jumbotron */
+
+    .jumbotron {
+      background-image: url("../assets/pictures/tennis-banner.jpg");
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h1, h2 {
+        color: white;
+      }
+
+      .btn-primary {
+        background-color: $blue;
+        border-color: #16174f;
+      }
+
+      .btn-primary:hover {
+        background-color: $orange;
+        border-color: orange;
+      }
     }
 
-    .checkbox {
-      margin-left: 1em;
+    /* ================= FAQ ================= */
+
+    /* Styles for page */
+
+    .container-faq {
+      width: 70%;
+      margin: auto;
     }
 
-    #fos_user_registration_form_plainPassword {
-      input {
+    $lightgrey: #dddddd;
+    $textcolor: #4B4B4B;
+
+    .faq-parent {
+
+      .faq-title {
+        margin-top: 3em;
+      }
+
+      .faq-answer {
+        text-align: left;
+        letter-spacing: 0px;
+        font-weight: 200;
+        line-height: 1.5;
+        font-size: 14px;
+      }
+
+      /* Styles for Accordion */
+
+      .toggle {
+        &:last-child {
+          border-bottom: 1px solid $lightgrey;
+        }
+        .toggle-title {
+          position: relative;
+          display: block;
+          border-top: 1px solid $lightgrey;
+          margin-bottom: 6px;
+
+          .faq-question {
+            font-size: 20px;
+            margin: 0px;
+            line-height: 1;
+            cursor: pointer;
+            font-weight: 200;
+
+          }
+          &.active .faq-question {
+          }
+        }
+
+        .toggle-inner {
+          padding: 7px 25px 10px 25px;
+          display: none;
+          margin: -7px 0 6px;
+
+          .faq-div {
+            max-width: 100%;
+          }
+        }
+
+        .toggle-title {
+          .title-name {
+            display: block;
+            padding: 25px 25px 14px;
+          }
+
+          a i {
+            font-size: 22px;
+            margin-right: 5px;
+          }
+
+          i {
+            position: absolute;
+            background: url('http://arielbeninca.com/Storage/plus_minus.png') 0px -24px no-repeat;
+            width: 24px;
+            height: 24px;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            margin: 20px;
+            right: 0;
+          }
+
+          &.active i {
+            background: url('http://arielbeninca.com/Storage/plus_minus.png') 0px 0px no-repeat;
+          }
+
+        }
+      }
+    }
+
+    /* Contact form */
+
+    .contact-form {
+      font-family: Catamaran, 'sans-serif';
+
+      .contact-input {
+        margin-top: 1em;
         margin-bottom: 1em;
+        width: 100%;
       }
 
-      .control-label {
-        display: none;
+      .btn-primary {
+        background-color: $blue;
+        border-color: #16174f;
+      }
+
+      .btn-primary:hover {
+        background-color: $orange;
+        border-color: orange;
       }
     }
-  }
 
-/* ================= HOMEPAGE ================= */
-  /*thumbnail fixed height */
-  .crush-img{
-    height: 300px;
-    width: 100%;
-    object-fit: cover;
-  }
-/* ================= ADVERT ================= */
-  .advert-img{
-    height: 70vh;
-    width: 100%;
-    object-fit: cover;
-  }
+    /* ================= MENTIONS LÉGALES ================= */
 
-} /* end of body */
+    .legal-div {
+      width: 70%;
+      margin-top: 10em;
+      margin-bottom: 10em;
+
+      h4 {
+        margin-top: 2em;
+      }
+
+      .legal-italic {
+        font-style: italic;
+      }
+
+      .legal-strong {
+        font-weight: bold;
+      }
+    }
+
+    /* ================= USER ================= */
+
+    .container-user {
+      width: 70%;
+
+      .contact-input {
+        margin-top: 1em;
+      }
+
+      .btn-primary {
+        background-color: $blue;
+        border-color: #16174f;
+      }
+
+      .btn-primary:hover {
+        background-color: $orange;
+        border-color: orange;
+      }
+
+      .checkbox {
+        margin-left: 1em;
+      }
+
+      #fos_user_registration_form_plainPassword {
+        input {
+          margin-bottom: 1em;
+        }
+
+        .control-label {
+          display: none;
+        }
+      }
+    }
+
+    /* ================= HOMEPAGE ================= */
+    /*thumbnail fixed height */
+    .crush-img {
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
+    }
+    /* ================= ADVERT ================= */
+    .advert-img {
+      height: 70vh;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    /* ================= MAP ================= */
+    .img-infowindow {
+      width: 15vw;
+      margin-bottom: 1em;
+    }
+
+    .gm-style {
+      .gm-style-iw {
+        margin: 0 1em;
+      }
+    }
+
+    .p-infowindow {
+      margin-bottom: 1em;
+      margin-top: 1em;
+      font-weight: bold;
+        a {
+          text-decoration: none;
+          color: $orange;
+        }
+        a:hover {
+          color: $blue;
+        }
+    }
+
+  }
+  /* end of body */
 }
