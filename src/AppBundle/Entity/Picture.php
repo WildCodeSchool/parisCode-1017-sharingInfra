@@ -74,4 +74,28 @@ class Picture
     {
         return $this->url;
     }
+
+    /**
+     * Set advert.
+     *
+     * @param \AppBundle\Entity\advert|null $advert
+     *
+     * @return Picture
+     */
+    public function setAdvert(\AppBundle\Entity\advert $advert = null)
+    {
+        $this->advert = $advert;
+
+        return $this;
+    }
+
+    /**
+     * Get advert.
+     *
+     * @return \AppBundle\Entity\advert|null
+     */
+    public function getAdvert()
+    {
+        return $this->advert;
+    }
 }
