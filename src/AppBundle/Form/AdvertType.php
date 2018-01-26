@@ -35,7 +35,7 @@ class AdvertType extends AbstractType
             ->add('user')
             ->add('type')
             ->add('characteristics')
-            ->add('pictures');
+            /*->add('pictures')*/;
     }/**
      * {@inheritdoc}
      */
