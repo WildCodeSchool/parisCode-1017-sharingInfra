@@ -36,7 +36,11 @@ class Picture
      */
     private $url;
 
-
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="advert")
+     */
+    private $advert;
     /**
      * Get id
      *
