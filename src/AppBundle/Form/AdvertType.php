@@ -20,10 +20,14 @@ class AdvertType extends AbstractType
                 'label'=> "Titre de votre annonce"
             ))
             ->add('description')
-            ->add('latitude')
-            ->add('longitude')
             ->add('address', TextType::class, array(
                 'label'=> "Adresse du bien"
+            ))
+            ->add('zipcode', TextType::class, array(
+                'label'=> "Code postal"
+            ))
+            ->add('city', TextType::class, array(
+                'label'=> "Ville"
             ))
             ->add('price', MoneyType::class, array(
                 'label'=> "Prix"
