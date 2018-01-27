@@ -40,54 +40,41 @@
 
 {% block javascripts %}
 
-    {#    <script>
-            function initMap() {
-                var options = {
-                    zoom: 10,
-                    center: {lat: 48.856614, lng: 2.3522219000000177}
-                };
-                var map = new google.maps.Map(document.getElementById('map'), options);
-                var markers = JSON.parse(document.querySelector('#markers_locations').value);
-                markers.map(function (marker) {
-                    console.log(marker);
-                    new google.maps.Marker({
-                        map: map,
-                        position: {lat: marker.lat, lng: marker.lng}
-                    })
-                });
-            }
-        </script>#}
-
     <script>
+        var locations = [
+                {% for advert in adverts %}{
+                lat: {{ advert.latitude }},
+                lng: {{ advert.longitude }},
+                info: '<div class="container-infowindow"><div><a href="{{ path('advert_show', { 'id': advert.id }) }}" target="_blank"><img class="img-infowindow" src="https://media.giphy.com/media/11Je0AsIHE2TW8/giphy.gif" /></a></div><p class="p-infowindow"><a href="{{ path('advert_show', { 'id': advert.id }) }}" target="_blank">{{ advert.title }}</a></p><p>{{ advert.price }}€ par jour</p></div>'
+            },
+            {% endfor %}
+        ];
+
         function initMap() {
+
+            var maxZoom = 13;
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 5,
                 center: {
-                    {% if user.address is defined %}
-                    lat: {{ user.address.latitude }},
-                    lng: {{ user.address.longitude }}
-                            {% else %}
-                    lat
-        :
-            48.864716,
-                lng
-        :
-            2.349014
-            {% endif %}
-        }
-        })
-            ;
+                    lat: 48.864716,
+                    lng: 2.349014
+                }
+            });
 
-// Create an array of alphabetical characters used to label the markers.
+            // bounds : zoom automatique sur la zone recherchée
+            var bounds = new google.maps.LatLngBounds();
+
+            // Create an array of alphabetical characters used to label the markers.
             var labels = [];
 
             var infoWin = new google.maps.InfoWindow();
-// Add some markers to the map.
-// Note: The code uses the JavaScript Array.prototype.map() method to
-// create an array of markers based on a given "locations" array.
-// The map() method here has nothing to do with the Google Maps API.
+            // Add some markers to the map.
+            // Note: The code uses the JavaScript Array.prototype.map() method to
+            // create an array of markers based on a given "locations" array.
+            // The map() method here has nothing to do with the Google Maps API.
             var markers = locations.map(function (location, i) {
+                bounds.extend(location);
                 var marker = new google.maps.Marker({
                     position: location,
                     label: labels[i % labels.length]
@@ -99,21 +86,21 @@
                 return marker;
             });
 
-// markerCluster.setMarkers(markers);
-// Add a marker clusterer to manage the markers.
+            map.fitBounds(bounds);
+
+            // markerCluster.setMarkers(markers);
+            // Add a marker clusterer to manage the markers.
             var markerCluster = new MarkerClusterer(map, markers, {
                 imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
             });
+
+            var listener = google.maps.event.addListener(map, 'idle', function () {
+                var currentZoom = map.getZoom();
+                map.setZoom(Math.min(maxZoom, currentZoom));
+                google.maps.event.removeListener(listener);
+            })
         }
 
-        var locations = [
-                {% for advert in adverts %}{
-                lat: {{ advert.latitude }},
-                lng: {{ advert.longitude }},
-                info: '<p class="p-infowindow"><a href="{{ path('advert_show', { 'id': advert.id }) }}">{{ advert.title }}</a></p> <div><img class="img-infowindow" src="https://media.giphy.com/media/11Je0AsIHE2TW8/giphy.gif" /></div>'
-            },
-            {% endfor %}
-        ];
     </script>
 
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
