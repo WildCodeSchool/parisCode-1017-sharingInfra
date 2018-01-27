@@ -22,38 +22,21 @@ html {
 
     /* ================= Navigation ================= */
 
-
     nav {
       white-space: nowrap;
       padding: 10px;
       transition: all 0.8s;
 
-    .logo-navbar{
-      position: relative;
-      bottom: 10px;
-    }
+      .btn-hobbea {
+        background-color: $blue;
+        color: white !important;
+        font-weight: bold;
+      }
 
-    .btn-hobbea{
-      background-color: $blue;
-      color: white !important;
-      font-weight: bold;
-    }
-
-    .btn-hobbea:hover {
-      background-color: $orange !important;
-      color: white !important;
-    }
-  }
-  
-  @media screen and (max-width: 767px){
-    .navbar{
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 1030;
-    }
-
+      .btn-hobbea:hover {
+        background-color: $orange !important;
+        color: white !important;
+      }
 
       a {
         text-transform: uppercase;
@@ -69,18 +52,19 @@ html {
         position: relative;
         bottom: 10px;
       }
+  }
+
+  @media screen and (max-width: 767px) {
+    .navbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
     }
 
-    @media screen and (max-width: 767px) {
-      .navbar {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-      }
-
-    }
+  }
+}
 
     footer {
       background-color: $blue;
@@ -347,4 +331,4 @@ html {
 
   }
   /* end of body */
-}
+

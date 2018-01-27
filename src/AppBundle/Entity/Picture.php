@@ -36,7 +36,11 @@ class Picture
      */
     private $url;
 
-
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="advert")
+     */
+    private $advert;
     /**
      * Get id
      *
@@ -69,5 +73,29 @@ class Picture
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set advert.
+     *
+     * @param \AppBundle\Entity\advert|null $advert
+     *
+     * @return Picture
+     */
+    public function setAdvert(\AppBundle\Entity\advert $advert = null)
+    {
+        $this->advert = $advert;
+
+        return $this;
+    }
+
+    /**
+     * Get advert.
+     *
+     * @return \AppBundle\Entity\advert|null
+     */
+    public function getAdvert()
+    {
+        return $this->advert;
     }
 }
