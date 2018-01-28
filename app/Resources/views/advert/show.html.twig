@@ -9,8 +9,11 @@
         <p>{{ advert.type }} à {{ advert.city }}</p>
         <h2>Description</h2>
         {{ advert.description }}
-        {#<h2>Équipements</h2>#}
-        {#{{ advert.characteristics}}#}
+        <h2>Équipements</h2>
+        {% for characteristic in advert.characteristics %}
+        {{ characteristic.equipment }}
+        {% endfor %}
+
         <h2>Prix</h2>
         <p>{{ advert.price }} € par heure </p>
 
