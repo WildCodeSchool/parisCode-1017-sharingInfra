@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <img src="{{ asset('assets/pictures/piscine1.jpeg') }}" alt="" class="advert-img">
-    {#{{advert.pictures}}#}
+  {% for picture in advert.pictures %}
+    <img src="{{ asset('uploads/'~picture.name) }}" alt="{{ advert.title }}" class="advert-img">
+  {% endfor %}
     <div class="container">
         <h1>{{ advert.title }}</h1>
         <p>{{ advert.type }} à {{ advert.city }}</p>

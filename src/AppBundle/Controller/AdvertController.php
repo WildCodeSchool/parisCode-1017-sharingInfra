@@ -3,8 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Advert;
+use AppBundle\Form\AdvertType;
 use AppBundle\Form\SearchType;
-use AppBundle\Service\GoogleMap;
+use AppBundle\Services\FileUploader;
+use AppBundle\Services\GoogleMap;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -42,13 +44,16 @@ class AdvertController extends Controller
      * @Route("/new", name="advert_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, GoogleMap $googleMap)
+    public function newAction(Request $request, GoogleMap $googleMap, FileUploader $fileUploader)
     {
         $advert = new Advert();
-        $form = $this->createForm('AppBundle\Form\AdvertType', $advert);
+        $form = $this->createForm(AdvertType::class, $advert);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $fileUploader->upload($advert);
+
             $em = $this->getDoctrine()->getManager();
             $location = $googleMap->getLatLng($advert->getAddress(), $advert->getZipcode(), $advert->getCity());
             $advert->setLatitude($location['lat']);
@@ -64,6 +69,7 @@ class AdvertController extends Controller
             'form' => $form->createView(),
         ));
     }
+
 
     /**
      * Finds and displays a advert entity.

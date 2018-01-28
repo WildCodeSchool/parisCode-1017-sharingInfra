@@ -32,11 +32,15 @@ class AdvertType extends AbstractType
             ->add('price', MoneyType::class, array(
                 'label'=> "Prix"
             ))
-            ->add('user')
+            ->add('user') // TODO add logged user as user
             ->add('type')
             ->add('characteristics')
-            /*->add('pictures')*/;
-    }/**
+            ->add('pictures', PictureType::class, array(
+                'data_class' => null
+            ));
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
