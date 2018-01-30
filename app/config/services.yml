@@ -29,8 +29,12 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    AppBundle\Services\FileUploader:
+            arguments:
+                $targetDir: '%pictures_directory%'
+
     # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
+    # AppBundle\Services\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
 
