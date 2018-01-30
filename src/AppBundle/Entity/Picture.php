@@ -43,7 +43,7 @@ class Picture
      * @Assert\File(
      *     maxSize = "2048k",
      *     mimeTypes = {"image/*"},
-     *     mimeTypesMessage = "Please upload a valid PDF"
+     *     mimeTypesMessage = "Please upload a valid image"
      * )
      *
      */

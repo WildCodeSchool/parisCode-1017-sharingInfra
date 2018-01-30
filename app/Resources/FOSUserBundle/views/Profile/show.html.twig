@@ -12,7 +12,7 @@
                     <img class="card-bkimg" alt="" src="#">
                 </div>
                 <div class="useravatar">
-                    {# TODO: profile pic #}
+                    {# TODO: affichage profile pic #}
                     <img alt="" src="https://star24.tv/wp-content/uploads/2017/04/Beyonc%C3%A9-couv.jpg">
                 </div>
                 <div class="card-info"><span class="card-title">{{ user.firstname }} {{ user.name }}</span>
@@ -44,11 +44,11 @@
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab1">
                         <h3>Voir et modifier mon profil</h3>
-                        <p>Prénom : {{ user.firstname }}</p>
-                        <p>Nom : {{ user.name }}</p>
-                        <p>Email : {{ user.email }}</p>
-                        <p>Téléphone : {{ user.phone }}</p>
-                        <p>Description : {{ user.description }}</p>
+                        <p><span class="bold">PRÉNOM :</span> {{ user.firstname }}</p>
+                        <p><span class="bold">NOM :</span> {{ user.name }}</p>
+                        <p><span class="bold">EMAIL :</span> {{ user.email }}</p>
+                        <p><span class="bold">TÉLÉPHONE :</span> {{ user.phone }}</p>
+                        <p><span class="bold">DESCRIPTION :</span> {{ user.description }}</p>
                         <a href="{{ path('fos_user_profile_edit') }}">
                             <button class="btn btn-primary">Modifier mon profil</button>
                         </a>
