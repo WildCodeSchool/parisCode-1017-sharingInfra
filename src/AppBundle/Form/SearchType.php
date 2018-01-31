@@ -20,20 +20,23 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('city', TextType::class, array(
-            'label'=> false,
-            'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre destination'],
+            'label' => false,
+            'attr' => ['class' => 'form-control input-lg', 'placeholder' => 'Votre destination'],
             'required' => false,
         ))
             ->add('type', EntityType::class, array(
-            'class' => Type::class,
-            'choice_label' => 'gearType',
-            'multiple' => true,
-            'expanded' => true,
-            'label' => false,
-            'required' =>false
-        ));
-            // 'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre type'],
-            // 'required' => false,
+                'class' => Type::class,
+                'choice_label' => 'gearType',
+                'multiple' => true,
+                'expanded' => true,
+                'label' => false,
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-check-input'
+                )
+            ));
+        // 'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre type'],
+        // 'required' => false,
     }
 
     /**
