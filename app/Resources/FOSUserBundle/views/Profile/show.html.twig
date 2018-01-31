@@ -12,8 +12,7 @@
                     <img class="card-bkimg" alt="" src="#">
                 </div>
                 <div class="useravatar">
-                    {# TODO: affichage profile pic #}
-                    <img alt="" src="https://star24.tv/wp-content/uploads/2017/04/Beyonc%C3%A9-couv.jpg">
+                    <img alt="" src="{{ asset('uploads/' ~ user.picture.name) }}">
                 </div>
                 <div class="card-info"><span class="card-title">{{ user.firstname }} {{ user.name }}</span>
 
@@ -23,19 +22,19 @@
                 <div class="btn-group" role="group">
                     <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span
                                 class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <div class="hidden-xs">Mon profil</div>
+                        <div class="hidden-xs">MON PROFIL</div>
                     </button>
                 </div>
                 <div class="btn-group" role="group">
                     <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span
                                 class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                        <div class="hidden-xs">Mes annonces</div>
+                        <div class="hidden-xs">MES ANNONCES</div>
                     </button>
                 </div>
                 <div class="btn-group" role="group">
                     <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span
                                 class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        <div class="hidden-xs">Ma messagerie</div>
+                        <div class="hidden-xs">MA MESSAGERIE</div>
                     </button>
                 </div>
             </div>
@@ -64,6 +63,7 @@
                             <p>Vous n'avez pas d'annonce</p>
                         {% endif %}
                     </div>
+
                     <div class="tab-pane fade in" id="tab3">
                         <h3>Mes messages</h3>
                     </div>

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -18,7 +19,7 @@ class Picture
      */
     public function __toString()
     {
-        return $this->name;
+        return 'Picture : ' . $this->name;
     }
 
     /**
@@ -48,7 +49,6 @@ class Picture
      *
      */
     private $file;
-
 
     /**
      * @return mixed

@@ -2,9 +2,12 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Picture;
 use FOS\UserBundle\Util\LegacyFormHelper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -78,7 +81,12 @@ class EditProfileType extends AbstractType
                     'label' => false,
                     'class' => 'form-control input-lg'
                 ),
-            ));
+            ))
+            ->add('picture', PictureType::class, array(
+                'attr' => array(
+                    'label' => 'Choisissez votre photo de profil',
+                )))
+        ;
     }
 
     public function getParent()
