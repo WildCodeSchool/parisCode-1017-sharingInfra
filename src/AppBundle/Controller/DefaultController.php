@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Advert;
 use AppBundle\Form\SearchType;
 use AppBundle\Form\ContactType;
-use AppBundle\Service\GoogleMap;
+use AppBundle\Services\GoogleMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

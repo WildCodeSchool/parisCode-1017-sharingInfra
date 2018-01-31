@@ -1,11 +1,11 @@
 <?php
-namespace AppBundle\Service;
+namespace AppBundle\Services;
 
 use AppBundle\Entity\Advert;
 
 /**
  * Class GoogleMap
- * @package AppBundle\Service
+ * @package AppBundle\Services
  */
 class GoogleMap
 {

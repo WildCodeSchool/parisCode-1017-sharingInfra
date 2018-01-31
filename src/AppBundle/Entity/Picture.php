@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Picture
@@ -17,7 +18,7 @@ class Picture
      */
     public function __toString()
     {
-        return $this->url;
+        return $this->name;
     }
 
     /**
@@ -32,17 +33,41 @@ class Picture
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $url;
+    private $name;
 
     /**
-     * @var
-     * @ORM\ManyToOne(targetEntity="advert")
+     * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"image/*"},
+     *     mimeTypesMessage = "Please upload a valid PDF"
+     * )
+     *
      */
-    private $advert;
+    private $file;
+
+
     /**
-     * Get id
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get id.
      *
      * @return int
      */
@@ -52,50 +77,26 @@ class Picture
     }
 
     /**
-     * Set url
+     * Set name.
      *
-     * @param string $url
+     * @param string $name
      *
      * @return Picture
      */
-    public function setUrl($url)
+    public function setName($name)
     {
-        $this->url = $url;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get url
+     * Get name.
      *
      * @return string
      */
-    public function getUrl()
+    public function getName()
     {
-        return $this->url;
-    }
-
-    /**
-     * Set advert.
-     *
-     * @param \AppBundle\Entity\advert|null $advert
-     *
-     * @return Picture
-     */
-    public function setAdvert(\AppBundle\Entity\advert $advert = null)
-    {
-        $this->advert = $advert;
-
-        return $this;
-    }
-
-    /**
-     * Get advert.
-     *
-     * @return \AppBundle\Entity\advert|null
-     */
-    public function getAdvert()
-    {
-        return $this->advert;
+        return $this->name;
     }
 }
