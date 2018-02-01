@@ -52,283 +52,314 @@ html {
         position: relative;
         bottom: 10px;
       }
+    }
+
+    @media screen and (max-width: 767px) {
+      .navbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+      }
+
+    }
   }
 
-  @media screen and (max-width: 767px) {
-    .navbar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 1030;
+  footer {
+    background-color: $blue;
+    margin-top: 100px;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    font-size: 1.2em;
+    a {
+      color: white;
+    }
+    a:hover {
+      color: $orange !important;
+      text-decoration: none;
+    }
+    li {
+      list-style: none;
+    }
+    h4 {
+      color: white;
+    }
+    .social {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
     }
 
   }
+
+  /* ================= Header and search bar ================= */
+
+  /* Jumbotron */
+
+  .jumbotron {
+    background-image: url("../assets/pictures/tennis-banner.jpg");
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1, h2 {
+      color: white;
+    }
+
+    .btn-primary {
+      background-color: $blue;
+      border-color: #16174f;
+    }
+
+    .btn-primary:hover {
+      background-color: $orange;
+      border-color: orange;
+    }
+
+    .checkbox-custom {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      #search_type_28 {
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+      }
+
+      #search_type_29 {
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+      }
+    }
+  }
+
+  /* ================= FAQ ================= */
+
+  /* Styles for page */
+
+  .container-faq {
+    width: 70%;
+    margin: auto;
+  }
+
+  $lightgrey: #dddddd;
+  $textcolor: #4B4B4B;
+
+  .faq-parent {
+
+    .faq-title {
+      margin-top: 3em;
+    }
+
+    .faq-answer {
+      text-align: left;
+      letter-spacing: 0px;
+      font-weight: 200;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    /* Styles for Accordion */
+
+    .toggle {
+      &:last-child {
+        border-bottom: 1px solid $lightgrey;
+      }
+      .toggle-title {
+        position: relative;
+        display: block;
+        border-top: 1px solid $lightgrey;
+        margin-bottom: 6px;
+
+        .faq-question {
+          font-size: 20px;
+          margin: 0px;
+          line-height: 1;
+          cursor: pointer;
+          font-weight: 200;
+
+        }
+        &.active .faq-question {
+        }
+      }
+
+      .toggle-inner {
+        padding: 7px 25px 10px 25px;
+        display: none;
+        margin: -7px 0 6px;
+
+        .faq-div {
+          max-width: 100%;
+        }
+      }
+
+      .toggle-title {
+        .title-name {
+          display: block;
+          padding: 25px 25px 14px;
+        }
+
+        a i {
+          font-size: 22px;
+          margin-right: 5px;
+        }
+
+        i {
+          position: absolute;
+          background: url('http://arielbeninca.com/Storage/plus_minus.png') 0px -24px no-repeat;
+          width: 24px;
+          height: 24px;
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          -ms-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+          margin: 20px;
+          right: 0;
+        }
+
+        &.active i {
+          background: url('http://arielbeninca.com/Storage/plus_minus.png') 0px 0px no-repeat;
+        }
+
+      }
+    }
+  }
+
+  /* Contact form */
+
+  .contact-form {
+    font-family: Catamaran, 'sans-serif';
+
+    .contact-input {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background-color: $blue;
+      border-color: #16174f;
+    }
+
+    .btn-primary:hover {
+      background-color: $orange;
+      border-color: orange;
+    }
+  }
+
+  /* ================= MENTIONS LÉGALES ================= */
+
+  .legal-div {
+    width: 70%;
+    margin-top: 10em;
+    margin-bottom: 10em;
+
+    h4 {
+      margin-top: 2em;
+    }
+
+    .legal-italic {
+      font-style: italic;
+    }
+
+    .legal-strong {
+      font-weight: bold;
+    }
+  }
+
+  /* ================= USER ================= */
+
+  .container-user {
+    width: 70%;
+
+    .contact-input {
+      margin-top: 1em;
+    }
+
+    .btn-primary {
+      background-color: $blue;
+      border-color: #16174f;
+    }
+
+    .btn-primary:hover {
+      background-color: $orange;
+      border-color: orange;
+    }
+
+    .checkbox {
+      margin-left: 1em;
+    }
+
+    #fos_user_registration_form_plainPassword {
+      input {
+        margin-bottom: 1em;
+      }
+
+      .control-label {
+        display: none;
+      }
+    }
+  }
+
+  /* ================= HOMEPAGE ================= */
+  /*thumbnail fixed height */
+  .crush-img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  /* ================= ADVERT ================= */
+  .advert-img {
+    height: 70vh;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  /* ================= MAP ================= */
+  .container-infowindow {
+    width: 20vw;
+    padding: 0;
+  }
+  .img-infowindow {
+    width: 100% !important;
+  }
+
+  .gm-style {
+    .gm-style-iw {
+    }
+  }
+
+  .p-infowindow {
+    margin-top: 1em;
+    font-weight: bold;
+    a {
+      text-decoration: none;
+      color: $orange;
+      text-transform: uppercase;
+    }
+    a:hover {
+      color: $blue;
+    }
+  }
+
 }
 
-    footer {
-      background-color: $blue;
-      margin-top: 100px;
-      padding-top: 1.5em;
-      padding-bottom: 1.5em;
-      font-size: 1.2em;
-      a {
-        color: white;
-      }
-      a:hover {
-        color: $orange !important;
-        text-decoration: none;
-      }
-      li {
-        list-style: none;
-      }
-      h4 {
-        color: white;
-      }
-      .social {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-
-    }
-
-    /* ================= Header and search bar ================= */
-
-    /* Jumbotron */
-
-    .jumbotron {
-      background-image: url("../assets/pictures/tennis-banner.jpg");
-      height: 85vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      h1, h2 {
-        color: white;
-      }
-
-      .btn-primary {
-        background-color: $blue;
-        border-color: #16174f;
-      }
-
-      .btn-primary:hover {
-        background-color: $orange;
-        border-color: orange;
-      }
-    }
-
-    /* ================= FAQ ================= */
-
-    /* Styles for page */
-
-    .container-faq {
-      width: 70%;
-      margin: auto;
-    }
-
-    $lightgrey: #dddddd;
-    $textcolor: #4B4B4B;
-
-    .faq-parent {
-
-      .faq-title {
-        margin-top: 3em;
-      }
-
-      .faq-answer {
-        text-align: left;
-        letter-spacing: 0px;
-        font-weight: 200;
-        line-height: 1.5;
-        font-size: 14px;
-      }
-
-      /* Styles for Accordion */
-
-      .toggle {
-        &:last-child {
-          border-bottom: 1px solid $lightgrey;
-        }
-        .toggle-title {
-          position: relative;
-          display: block;
-          border-top: 1px solid $lightgrey;
-          margin-bottom: 6px;
-
-          .faq-question {
-            font-size: 20px;
-            margin: 0px;
-            line-height: 1;
-            cursor: pointer;
-            font-weight: 200;
-
-          }
-          &.active .faq-question {
-          }
-        }
-
-        .toggle-inner {
-          padding: 7px 25px 10px 25px;
-          display: none;
-          margin: -7px 0 6px;
-
-          .faq-div {
-            max-width: 100%;
-          }
-        }
-
-        .toggle-title {
-          .title-name {
-            display: block;
-            padding: 25px 25px 14px;
-          }
-
-          a i {
-            font-size: 22px;
-            margin-right: 5px;
-          }
-
-          i {
-            position: absolute;
-            background: url('http://arielbeninca.com/Storage/plus_minus.png') 0px -24px no-repeat;
-            width: 24px;
-            height: 24px;
-            -webkit-transition: all 0.3s ease;
-            -moz-transition: all 0.3s ease;
-            -o-transition: all 0.3s ease;
-            -ms-transition: all 0.3s ease;
-            transition: all 0.3s ease;
-            margin: 20px;
-            right: 0;
-          }
-
-          &.active i {
-            background: url('http://arielbeninca.com/Storage/plus_minus.png') 0px 0px no-repeat;
-          }
-
-        }
-      }
-    }
-
-    /* Contact form */
-
-    .contact-form {
-      font-family: Catamaran, 'sans-serif';
-
-      .contact-input {
-        margin-top: 1em;
-        margin-bottom: 1em;
-        width: 100%;
-      }
-
-      .btn-primary {
-        background-color: $blue;
-        border-color: #16174f;
-      }
-
-      .btn-primary:hover {
-        background-color: $orange;
-        border-color: orange;
-      }
-    }
-
-    /* ================= MENTIONS LÉGALES ================= */
-
-    .legal-div {
-      width: 70%;
-      margin-top: 10em;
-      margin-bottom: 10em;
-
-      h4 {
-        margin-top: 2em;
-      }
-
-      .legal-italic {
-        font-style: italic;
-      }
-
-      .legal-strong {
-        font-weight: bold;
-      }
-    }
-
-    /* ================= USER ================= */
-
-    .container-user {
-      width: 70%;
-
-      .contact-input {
-        margin-top: 1em;
-      }
-
-      .btn-primary {
-        background-color: $blue;
-        border-color: #16174f;
-      }
-
-      .btn-primary:hover {
-        background-color: $orange;
-        border-color: orange;
-      }
-
-      .checkbox {
-        margin-left: 1em;
-      }
-
-      #fos_user_registration_form_plainPassword {
-        input {
-          margin-bottom: 1em;
-        }
-
-        .control-label {
-          display: none;
-        }
-      }
-    }
-
-    /* ================= HOMEPAGE ================= */
-    /*thumbnail fixed height */
-    .crush-img {
-      height: 300px;
-      width: 100%;
-      object-fit: cover;
-    }
-    /* ================= ADVERT ================= */
-    .advert-img {
-      height: 70vh;
-      width: 100%;
-      object-fit: cover;
-    }
-
-    /* ================= MAP ================= */
-    .container-infowindow {
-      width: 20vw;
-      padding: 0;
-    }
-    .img-infowindow {
-      width: 100% !important;
-    }
-
-    .gm-style {
-      .gm-style-iw {
-      }
-    }
-
-    .p-infowindow {
-      margin-top: 1em;
-      font-weight: bold;
-        a {
-          text-decoration: none;
-          color: $orange;
-          text-transform: uppercase;
-        }
-        a:hover {
-          color: $blue;
-        }
-    }
-
-  }
-  /* end of body */
+/* end of body */
 
