@@ -15,8 +15,13 @@
         <h2>Équipements</h2>
         {% for characteristic in advert.characteristics %}
             {% if characteristic.equipment=="douche" %}
-        <p>XX picto douche</p> {% endif %}
-        {{ characteristic.equipment }}
+                <p>XX picto douche Douche</p>
+            {% elseif characteristic.equipment == "wc" %}
+                <p>XX picto WC WC</p>
+            {% elseif characteristic.equipment == "raquettes" %}
+                <p>XX picto Raquette Raquettes</p>
+            {% endif %}
+
 
         {% endfor %}
 
