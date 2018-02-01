@@ -99,7 +99,7 @@ class User extends BaseUser
     /**
      * One user has one picture
      *
-     * @ORM\OneToOne(targetEntity="Picture")
+     * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
      */
     protected $picture;
 
@@ -325,7 +325,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setPicture(\AppBundle\Entity\Picture $picture = null)
+    public function setPicture(Picture $picture = null)
     {
         $this->picture = $picture;
 

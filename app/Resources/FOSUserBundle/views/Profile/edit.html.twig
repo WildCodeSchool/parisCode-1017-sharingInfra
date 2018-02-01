@@ -6,14 +6,7 @@
 
     <div class="container container-user">
 
-        {#        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-                {{ form_widget(form) }}
-                <div>
-                    <input type="submit" value="{{ 'profile.edit.submit'|trans }}"/>
-                </div>
-                {{ form_end(form) }}#}
-
-        <form action="{{ path('fos_user_profile_edit') }}" method="post">
+        {{ form_start(form, {'action': path('fos_user_profile_edit')}) }}
 
             <div class="register-form">
 
@@ -43,17 +36,21 @@
                 </div>
 
                 <div class="form-group contact-input">
+                    {{ form_widget(form.picture) }}
+                    {{ form_errors(form.picture) }}
+                </div>
+
+                <div class="form-group contact-input">
                     {{ form_widget(form.current_password) }}
                     {{ form_errors(form.current_password) }}
                 </div>
 
                 <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btn-primary btn-lg"/>
 
+
             </div>
 
             {{ form_end(form) }}
-
-        </form>
 
     </div>
 

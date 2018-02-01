@@ -10,7 +10,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @package AppBundle\Services
  */
-class FileUploader{
+class FileUploader
+{
 
     /**
      * Target to uploads Directory
@@ -38,7 +39,7 @@ class FileUploader{
      *
      * @return \AppBundle\Entity\Picture
      */
-    private function uploadFile(UploadedFile $file, Picture $pictureObject){
+    public function uploadFile(UploadedFile $file, Picture $pictureObject){
         $fileName = uniqid() . '.' . $file->guessExtension();
         $file->move($this->targetDir, $fileName);
 
@@ -91,4 +92,5 @@ class FileUploader{
             unlink($this->targetDir . $picture->getName());
         }
     }
+
 }

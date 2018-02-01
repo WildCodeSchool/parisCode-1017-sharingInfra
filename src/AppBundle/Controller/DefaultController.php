@@ -3,11 +3,15 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Advert;
+use AppBundle\Entity\Picture;
+use AppBundle\Entity\User;
 use AppBundle\Form\SearchType;
 use AppBundle\Form\ContactType;
+use AppBundle\Services\FileUploader;
 use AppBundle\Services\GoogleMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
