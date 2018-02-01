@@ -6,6 +6,7 @@
 
 
         <div class="row">
+
             {% for advert in adverts %}
                 <div class="col-md-4 col-xs-12">
                     <div class="thumbnail">
@@ -23,6 +24,13 @@
                         </div>
                     </div>
                 </div>
+
+                {% else %}
+                    <div class="container">
+                        <h3>Aucun résultat</h3>
+                    </div>
+
+
             {% endfor %}
         </div>
 

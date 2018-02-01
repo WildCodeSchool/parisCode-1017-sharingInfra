@@ -22,7 +22,7 @@ class SearchType extends AbstractType
         $builder->add('city', TextType::class, array(
             'label' => false,
             'attr' => ['class' => 'form-control input-lg', 'placeholder' => 'Votre destination'],
-            'required' => false,
+            'required' => true,
         ))
             ->add('type', EntityType::class, array(
                 'class' => Type::class,

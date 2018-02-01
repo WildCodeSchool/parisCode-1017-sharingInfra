@@ -21,6 +21,13 @@ class Reservation
     }
 
     /**
+     * Reservation constructor.
+     */
+    public function __construct(){
+        $this->status="pending";
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
