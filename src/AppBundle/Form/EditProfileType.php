@@ -2,18 +2,27 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Picture;
 use FOS\UserBundle\Util\LegacyFormHelper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationType extends AbstractType
+class EditProfileType extends AbstractType
 
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $constraintsOptions = array(
+            'message' => 'fos_user.current_password.invalid',
+        );
+
         $builder
             ->remove('username')
             ->add('firstname', TextType::class, array(
@@ -46,34 +55,48 @@ class RegistrationType extends AbstractType
                     new NotBlank(array('message' => 'Merci de renseigner votre email.'))
                 )
             ))
-            ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
-                'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),
-                'options' => array('translation_domain' => 'FOSUserBundle'),
-                'first_options' => array(
+            ->add('phone', TextType::class, array(
+                'attr' => array(
+                    'placeholder' => 'Votre téléphone',
                     'label' => false,
-                    'attr' => array(
-                        'class' => 'form-control input-lg',
-                        'placeholder' => 'Choisissez un mot de passe'
-                    )),
-                'second_options' => array(
-                    'label' => false,
-                    'attr' => array(
-                        'class' => 'form-control input-lg',
-                        'placeholder' => 'Confirmez votre mot de passe'
-                    )),
-                'invalid_message' => 'fos_user.password.mismatch',
+                    'class' => 'form-control input-lg'
+                )
             ))
+            ->add('current_password', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'), array(
+                'label' => false,
+                'translation_domain' => 'FOSUserBundle',
+                'mapped' => false,
+                'attr' => array(
+                    'placeholder' => 'Entrez votre mot de passe pour confirmer les modifications',
+                    'class' => 'form-control input-lg'
+                ),
+                'constraints' => array(
+                    new NotBlank(),
+                    new UserPassword($constraintsOptions),
+                ),
+            ))
+            ->add('description', TextareaType::class, array(
+                'attr' => array(
+                    'placeholder' => 'Parlez-nous de vous !',
+                    'label' => false,
+                    'class' => 'form-control input-lg'
+                ),
+            ))
+            ->add('picture', PictureType::class, array(
+                'attr' => array(
+                    'label' => 'Choisissez votre photo de profil',
+                )))
         ;
     }
 
     public function getParent()
     {
-        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+        return 'FOS\UserBundle\Form\Type\ProfileFormType';
     }
 
     public function getBlockPrefix()
     {
-        return 'app_user_registration';
+        return 'app_user_profile';
     }
 
     public function getName()
