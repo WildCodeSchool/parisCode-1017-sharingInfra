@@ -10,7 +10,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @package AppBundle\Services
  */
-class FileUploader{
+class FileUploader
+{
 
     /**
      * Target to uploads Directory

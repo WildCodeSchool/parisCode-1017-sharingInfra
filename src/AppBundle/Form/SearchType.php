@@ -35,8 +35,6 @@ class SearchType extends AbstractType
                     'class' => 'form-check-input'
                 )
             ));
-        // 'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre type'],
-        // 'required' => false,
     }
 
     /**
