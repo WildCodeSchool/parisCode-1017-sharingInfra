@@ -46,11 +46,13 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         $data = $form->getData();
+        $city = str_replace(", France", "", $data);
+
 
         $em = $this->getDoctrine()->getManager();
 
         /*$adverts = $em->getRepository(Advert::class)->findByCriteria($data['city'], $data['type']);*/
-        $adverts = $em->getRepository(Advert::class)->findBy(array('city' => $data['city'], 'type' => $_GET['search']['type'][0]));
+        $adverts = $em->getRepository(Advert::class)->findBy(array('city' => $city, 'type' => $_GET['search']['type'][0]));
 
         return $this->render('default/search_results.html.twig', array(
             'adverts' => $adverts,
