@@ -59,10 +59,12 @@
                         {% if user.adverts is defined %}
                             {% for advert in user.adverts %}
                                 <div class="card" style="width: 20rem;">
-                                    {% for picture in advert.pictures %}
-                                        <img width="200px" src="{{ asset('uploads/'~picture.name) }}" alt="advert picture"
-                                             class="">
-                                    {% endfor %}
+                                    {% if advert.pictures[0] is defined %}
+                                        {% set first = advert.pictures[0] %}
+                                        <img width="200px" src="{{ asset('uploads/' ~ first.name) }}"
+                                             alt="advert picture"
+                                             class="advert picture">
+                                    {% endif %}
                                     <div class="card-block">
                                         <h4 class="card-title">{{ advert.title }}</h4>
                                         <p class="card-text">{{ advert.type }}</p>
