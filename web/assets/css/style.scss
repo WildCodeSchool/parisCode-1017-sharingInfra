@@ -342,7 +342,11 @@ html {
   }
 
   #carousel_show{
-    max-height: 70vh !important;
+    .item{
+      img{
+        height: 70vh !important;
+      }
+    }
   }
 
   /* ================= MAP ================= */
