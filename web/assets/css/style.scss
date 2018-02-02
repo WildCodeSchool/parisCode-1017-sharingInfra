@@ -20,10 +20,6 @@ html {
       flex: 1 0 auto;
     }
 
-    .bold {
-      font-weight: 900;
-    }
-
     /* ================= Navigation ================= */
 
     nav {
@@ -119,40 +115,7 @@ html {
 
     .btn-primary:hover {
       background-color: $orange;
-      border-color: orange;
-    }
-
-    .checkbox-custom {
-      display: block;
-      position: relative;
-      padding-left: 35px;
-      margin-bottom: 12px;
-      cursor: pointer;
-      font-size: 22px;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-
-      #search_type_28 {
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #eee;
-      }
-
-      .btn-primary:hover {
-        background-color: $orange;
-        border-color: $orange;
-
-        #search_type_29 {
-        top: 0;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #eee;
-      }
+      border-color: $orange;
     }
   }
 
@@ -265,10 +228,9 @@ html {
       border-color: #16174f;
     }
 
-      .btn-primary:hover {
-        background-color: $orange;
-        border-color: $orange;
-      }
+    .btn-primary:hover {
+      background-color: $orange;
+      border-color: $orange;
     }
   }
 
@@ -306,10 +268,10 @@ html {
       border-color: #16174f;
     }
 
-      .btn-primary:hover {
-        background-color: $orange;
-        border-color: $orange;
-      }
+    .btn-primary:hover {
+      background-color: $orange;
+      border-color: $orange;
+    }
 
     .checkbox {
       margin-left: 1em;
@@ -333,7 +295,6 @@ html {
     width: 100%;
     object-fit: cover;
   }
-
   /* ================= ADVERT ================= */
   .advert-img {
     height: 70vh;
@@ -354,8 +315,8 @@ html {
     .gm-style-iw {
     }
   }
-  
-    .p-infowindow {
+
+  .p-infowindow {
     margin-top: 1em;
     font-weight: bold;
     a {
@@ -366,6 +327,7 @@ html {
     a:hover {
       color: $blue;
     }
+  }
 
   /* ================= USER PROFILE PAGE ================= */
   .card {
@@ -461,9 +423,6 @@ html {
       border-color: $orange;
     }
   }
-  }
 
 }
-
 /* end of body */
-

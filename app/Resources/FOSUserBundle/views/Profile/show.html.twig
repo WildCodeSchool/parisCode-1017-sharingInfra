@@ -12,7 +12,7 @@
                     <img class="card-bkimg" alt="" src="#">
                 </div>
                 <div class="useravatar">
-                    <img alt="" src="{{ asset('uploads/' ~ user.picture.name) }}">
+                    <img alt="{{ user.picture.name }}" src="{{ asset('uploads/' ~ user.picture.name) }}">
                 </div>
                 <div class="card-info"><span class="card-title">{{ user.firstname }} {{ user.name }}</span>
 
@@ -56,11 +56,22 @@
                         <h3>Mes annonces</h3>
                         {% if user.adverts is defined %}
                             {% for advert in user.adverts %}
-                                {{ advert }}
-                                {# TODO: cartes annonces + bouton edit + bouton add #}
+                                <div class="card" style="width: 20rem;">
+                                    {% for picture in advert.pictures %}
+                                        <img src="{{ asset('uploads/'~picture.name) }}" alt="{{ advert.title }}"
+                                             class="">
+                                    {% endfor %}
+                                    <div class="card-block">
+                                        <h4 class="card-title">{{ advert.title }}</h4>
+                                        <p class="card-text">{{ advert.type }}</p>
+                                        <p class="card-text">{{ advert.city }}</p>
+                                        <a href="{{ path('advert_edit', { 'id': advert.id }) }}"
+                                           class="btn btn-primary">Modifier mon annonce</a>
+                                    </div>
+                                </div>
                             {% endfor %}
                         {% else %}
-                            <p>Vous n'avez pas d'annonce</p>
+                            <p>Vous n'avez pas encore d'annonce</p>
                         {% endif %}
                     </div>
 

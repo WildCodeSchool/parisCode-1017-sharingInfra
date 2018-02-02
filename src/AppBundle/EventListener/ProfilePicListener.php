@@ -2,12 +2,10 @@
 
 namespace AppBundle\EventListener;
 
-use AppBundle\Entity\Picture;
 use AppBundle\Services\FileUploader;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
