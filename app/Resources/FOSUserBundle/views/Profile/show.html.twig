@@ -60,7 +60,7 @@
                             {% for advert in user.adverts %}
                                 <div class="card" style="width: 20rem;">
                                     {% for picture in advert.pictures %}
-                                        <img src="{{ asset('uploads/'~picture.name) }}" alt="{{ advert.title }}"
+                                        <img width="200px" src="{{ asset('uploads/'~picture.name) }}" alt="advert picture"
                                              class="">
                                     {% endfor %}
                                     <div class="card-block">
