@@ -23,7 +23,7 @@ class PictureType extends AbstractType
         } else{
             $builder->add('file', FileType::class, array(
                 'label' => "Vos fichiers",
-                'required' => true,
+                'required' => false,
                 'multiple' => true
             ));
         }
