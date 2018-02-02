@@ -349,6 +349,14 @@ html {
     }
   }
 
+  #carousel_results{
+    .item{
+      img{
+        height: 300px !important;
+      }
+    }
+  }
+
   /* ================= MAP ================= */
   .container-infowindow {
     width: 20vw;
