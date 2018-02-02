@@ -6,20 +6,35 @@
         <div class="col-md-12">
             <h1>Modifier l'annonce</h1>
 
-            {{ form_start(edit_form) }}
-            {{ form_widget(edit_form) }}
-            <input type="submit" value="Modifier"/>
-            {{ form_end(edit_form) }}
+            <div class="row">
+                {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <input type="submit" value="Modifier"/>
+
+                <div class="row">
+                    <h3>Images actuelles</h3>
+                    {% for img in advert.pictures %}
+                        <div class="col-md-2 text-center">
+                            <img width="100%" src="{{ asset('uploads/' ~ img.name) }}" alt="{{ advert.title }}">
+                            <button
+                                    class="deleteImgAdvertEdit"
+                                    data-id_img="{{ img.id }}"
+                                    data-id_advert="{{ advert.id }}"
+                                    data-url_action="{{ path('advert_delete_img') }}"
+                            >Supprimer</button>
+                        </div>
+                    {% endfor %}
+                </div>
+                {{ form_end(edit_form) }}
+            </div>
+            <div class="row">
+                <a href="{{ path('advert_index') }}">Back to the list</a>
 
 
-            <a href="{{ path('advert_index') }}">Back to the list</a>
-
-
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-
-
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+                {{ form_end(delete_form) }}
+            </div>
         </div>
     </div>
 {% endblock %}

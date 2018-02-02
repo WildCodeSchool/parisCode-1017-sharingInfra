@@ -86,7 +86,33 @@ function main() {
     ======================================*/
 	$("a[rel^='prettyPhoto']").prettyPhoto({
 		social_tools: false
-	});	
+	});
+
+
+  	/*====================================
+    Delete picture with Ajax (form edit Advert)
+    ======================================*/
+    $('.deleteImgAdvertEdit').click(function(e){
+        e.preventDefault();
+        var idAdvert = $(this).data('id_advert');
+        var idImg = $(this).data('id_img');
+        var url_action = $(this).data('url_action');
+        var elem = $(this);
+
+        $.ajax({
+            method: 'post',
+            url: url_action,
+            data: {'idAdvert': idAdvert, 'idImg': idImg},
+            success: function (response){
+                if (response.code === 200){
+                    elem.parent().fadeOut();
+                } else{
+                    console.log(response.msg);
+                }
+
+            }
+        })
+    })
 
 }());
 

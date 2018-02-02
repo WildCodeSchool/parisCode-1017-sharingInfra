@@ -6,12 +6,23 @@
   {% endfor %}
     <div class="container">
         <h1>{{ advert.title }}</h1>
-        <p>{{ advert.type }} à {{ advert.city }}</p>
+        <p>{% if advert.type == "piscine" %}
+        <p>XX picto | Piscine
+        {% elseif advert.type == "court de tennis" %}
+        <p> XX picto | Court de tennis{% endif %} à {{ advert.city }}</p>
         <h2>Description</h2>
         {{ advert.description }}
         <h2>Équipements</h2>
         {% for characteristic in advert.characteristics %}
-        {{ characteristic.equipment }}
+            {% if characteristic.equipment=="douche" %}
+                <p>XX picto douche Douche</p>
+            {% elseif characteristic.equipment == "wc" %}
+                <p>XX picto WC WC</p>
+            {% elseif characteristic.equipment == "raquettes" %}
+                <p>XX picto Raquette Raquettes</p>
+            {% endif %}
+
+
         {% endfor %}
 
         <h2>Prix</h2>
@@ -23,6 +34,8 @@
         </section>
     <input id="markers_locations" type="hidden" value='{{ events_json }}' />
     </div>
+
+
 
 {% endblock %}
 

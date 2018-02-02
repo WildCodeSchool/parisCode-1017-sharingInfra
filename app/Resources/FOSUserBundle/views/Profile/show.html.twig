@@ -12,7 +12,9 @@
                     <img class="card-bkimg" alt="" src="#">
                 </div>
                 <div class="useravatar">
-                    <img alt="{{ user.picture.name }}" src="{{ asset('uploads/' ~ user.picture.name) }}">
+                    {% if user.picture %}
+                        <img alt="{{ user.name }}" src="{{ asset('uploads/' ~ user.picture.name) }}">
+                    {% endif %}
                 </div>
                 <div class="card-info"><span class="card-title">{{ user.firstname }} {{ user.name }}</span>
 

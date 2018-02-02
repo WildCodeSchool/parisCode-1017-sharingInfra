@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Advert;
+use AppBundle\Entity\Picture;
 use AppBundle\Form\AdvertType;
 use AppBundle\Form\SearchType;
 use AppBundle\Services\FileUploader;
@@ -10,7 +11,10 @@ use AppBundle\Services\GoogleMap;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * Advert controller.
@@ -98,7 +102,7 @@ class AdvertController extends Controller
      * @Route("/{id}/edit", name="advert_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Advert $advert, GoogleMap $googleMap)
+    public function editAction(Request $request, Advert $advert, GoogleMap $googleMap, FileUploader $fileUploader)
     {
         $deleteForm = $this->createDeleteForm($advert);
         $editForm = $this->createForm('AppBundle\Form\AdvertType', $advert);
@@ -108,6 +112,9 @@ class AdvertController extends Controller
             $location = $googleMap->getLatLng($advert->getAddress(), $advert->getZipcode(), $advert->getCity());
             $advert->setLatitude($location['lat']);
             $advert->setLongitude($location['lng']);
+
+            $fileUploader->upload($advert);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('advert_edit', array('id' => $advert->getId()));
@@ -118,6 +125,36 @@ class AdvertController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \AppBundle\Services\FileUploader          $fileUploader
+     *
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     *
+     * @Route("delete_img", name="advert_delete_img")
+     */
+    public function deleteImgByAjax(Request $request, FileUploader $fileUploader){
+        if ($request->isXmlHttpRequest()){
+            $em = $this->getDoctrine()->getManager();
+            $idAvert = $request->get('idAdvert');
+            $idImg = $request->get('idImg');
+            try {
+                $img = $em->getRepository(Picture::class)->findOneBy(array('id' => $idImg));
+                $advert = $em->getRepository(Advert::class)->findOneBy(array('id' => $idAvert));
+
+                $advert->removePicture($img);
+                $fileUploader->remove($img);
+
+                $em->flush();
+                return new JsonResponse(array("code" => 200));
+            } catch (Exception $e){
+                return new JsonResponse($e->getMessage(), 400);
+            }
+        } else{
+            throw new HttpException('Not an ajax Call');
+        }
     }
 
     /**
