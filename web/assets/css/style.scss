@@ -341,6 +341,10 @@ html {
     object-fit: cover;
   }
 
+  #carousel_show{
+    max-height: 70vh !important;
+  }
+
   /* ================= MAP ================= */
   .container-infowindow {
     width: 20vw;
