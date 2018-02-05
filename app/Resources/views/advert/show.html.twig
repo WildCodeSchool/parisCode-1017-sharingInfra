@@ -85,14 +85,17 @@
 
     <script>
         function initMap(){
+
+            var marker = JSON.parse(document.querySelector('#markers_locations').value);
+
             var options = {
                 zoom:15,
-                center:{lat:48.856614,lng:2.3522219000000177}
+                center: marker
             };
             var map = new google.maps.Map(document.getElementById('map'), options);
-            var markers = JSON.parse(document.querySelector('#markers_locations').value);
+
             var marker = new google.maps.Marker({
-                position: markers,
+                position: marker,
                 map: map
             });
         }

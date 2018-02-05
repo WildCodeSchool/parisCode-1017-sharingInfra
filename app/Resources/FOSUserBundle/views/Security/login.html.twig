@@ -27,10 +27,11 @@
                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
             </div>
-
+            <div class="text-center">
                <input class="btn btn-primary btn-lg" type="submit" id="_submit" name="_submit"
                       value="{{ 'security.login.submit'|trans }}"/>
-
+               <a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}">Inscription</a>
+            </div>
         </form>
 
     </div>

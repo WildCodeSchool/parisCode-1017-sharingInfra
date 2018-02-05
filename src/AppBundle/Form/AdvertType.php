@@ -2,7 +2,10 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Characteristic;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,11 +35,18 @@ class AdvertType extends AbstractType
             ->add('price', MoneyType::class, array(
                 'label'=> "Prix"
             ))
-            ->add('user') // TODO add logged user as user
             ->add('type')
-            ->add('characteristics')
+            ->add('characteristics', EntityType::class, array(
+                'expanded' => true,
+                'multiple' => true,
+                'class' => Characteristic::class,
+                'label_attr' => array(
+                    'class' => 'checkbox-inline'
+                )
+            ))
             ->add('pictures', PictureType::class, array(
-                'data_class' => null
+                'data_class' => null,
+                'label' => "Vos photos"
             ));
     }
 

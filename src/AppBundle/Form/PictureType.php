@@ -17,12 +17,12 @@ class PictureType extends AbstractType
     {
         if ($options['data_class'] == Picture::class){
             $builder->add('file', FileType::class, array(
-                'label' => "Votre fichier",
+                'label' => false,
                 'required' => true,
             ));
         } else{
             $builder->add('file', FileType::class, array(
-                'label' => "Vos fichiers",
+                'label' => false,
                 'required' => false,
                 'multiple' => true
             ));

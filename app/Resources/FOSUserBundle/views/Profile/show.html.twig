@@ -54,12 +54,66 @@
                             <button class="btn btn-primary">Modifier mon profil</button>
                         </a>
                     </div>
+                    {#TODO: Edit style for heigth tab#}
                     <div class="tab-pane fade in" id="tab2">
                         <h3>Mes annonces</h3>
                         {% if user.adverts is defined %}
                             {% for advert in user.adverts %}
-                                {{ advert }}
-                                {# TODO: cartes annonces + bouton edit + bouton add #}
+                                <div class="col-md-4 col-xs-12">
+                                    <div class="thumbnail">
+                                        <a href="{{ path('advert_show', { 'id': advert.id }) }}">
+
+                                            <div id="{{ advert.id }}" class="carousel slide" data-ride="carousel" data-interval="false">
+
+                                                <ol class="carousel-indicators">
+                                                    {%  set isFirst = true %}
+                                                    {% for picture in advert.pictures  %}
+                                                        {% if isFirst == true %}
+                                                            <li data-target="#{{ advert.id }}" data-slide-to="{{ loop.index0 }}" class="active"></li>
+                                                        {% else %}
+                                                            <li data-target="#{{ advert.id }}" data-slide-to="{{ loop.index0 }}"></li>
+                                                        {% endif %}
+
+                                                        {% set isFirst = false %}
+                                                    {% endfor %}
+                                                </ol>
+                                                <div id="carousel_results" class="carousel-inner" role="listbox">
+                                                    {%  set isFirst = true %}
+                                                    {% for picture  in advert.pictures  %}
+                                                    {% if isFirst == true %}
+                                                    <div class="item active">
+                                                        {% else %}
+                                                        <div class="item">
+
+                                                            {% endif %}
+                                                            <img src="{{ app.request.basepath }}/uploads/{{ picture.name }}" alt="{{ advert.title }}" class="crush-img">
+                                                        </div>
+                                                        {% set isFirst = false %}
+                                                        {% endfor %}
+                                                    </div>
+                                                    <a class="left carousel-control" href="#{{ advert.id }}" role="button" data-slide="prev">
+                                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                        <span class="sr-only">Previous</span>
+                                                    </a>
+                                                    <a class="right carousel-control" href="#{{ advert.id }}" role="button" data-slide="next">
+                                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+
+                                                </div>
+
+                                        </a>
+                                        {#<img src="{{ advert.picture }}">#}
+                                        <div class="caption">
+                                            <h4>{{ advert.title }}</h4>
+                                            <p class="type">{{ advert.type }}</p>
+                                            <p>{{ advert.price }}€/heure</p>
+                                            <p class="text-right">{{ advert.zipcode }} {{ advert.city }}</p>
+                                            <a href="{{ path('advert_edit', {'id': advert.id}) }}" class="btn btn-primary btn-lg">Modifier mon annonce</a>
+                                            {#{{ advert.rate }}</p>#}
+                                        </div>
+                                    </div>
+                                </div>
                             {% endfor %}
                         {% else %}
                             <p>Vous n'avez pas d'annonce</p>
