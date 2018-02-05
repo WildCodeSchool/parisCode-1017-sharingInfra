@@ -93,7 +93,6 @@
                             {% endfor %}
                             </tbody>
                         </table>
-                    {% endif %}
                     {% else %}
                         {#TODO: Create form builder#}
                         <h2>Chercher une disponibilitée</h2>
@@ -102,6 +101,14 @@
                             <input class="btn btn-primary btn-sm" type="submit" value="Vérifier la disponibilité">
                         </form>
                     {% endif %}
+                {% else %}
+                    {#TODO: Create form builder#}
+                    <h2>Chercher une disponibilitée</h2>
+                    <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
+                        <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
+                        <input class="btn btn-primary btn-sm" type="submit" value="Vérifier la disponibilité">
+                    </form>
+                {% endif %}
 
 
                 <div id="resultDispo">
