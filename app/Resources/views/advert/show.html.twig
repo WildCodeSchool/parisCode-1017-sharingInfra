@@ -46,14 +46,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1>{{ advert.title }}</h1>
+                <h2>{{ advert.title }}</h2>
                 <p>{% if advert.type == "piscine" %}
                 <p>XX picto | Piscine
                     {% elseif advert.type == "court de tennis" %}
                 <p> XX picto | Court de tennis{% endif %} à {{ advert.city }}</p>
-                <h2>Description</h2>
+                <h3>Description</h3>
                 {{ advert.description }}
-                <h2>Équipements</h2>
+                <h3>Équipements</h3>
                 {% for characteristic in advert.characteristics %}
                     {% if characteristic.equipment=="douche" %}
                         <p><i class="fa fa-shower fa-2x" aria-hidden="true"></i> Douche</p>
@@ -66,16 +66,43 @@
                     {% endif %}
                 {% endfor %}
 
-                <h2>Prix</h2>
+                <h3>Prix</h3>
                 <p>{{ advert.price }} € par heure </p>
             </div>
             <div class="col-md-6">
-                {#TODO: Create form builder#}
-                <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
-                    <label for="startDate">Date de début</label>
-                    <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
-                    <input type="submit" value="Vérifier la disponibilité">
-                </form>
+
+                {% if app.user != null %}
+                    {% if app.user == advert.user %}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for reservation in advert.reservations %}
+                                <tr>
+                                    <td>{{ reservation.date|date('Y d m') }}</td>
+                                    <td>{{ reservation.user.name ~ ' ' ~ reservation.user.firstname }}</td>
+                                    <td>{{ reservation.user.email }}</td>
+                                    <td>action</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                    {% else %}
+                        {#TODO: Create form builder#}
+                        <h2>Chercher une disponibilitée</h2>
+                        <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
+                            <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
+                            <input class="btn btn-primary btn-sm" type="submit" value="Vérifier la disponibilité">
+                        </form>
+                    {% endif %}
+
 
                 <div id="resultDispo">
 
@@ -124,9 +151,12 @@
             e.preventDefault();
             var start = $("#startDate").val();
             var idAvert = $("#startDate").data('advert');
+
             if (start === '') {
                 alert('Veuillez selectionner une date');
-            } else {
+            } else if(new Date(start) < new Date()) {
+                alert("Veuillez saisir une date supérieur à aujourd'hui");
+            } else{
                 $.ajax({
                     type: $(this).attr('method'),
                     url: $(this).attr('action'),
@@ -138,7 +168,7 @@
                             );
                         } else {
                             $("#resultDispo").html(
-                                "Le bien est disponible: <a href='" + response.url + "' class='btn btn-primary btn-lg'>Reserver</a>"
+                                "<p>Le bien est disponible</p> <a href='" + response.url + "' class='btn btn-primary btn-md'>Reserver</a>"
                             );
                         }
                     }

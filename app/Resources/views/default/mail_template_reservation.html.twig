@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hobbea</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<p>Vous avez une nouvelle demande de reservation</p>
+
+<h2>Infos user: </h2>
+<p>{{ reservation.user.name ~ ' ' ~ reservation.user.firstname }} </p>
+<p>Email: {{ reservation.user.email }}</p>
+<p>Email: {{ reservation.user.phone }}</p>
+
+<h2>Infos reservation</h2>
+<p>Date: {{ reservation.date|date('Y d m') }}</p>
+<p>Annonce: {{ advert.title }}</p>
+
+<a href="{{ url('reservation_confirm', {'reservation_id': reservation.id, 'advert_id': advert.id}) }}">Confirmer la reservation</a>
+
+</body>
+
+</html>
