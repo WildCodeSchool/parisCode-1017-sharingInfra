@@ -1,9 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  {% for picture in advert.pictures %}
-    <img src="{{ asset('uploads/'~picture.name) }}" alt="{{ advert.title }}" class="advert-img">
-  {% endfor %}
+
+    <div class="c-wrapper">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+
+            <ol class="carousel-indicators">
+                {%  set isFirst = true %}
+                {% for picture in advert.pictures  %}
+                    {% if isFirst == true %}
+                        <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="active"></li>
+                    {% else %}
+                        <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}"></li>
+                    {% endif %}
+
+                    {% set isFirst = false %}
+                {% endfor %}
+            </ol>
+            <div id="carousel_show" class="carousel-inner" role="listbox">
+                {%  set isFirst = true %}
+                {% for picture  in advert.pictures  %}
+                {% if isFirst == true %}
+                <div class="item active">
+                    {% else %}
+                    <div class="item">
+
+                        {% endif %}
+                        <img src="{{ app.request.basepath }}/uploads/{{ picture.name }}" alt="{{ advert.title }}" class="advert-img">
+                    </div>
+                    {% set isFirst = false %}
+                    {% endfor %}
+                </div>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <h1>{{ advert.title }}</h1>
         <p>{% if advert.type == "piscine" %}
@@ -15,11 +55,13 @@
         <h2>Équipements</h2>
         {% for characteristic in advert.characteristics %}
             {% if characteristic.equipment=="douche" %}
-                <p>XX picto douche Douche</p>
+                <p><i class="fa fa-shower fa-2x" aria-hidden="true"></i> Douche</p>
             {% elseif characteristic.equipment == "wc" %}
                 <p>XX picto WC WC</p>
             {% elseif characteristic.equipment == "raquettes" %}
                 <p>XX picto Raquette Raquettes</p>
+                {% elseif characteristic.equipment == "wifi" %}
+                <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
             {% endif %}
 
 

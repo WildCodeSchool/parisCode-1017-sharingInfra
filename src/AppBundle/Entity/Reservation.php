@@ -25,6 +25,7 @@ class Reservation
      */
     public function __construct(){
         $this->status="pending";
+        $this->user=$this->getUser();
     }
 
     /**

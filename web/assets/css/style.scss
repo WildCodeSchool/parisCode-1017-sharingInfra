@@ -341,6 +341,22 @@ html {
     object-fit: cover;
   }
 
+  #carousel_show{
+    .item{
+      img{
+        height: 70vh !important;
+      }
+    }
+  }
+
+  #carousel_results{
+    .item{
+      img{
+        height: 300px !important;
+      }
+    }
+  }
+
   /* ================= MAP ================= */
   .container-infowindow {
     width: 20vw;
