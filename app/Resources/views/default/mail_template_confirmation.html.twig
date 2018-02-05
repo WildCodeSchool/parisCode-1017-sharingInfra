@@ -14,15 +14,23 @@
 
 <body>
 
-<p>Vous avez unee confirmation de reservation</p>
+<div class="container">
+    <h1 class="text-center">Vous avez une confirmation de reservation</h1>
 
-<h2>Infos reservation</h2>
-<p>Date: {{ reservation.date|date('Y d m') }}</p>
-<p>Annonce: {{ advert.title }}</p>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Infos reservation</h2>
+            <p>Date: {{ reservation.date|date('Y d m') }}</p>
+            <p>Annonce: {{ advert.title }}</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Contacter le proprietaire</h2>
+            <p>{{ advert.user.name }}</p>
+            <p>{{ advert.user.phone }}</p>
+        </div>
+    </div>
 
-<h2>Contacter le proprietaire</h2>
-<p>{{ advert.user.name }}</p>
-<p>{{ advert.user.phone }}</p>
+</div>
 
 </body>
 

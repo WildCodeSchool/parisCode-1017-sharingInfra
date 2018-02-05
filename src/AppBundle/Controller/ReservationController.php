@@ -6,6 +6,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Advert;
 use AppBundle\Entity\Reservation;
 use AppBundle\Form\ReservationType;
+use AppBundle\Services\SendMail;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -55,13 +56,13 @@ class ReservationController extends Controller{
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \AppBundle\Entity\Advert                  $advert
      * @param                                           $date
-     * @param \Swift_Mailer                             $mailer
+     * @param \AppBundle\Services\SendMail              $mailer
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("createReservation/{id}/{date}", name="create_reservation")
      */
-    public function reservationAction(Request $request, Advert $advert, $date, \Swift_Mailer $mailer){
+    public function reservationAction(Request $request, Advert $advert, $date, SendMail $mailer){
         $currentUser = $this->getUser();
         $reservation = new Reservation();
         $reservation->setUser($currentUser);
@@ -82,23 +83,15 @@ class ReservationController extends Controller{
             $em->flush();
             $this->addFlash('success', "Reservation confirmée, un message a été envoyé à l'administrateur, il vous répondra dans les plus bres délais");
 
-            $message = (new \Swift_Message('Demande de reservation'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setTo($this->getParameter('mailer_user'))
-                ->setBody(
-                    $this->renderView(
-                    // templates/emails/registration.html.twig
-                        'default/mail_template_reservation.html.twig',
-                        array(
-                            'reservation' => $reservation,
-                            'advert' => $advert
-                            )
-                    ),
-                    'text/html'
+            $mailer->sendMail(
+                'Demande de reservation',
+                $this->getParameter('mailer_user'),
+                'default/mail_template_reservation.html.twig',
+                array(
+                    'reservation' => $reservation,
+                    'advert' => $advert
                 )
-            ;
-
-            $mailer->send($message);
+            );
 
             return $this->redirectToRoute('advert_show', array(
                 'id' => $advert->getId()
@@ -115,7 +108,7 @@ class ReservationController extends Controller{
     /**
      * @param \AppBundle\Entity\Reservation $reservation
      * @param \AppBundle\Entity\Advert      $advert
-     * @param \Swift_Mailer                 $mailer
+     * @param \AppBundle\Services\SendMail  $mailer
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
@@ -124,7 +117,7 @@ class ReservationController extends Controller{
      * @ParamConverter("reservation", options={"mapping": {"reservation_id": "id"}})
      * @ParamConverter("advert",   options={"mapping": {"advert_id": "id"}})
      */
-    public function confirmeReservationAction(Reservation $reservation, Advert $advert, \Swift_Mailer $mailer){
+    public function confirmeReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer){
         if ($this->getUser() != $advert->getUser()){
             $this->redirectToRoute('homepage');
         } else {
@@ -133,22 +126,15 @@ class ReservationController extends Controller{
 
             $em->flush();
 
-            $message = (new \Swift_Message('Confirmation de reservation'))
-                ->setFrom($this->getParameter('mailer_user'))
-                ->setTo($reservation->getUser()->getEmail())
-                ->setBody(
-                    $this->renderView(
-                        'default/mail_template_confirmation.html.twig',
-                        array(
-                            'reservation' => $reservation,
-                            'advert' => $advert
-                        )
-                    ),
-                    'text/html'
+            $mailer->sendMail(
+                'Confirmation de reservation',
+                $reservation->getUser()->getEmail(),
+                'default/mail_template_confirmation.html.twig',
+                array(
+                    'reservation' => $reservation,
+                    'advert' => $advert
                 )
-            ;
-
-            $mailer->send($message);
+            );
 
             $this->addFlash('success', 'Reservation confirmée');
 
