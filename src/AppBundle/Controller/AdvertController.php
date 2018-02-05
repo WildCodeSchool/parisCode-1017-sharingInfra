@@ -91,10 +91,6 @@ class AdvertController extends Controller
     {
         $deleteForm = $this->createDeleteForm($advert);
 
-        /*$location = $googleMap->getLatLng($advert->getAddress(), $advert->getZipcode(), $advert->getCity());
-        $advert->setLatitude($location['lat']);
-        $advert->setLongitude($location['lng']);*/
-
         return $this->render('advert/show.html.twig', array(
             'advert' => $advert,
             'delete_form' => $deleteForm->createView(),

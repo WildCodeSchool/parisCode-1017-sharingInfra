@@ -39,41 +39,55 @@
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-
             </div>
         </div>
     </div>
 
     <div class="container">
-        <h1>{{ advert.title }}</h1>
-        <p>{% if advert.type == "piscine" %}
-        <p>XX picto | Piscine
-        {% elseif advert.type == "court de tennis" %}
-        <p> XX picto | Court de tennis{% endif %} à {{ advert.city }}</p>
-        <h2>Description</h2>
-        {{ advert.description }}
-        <h2>Équipements</h2>
-        {% for characteristic in advert.characteristics %}
-            {% if characteristic.equipment=="douche" %}
-                <p><i class="fa fa-shower fa-2x" aria-hidden="true"></i> Douche</p>
-            {% elseif characteristic.equipment == "wc" %}
-                <p>XX picto WC WC</p>
-            {% elseif characteristic.equipment == "raquettes" %}
-                <p>XX picto Raquette Raquettes</p>
-                {% elseif characteristic.equipment == "wifi" %}
-                <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
-            {% endif %}
+        <div class="row">
+            <div class="col-md-6">
+                <h1>{{ advert.title }}</h1>
+                <p>{% if advert.type == "piscine" %}
+                <p>XX picto | Piscine
+                    {% elseif advert.type == "court de tennis" %}
+                <p> XX picto | Court de tennis{% endif %} à {{ advert.city }}</p>
+                <h2>Description</h2>
+                {{ advert.description }}
+                <h2>Équipements</h2>
+                {% for characteristic in advert.characteristics %}
+                    {% if characteristic.equipment=="douche" %}
+                        <p><i class="fa fa-shower fa-2x" aria-hidden="true"></i> Douche</p>
+                    {% elseif characteristic.equipment == "wc" %}
+                        <p>XX picto WC WC</p>
+                    {% elseif characteristic.equipment == "raquettes" %}
+                        <p>XX picto Raquette Raquettes</p>
+                    {% elseif characteristic.equipment == "wifi" %}
+                        <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
+                    {% endif %}
+                {% endfor %}
 
+                <h2>Prix</h2>
+                <p>{{ advert.price }} € par heure </p>
+            </div>
+            <div class="col-md-6">
+                {#TODO: Create form builder#}
+                <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
+                    <label for="startDate">Date de début</label>
+                    <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
+                    <input type="submit" value="Vérifier la disponibilité">
+                </form>
 
-        {% endfor %}
+                <div id="resultDispo">
 
-        <h2>Prix</h2>
-        <p>{{ advert.price }} € par heure </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <section class="map">
+                <div id="map" style="height:400px; width: 100%;"></div>
+            </section>
+        </div>
 
-        <section class="map">
-            <h2>Carte</h2>
-            <div id="map" style="height:400px; width: 100%;"></div>
-        </section>
     <input id="markers_locations" type="hidden" value='{{ events_json }}' />
     </div>
 
@@ -103,6 +117,35 @@
 
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCtKFN02dRtmY2eFP81FarwROMTEXq9Fc&callback=initMap">
+    </script>
+
+    <script>
+        $("#formReservation").submit(function (e) {
+            e.preventDefault();
+            var start = $("#startDate").val();
+            var idAvert = $("#startDate").data('advert');
+            if (start === '') {
+                alert('Veuillez selectionner une date');
+            } else {
+                $.ajax({
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: {'start': start, 'advert': idAvert},
+                    success: function(response){
+                        if (response.status == true){
+                            $("#resultDispo").html(
+                                "Veuillez nous excusez, le bien n'est pas disponible à cette date"
+                            );
+                        } else {
+                            $("#resultDispo").html(
+                                "Le bien est disponible: <a href='" + response.url + "' class='btn btn-primary btn-lg'>Reserver</a>"
+                            );
+                        }
+                    }
+                })
+            }
+
+        })
     </script>
 
 {% endblock %}
