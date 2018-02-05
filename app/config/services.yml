@@ -13,9 +13,16 @@ services:
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
         public: false
+
     user.profile_pic:
             class: AppBundle\EventListener\ProfilePicListener
             arguments: ['@router', '@AppBundle\Services\FileUploader']
+            tags:
+                - { name: kernel.event_subscriber }
+
+    user.resgitration:
+            class: AppBundle\EventListener\RegistrationListener
+            arguments: ['@router']
             tags:
                 - { name: kernel.event_subscriber }
 
