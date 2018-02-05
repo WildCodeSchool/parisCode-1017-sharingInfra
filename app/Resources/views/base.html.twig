@@ -88,8 +88,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ path('fos_user_registration_register') }}" class="page-scroll">Inscription</a></li>
-                    <li><a href="{{ path('fos_user_security_login') }}" class="page-scroll">Connexion</a></li>
+
+                    {% if app.user == null %}
+                        <li><a href="{{ path('fos_user_registration_register') }}" class="page-scroll">Inscription</a></li>
+                        <li><a href="{{ path('fos_user_security_login') }}" class="page-scroll">Connexion</a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_profile_show') }}" class="page-scroll">Profil</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                    {% endif %}
                     <li><a href="{{ path('faq') }}" class="page-scroll">Aide</a></li>
                     <li><a href="#" class="btn btn-hobbea page-scroll">Enregistrez votre bien</a></li>
 
