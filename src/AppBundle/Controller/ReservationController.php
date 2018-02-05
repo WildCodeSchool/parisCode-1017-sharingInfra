@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Advert;
 use AppBundle\Entity\Reservation;
+use AppBundle\Form\ReservationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -50,20 +51,30 @@ class ReservationController extends Controller{
     public function reservationAction(Request $request, Advert $advert, $date){
         $currentUser = $this->getUser();
         $reservation = new Reservation();
-
         $reservation->setUser($currentUser);
         $reservation->setDate(new \DateTime($date));
         $reservation->setAdvert($advert);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($reservation);
-        $em->flush();
+        $form = $this->createForm(ReservationType::class, $reservation);
+        $form->handleRequest($request);
 
-        $this->addFlash('success', "Reservation confirmée");
+        if ($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($reservation);
+            $em->flush();
+            $this->addFlash('success', "Reservation confirmée");
 
-        return $this->redirectToRoute('advert_show', array(
-            'id' => $advert->getId()
+            return $this->redirectToRoute('advert_show', array(
+                'id' => $advert->getId()
+            ));
+        }
+
+        return $this->render('reservation/recap.html.twig', array(
+            'advert' => $advert,
+            'form' => $form->createView(),
+            'reservation' => $reservation
         ));
+
     }
 
 }

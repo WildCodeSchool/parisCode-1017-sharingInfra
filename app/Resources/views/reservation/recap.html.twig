@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Recap</h1>
+    {{ dump(reservation) }}
+    {{ dump(advert) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    {% if app.user == null %}
+        <p>Pour valider votre reservation, veuillez vous connecter</p>
+        <a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_login') }}">Se connecter</a>
+        <a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}">S'enregistrer</a>
+    {% else %}
+        <a class="btn btn-primary btn-lg" href="{{ path('create_reservation', {'id': advert.id, 'date': reservation.date|format('Y m d')}) }}">Valider la reservation</a>
+    {% endif %}
+    {{ form_end(form) }}
+
+{% endblock %}
