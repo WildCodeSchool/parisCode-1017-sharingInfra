@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,11 +21,18 @@ class SearchType extends AbstractType
             'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre destination'],
             'required' => false,
         ));
-        $builder->add('type', TextType::CLASS, [
-            'label' => false,
-            'attr' => ['class'=>'form-control input-lg', 'placeholder'=> 'Votre type'],
-            'required' => false,
-        ]);
+        $builder->add('type', CheckboxType::CLASS, array(
+            //'attr' => array(
+            //    'class'=>'form-control input-lg'
+            //),
+                'label' => 'Votre terrain de jeux',
+            //),
+            //'choices' => array(
+            //    'Piscine' => 0,
+            //    'Court de tennis' => 1
+            //),
+            'required' => false
+        ));
     }
 
     /**
