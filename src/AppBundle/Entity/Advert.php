@@ -141,9 +141,9 @@ class Advert implements JsonSerializable
     private $characteristics;
 
     /**
-     * One advert have many pictures
+     * Many adverts have many pictures
      *
-     * @ORM\OneToMany(targetEntity="Picture", mappedBy="advert")
+     * @ORM\ManyToMany(targetEntity="Picture", cascade={"all"})
      */
     private $pictures;
 

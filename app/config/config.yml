@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    pictures_directory: '%kernel.project_dir%/web/uploads/'
 
 framework:
     #esi: ~
@@ -78,3 +79,6 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\RegistrationType
+    profile:
+        form:
+            type: AppBundle\Form\EditProfileType

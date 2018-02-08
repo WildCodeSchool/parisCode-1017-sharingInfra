@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Picture
@@ -17,7 +18,7 @@ class Picture
      */
     public function __toString()
     {
-        return $this->id;
+        return $this->name;
     }
 
     /**
@@ -32,42 +33,20 @@ class Picture
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $url;
-
+    private $name;
 
     /**
-     * Get id
+     * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
      *
-     * @return int
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"image/*"},
+     *     mimeTypesMessage = "Please upload a valid PDF"
+     * )
+     *
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $file;
 
-    /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Picture
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
 }

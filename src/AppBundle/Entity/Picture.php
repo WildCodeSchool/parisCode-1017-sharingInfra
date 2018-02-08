@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Picture
@@ -17,7 +19,7 @@ class Picture
      */
     public function __toString()
     {
-        return $this->url;
+        return 'Picture : ' . $this->name;
     }
 
     /**
@@ -32,13 +34,40 @@ class Picture
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255)
      */
-    private $url;
-
+    private $name;
 
     /**
-     * Get id
+     * @var \Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"image/*"},
+     *     mimeTypesMessage = "Please upload a valid image"
+     * )
+     *
+     */
+    private $file;
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get id.
      *
      * @return int
      */
@@ -48,26 +77,26 @@ class Picture
     }
 
     /**
-     * Set url
+     * Set name.
      *
-     * @param string $url
+     * @param string $name
      *
      * @return Picture
      */
-    public function setUrl($url)
+    public function setName($name)
     {
-        $this->url = $url;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get url
+     * Get name.
      *
      * @return string
      */
-    public function getUrl()
+    public function getName()
     {
-        return $this->url;
+        return $this->name;
     }
 }

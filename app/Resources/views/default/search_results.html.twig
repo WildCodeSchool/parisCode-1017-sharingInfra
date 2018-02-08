@@ -4,15 +4,53 @@
     <div class="container">
         <h2>Résultats de votre recherche</h2>
 
-
         <div class="row">
+
             {% for advert in adverts %}
                 <div class="col-md-4 col-xs-12">
                     <div class="thumbnail">
-                        {#Path to show one with id#}
-                        <a href="{{ path('advert_show', { 'id': advert.id }) }}"><img
-                                    src="https://media.giphy.com/media/11Je0AsIHE2TW8/giphy.gif" alt="placeholder"
-                                    class="crush-img"></a>
+                        <a href="{{ path('advert_show', { 'id': advert.id }) }}">
+
+                                <div id="{{ advert.id }}" class="carousel slide" data-ride="carousel" data-interval="false">
+
+                                    <ol class="carousel-indicators">
+                                        {%  set isFirst = true %}
+                                        {% for picture in advert.pictures  %}
+                                            {% if isFirst == true %}
+                                                <li data-target="#{{ advert.id }}" data-slide-to="{{ loop.index0 }}" class="active"></li>
+                                            {% else %}
+                                                <li data-target="#{{ advert.id }}" data-slide-to="{{ loop.index0 }}"></li>
+                                            {% endif %}
+
+                                            {% set isFirst = false %}
+                                        {% endfor %}
+                                    </ol>
+                                    <div id="carousel_results" class="carousel-inner" role="listbox">
+                                        {%  set isFirst = true %}
+                                        {% for picture  in advert.pictures  %}
+                                        {% if isFirst == true %}
+                                        <div class="item active">
+                                            {% else %}
+                                            <div class="item">
+
+                                                {% endif %}
+                                                <img src="{{ app.request.basepath }}/uploads/{{ picture.name }}" alt="{{ advert.title }}" class="crush-img">
+                                            </div>
+                                            {% set isFirst = false %}
+                                            {% endfor %}
+                                        </div>
+                                        <a class="left carousel-control" href="#{{ advert.id }}" role="button" data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#{{ advert.id }}" role="button" data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+
+                                    </div>
+                                
+                            </a>
                         {#<img src="{{ advert.picture }}">#}
                         <div class="caption">
                             <h4>{{ advert.title }}</h4>
@@ -23,39 +61,95 @@
                         </div>
                     </div>
                 </div>
+
+                {% else %}
+
+                        <h3>Aucun résultat</h3>
+
             {% endfor %}
+
         </div>
 
-        <div>
-                <section class="map">
-                    <h3>Carte</h3>
-                    <div id="map" style="height:400px; width: 100%;"></div>
-                </section>
-                <input id="markers_locations" type="hidden" value='{{ events_json }}'/>
-            </div>
+
+        <section class="map">
+            <h3>Carte</h3>
+            <div id="map" style="height:400px; width: 100%;"></div>
+        </section>
+        <input id="markers_locations" type="hidden" value='{{ events_json }}'/>
+
 
     </div>
+
+
 
 {% endblock %}
 
 {% block javascripts %}
 
     <script>
+        var locations = [
+                {% for advert in adverts %}{
+                lat: {{ advert.latitude }},
+                lng: {{ advert.longitude }},
+                info: '<div class="container-infowindow"><div><a href="{{ path('advert_show', { 'id': advert.id }) }}" target="_blank"><img class="img-infowindow" src="https://media.giphy.com/media/11Je0AsIHE2TW8/giphy.gif" /></a></div><p class="p-infowindow"><a href="{{ path('advert_show', { 'id': advert.id }) }}" target="_blank">{{ advert.title }}</a></p><p>{{ advert.price }}€ par jour</p></div>'
+            },
+            {% endfor %}
+        ];
+
         function initMap() {
-            var options = {
-                zoom: 10,
-                center: {lat: 48.856614, lng: 2.3522219000000177}
-            };
-            var map = new google.maps.Map(document.getElementById('map'), options);
-            var markers = JSON.parse(document.querySelector('#markers_locations').value);
-            markers.map(function (marker) {
-                console.log(marker);
-                new google.maps.Marker({
-                    map: map,
-                    position: {lat: marker.lat, lng: marker.lng}
-                })
+
+            var maxZoom = 13;
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: {
+                    lat: 48.864716,
+                    lng: 2.349014
+                }
             });
+
+            // bounds : zoom automatique sur la zone recherchée
+            var bounds = new google.maps.LatLngBounds();
+
+            // Create an array of alphabetical characters used to label the markers.
+            var labels = [];
+
+            var infoWin = new google.maps.InfoWindow();
+            // Add some markers to the map.
+            // Note: The code uses the JavaScript Array.prototype.map() method to
+            // create an array of markers based on a given "locations" array.
+            // The map() method here has nothing to do with the Google Maps API.
+            var markers = locations.map(function (location, i) {
+                bounds.extend(location);
+                var marker = new google.maps.Marker({
+                    position: location,
+                    label: labels[i % labels.length]
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    infoWin.setContent(location.info);
+                    infoWin.open(map, marker);
+                })
+                return marker;
+            });
+
+            map.fitBounds(bounds);
+
+            // markerCluster.setMarkers(markers);
+            // Add a marker clusterer to manage the markers.
+            var markerCluster = new MarkerClusterer(map, markers, {
+                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+            });
+
+            var listener = google.maps.event.addListener(map, 'idle', function () {
+                var currentZoom = map.getZoom();
+                map.setZoom(Math.min(maxZoom, currentZoom));
+                google.maps.event.removeListener(listener);
+            })
         }
+
+    </script>
+
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
 
     <script async defer

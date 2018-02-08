@@ -12,14 +12,14 @@ class TypeFixtures extends Fixture
     {
         //create Type swimmingpool
         $swimmingpool = new Type();
-        $swimmingpool->setGearType('swimming-pool');
+        $swimmingpool->setGearType('Piscine');
         $manager->persist($swimmingpool);
 
         $this->addReference('type-swimmingpool', $swimmingpool);
 
         //create Type tenniscourt
         $tennisCourt = new Type();
-        $tennisCourt->setGearType('tennis court');
+        $tennisCourt->setGearType('Court de tennis');
         $manager->persist($tennisCourt);
 
         $this->addReference('type-tenniscourt', $tennisCourt);

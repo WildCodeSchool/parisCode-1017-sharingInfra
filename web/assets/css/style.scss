@@ -2,7 +2,7 @@
 $orange: #FB6900;
 $blue: #16174f;
 
-html{
+html {
   height: 100%;
 
   @media screen and (max-width: 767px) {
@@ -11,48 +11,63 @@ html{
     }
   }
 
-body {
-  font-family: 'Catamaran', sans-serif;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  .wrap{
-    flex: 1 0 auto;
-  }
-
-  /* ================= Navigation ================= */
-
-  nav {
-    white-space: nowrap;
-    padding: 10px;
-    transition: all 0.8s;
-
-    a{
-      text-transform: uppercase;
-      color: $blue !important;
-      font-weight: bold;
+  body {
+    font-family: 'Catamaran', sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .wrap {
+      flex: 1 0 auto;
     }
 
-    a:hover {
-      color: $orange !important;
+    .bold {
+      font-weight: 900;
     }
 
-    .logo-navbar{
-      position: relative;
-      bottom: 10px;
-    }
-  }
-  
-  @media screen and (max-width: 767px){
-    .navbar{
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      z-index: 1030;
+    /* ================= Navigation ================= */
+
+    nav {
+      white-space: nowrap;
+      padding: 10px;
+      transition: all 0.8s;
+
+      .btn-hobbea {
+        background-color: $blue;
+        color: white !important;
+        font-weight: bold;
+      }
+
+      .btn-hobbea:hover {
+        background-color: $orange !important;
+        color: white !important;
+      }
+
+      a {
+        text-transform: uppercase;
+        color: $blue !important;
+        font-weight: bold;
+      }
+
+      a:hover {
+        color: $orange !important;
+      }
+
+      .logo-navbar {
+        position: relative;
+        bottom: 10px;
+      }
     }
 
+    @media screen and (max-width: 767px) {
+      .navbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+      }
 
+    }
   }
 
   footer {
@@ -71,10 +86,10 @@ body {
     li {
       list-style: none;
     }
-    h4{
+    h4 {
       color: white;
     }
-    .social{
+    .social {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -105,6 +120,39 @@ body {
     .btn-primary:hover {
       background-color: $orange;
       border-color: orange;
+    }
+
+    .checkbox-custom {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      #search_type_28 {
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+      }
+
+      .btn-primary:hover {
+        background-color: $orange;
+        border-color: $orange;
+
+        #search_type_29 {
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+      }
     }
   }
 
@@ -201,48 +249,48 @@ body {
     }
   }
 
+  /* Contact form */
 
-/* Contact form */
+  .contact-form {
+    font-family: Catamaran, 'sans-serif';
 
-.contact-form {
-  font-family: Catamaran, 'sans-serif';
+    .contact-input {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      width: 100%;
+    }
 
-  .contact-input {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    width: 100%;
+    .btn-primary {
+      background-color: $blue;
+      border-color: #16174f;
+    }
+
+      .btn-primary:hover {
+        background-color: $orange;
+        border-color: $orange;
+      }
+    }
   }
 
-  .btn-primary {
-    background-color: $blue;
-    border-color: #16174f;
+  /* ================= MENTIONS LÉGALES ================= */
+
+  .legal-div {
+    width: 70%;
+    margin-top: 10em;
+    margin-bottom: 10em;
+
+    h4 {
+      margin-top: 2em;
+    }
+
+    .legal-italic {
+      font-style: italic;
+    }
+
+    .legal-strong {
+      font-weight: bold;
+    }
   }
-
-  .btn-primary:hover {
-    background-color: $orange;
-    border-color: orange;
-  }
-}
-
-/* ================= MENTIONS LÉGALES ================= */
-
-.legal-div {
-  width: 70%;
-  margin-top: 10em;
-  margin-bottom: 10em;
-
-  h4 {
-    margin-top: 2em;
-  }
-
-  .legal-italic {
-    font-style: italic;
-  }
-
-  .legal-strong {
-    font-weight: bold;
-  }
-}
 
   /* ================= USER ================= */
 
@@ -258,10 +306,10 @@ body {
       border-color: #16174f;
     }
 
-    .btn-primary:hover {
-      background-color: $orange;
-      border-color: orange;
-    }
+      .btn-primary:hover {
+        background-color: $orange;
+        border-color: $orange;
+      }
 
     .checkbox {
       margin-left: 1em;
@@ -278,19 +326,160 @@ body {
     }
   }
 
-/* ================= HOMEPAGE ================= */
+  /* ================= HOMEPAGE ================= */
   /*thumbnail fixed height */
-  .crush-img{
+  .crush-img {
     height: 300px;
     width: 100%;
     object-fit: cover;
   }
-/* ================= ADVERT ================= */
-  .advert-img{
+
+  /* ================= ADVERT ================= */
+  .advert-img {
     height: 70vh;
     width: 100%;
     object-fit: cover;
   }
 
-} /* end of body */
+  #carousel_show{
+    .item{
+      img{
+        height: 70vh !important;
+      }
+    }
+  }
+
+  #carousel_results{
+    .item{
+      img{
+        height: 300px !important;
+      }
+    }
+  }
+
+  /* ================= MAP ================= */
+  .container-infowindow {
+    width: 20vw;
+    padding: 0;
+  }
+  .img-infowindow {
+    width: 100% !important;
+  }
+
+  .gm-style {
+    .gm-style-iw {
+    }
+  }
+  
+    .p-infowindow {
+    margin-top: 1em;
+    font-weight: bold;
+    a {
+      text-decoration: none;
+      color: $orange;
+      text-transform: uppercase;
+    }
+    a:hover {
+      color: $blue;
+    }
+
+  /* ================= USER PROFILE PAGE ================= */
+  .card {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: rgba(214, 224, 226, 0.2);
+    -webkit-border-top-left-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .card.hovercard .card-background {
+    height: 130px;
+  }
+  .card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+  }
+  .card.hovercard .useravatar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+  }
+  .card.hovercard .useravatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+  }
+  .card.hovercard .card-info {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+  }
+  .card.hovercard .card-info .card-title {
+    padding:0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #262626;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+  .card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+  }
+  .card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+  }
+  .btn-pref .btn {
+    -webkit-border-radius:0 !important;
+  }
+
+  .fos_user_user_show {
+    .btn-primary {
+      background-color: $blue;
+      border-color: #16174f;
+    }
+
+    .btn-primary:hover {
+      background-color: $orange;
+      border-color: $orange;
+    }
+  }
+  }
+
 }
+
+/* end of body */
+

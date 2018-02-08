@@ -3,11 +3,15 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Advert;
+use AppBundle\Entity\Picture;
+use AppBundle\Entity\User;
 use AppBundle\Form\SearchType;
 use AppBundle\Form\ContactType;
-use AppBundle\Service\GoogleMap;
+use AppBundle\Services\FileUploader;
+use AppBundle\Services\GoogleMap;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
@@ -41,15 +45,14 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        $adverts = [];
-        if ($form->isValid() && $form->isSubmitted()) {
-            $data = $form->getData();
+        $data = $form->getData();
+        $city = str_replace(", France", "", $data);
 
-            $em = $this->getDoctrine()->getManager();
 
-           //$adverts = $em->getRepository(Advert::class)->findByAddress($data['address']);
-            $adverts = $em->getRepository(Advert::class)->findByCriteria($data['city'], $data['type']);
-        }
+        $em = $this->getDoctrine()->getManager();
+
+        /*$adverts = $em->getRepository(Advert::class)->findByCriteria($data['city'], $data['type']);*/
+        $adverts = $em->getRepository(Advert::class)->findBy(array('city' => $city, 'type' => $_GET['search']['type'][0]));
 
         return $this->render('default/search_results.html.twig', array(
             'adverts' => $adverts,
@@ -65,7 +68,7 @@ class DefaultController extends Controller
      */
     public function faqAction(Request $request)
     {
-        $form = $this->createForm(ContactType::class,null,array(
+        $form = $this->createForm(ContactType::class, null, array(
             'action' => $this->generateUrl('faq'),
             'method' => 'POST'
         ));
@@ -74,14 +77,14 @@ class DefaultController extends Controller
             // Refill the fields in case the form is not valid.
             $form->handleRequest($request);
 
-            if($form->isValid()){
+            if ($form->isValid()) {
                 // Send mail
-                if($this->sendEmail($form->getData())) {
+                if ($this->sendEmail($form->getData())) {
 
                     // Everything OK, redirect to wherever you want ! :
 
                     return $this->redirectToRoute('faq');
-                } else{
+                } else {
                     // An error occurred, handle
                     var_dump("Errooooor :(");
                 }
@@ -118,7 +121,7 @@ class DefaultController extends Controller
             ->setBody(
                 $this->renderView(
                     'default/mail_template.html.twig', array(
-                        'form' => $form
+                    'form' => $form
                 )),
                 'text/html'
             );
