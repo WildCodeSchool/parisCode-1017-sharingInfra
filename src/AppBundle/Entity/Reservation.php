@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reservation
 {
+    const RESERVATION_DONE = 0;
+    const RESERVATION_CONFIRMED = 1;
+    const RESERVATION_PENDING = 2;
+
     /**
      * @return string
      */
@@ -24,8 +28,7 @@ class Reservation
      * Reservation constructor.
      */
     public function __construct(){
-        $this->status="pending";
-        $this->user=$this->getUser();
+        $this->status = self::RESERVATION_PENDING;
     }
 
     /**

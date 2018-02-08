@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1 class="text-center">Recapitulatif de la reservation</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>{{ advert.title }}</h2>
+
+                {% if advert.type == "piscine" %}
+                    <p>XX picto | Piscine  à {{ advert.city }}</p>
+                {% elseif advert.type == "court de tennis" %}
+                    <p> XX picto | Court de tennis à {{ advert.city }}</p>
+                {% endif %}
+
+                <h3>Description</h3>
+                <p>{{ advert.description }}</p>
+                <h3>Équipements</h3>
+                {% for characteristic in advert.characteristics %}
+                    {% if characteristic.equipment=="douche" %}
+                        <p><i class="fa fa-shower fa-2x" aria-hidden="true"></i> Douche</p>
+                    {% elseif characteristic.equipment == "wc" %}
+                        <p>XX picto WC WC</p>
+                    {% elseif characteristic.equipment == "raquettes" %}
+                        <p>XX picto Raquette Raquettes</p>
+                    {% elseif characteristic.equipment == "wifi" %}
+                        <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
+                    {% endif %}
+                {% endfor %}
+
+                <h3>Prix</h3>
+                <p>{{ advert.price }} € par heure </p>
+            </div>
+            <div class="col-md-6">
+                <h2>Le {{ reservation.date|date('Y d m') }}</h2>
+                <p>Coup total: ADD_PRICE</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        {% if app.user == null %}
+            <p>Pour valider votre reservation, veuillez vous connecter</p>
+            <a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_login') }}">Se connecter</a>
+            <a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}">S'enregistrer</a>
+        {% else %}
+            <input class="btn btn-primary btn-lg" type="submit" value="Valider la réservation"/>
+        {% endif %}
+        {{ form_end(form) }}
+    </div>
+
+
+{% endblock %}

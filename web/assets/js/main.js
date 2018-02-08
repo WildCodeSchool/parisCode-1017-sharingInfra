@@ -112,7 +112,14 @@ function main() {
 
             }
         })
-    })
+    });
+
+  	/*====================================
+    Hide Flash msg after 5sec
+    ======================================*/
+    window.setTimeout(function() {
+        $( '#flashMessage' ).fadeOut( 1750 );
+    }, 2250);
 
 }());
 

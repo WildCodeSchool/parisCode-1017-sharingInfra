@@ -39,41 +39,89 @@
                     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-
             </div>
         </div>
     </div>
 
     <div class="container">
-        <h1>{{ advert.title }}</h1>
-        <p>{% if advert.type == "piscine" %}
-        <p>XX picto | Piscine
-        {% elseif advert.type == "court de tennis" %}
-        <p> XX picto | Court de tennis{% endif %} à {{ advert.city }}</p>
-        <h2>Description</h2>
-        {{ advert.description }}
-        <h2>Équipements</h2>
-        {% for characteristic in advert.characteristics %}
-            {% if characteristic.equipment=="douche" %}
-                <p><i class="fa fa-shower fa-2x" aria-hidden="true"></i> Douche</p>
-            {% elseif characteristic.equipment == "wc" %}
-                <p>XX picto WC WC</p>
-            {% elseif characteristic.equipment == "raquettes" %}
-                <p>XX picto Raquette Raquettes</p>
-                {% elseif characteristic.equipment == "wifi" %}
-                <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
-            {% endif %}
+        <div class="row">
+            <div class="col-md-6">
+                <h2>{{ advert.title }}</h2>
+                <p>{% if advert.type == "piscine" %}
+                <p>XX picto | Piscine
+                    {% elseif advert.type == "court de tennis" %}
+                <p> XX picto | Court de tennis{% endif %} à {{ advert.city }}</p>
+                <h3>Description</h3>
+                {{ advert.description }}
+                <h3>Équipements</h3>
+                {% for characteristic in advert.characteristics %}
+                    {% if characteristic.equipment=="douche" %}
+                        <p><i class="fa fa-shower fa-2x" aria-hidden="true"></i> Douche</p>
+                    {% elseif characteristic.equipment == "wc" %}
+                        <p>XX picto WC WC</p>
+                    {% elseif characteristic.equipment == "raquettes" %}
+                        <p>XX picto Raquette Raquettes</p>
+                    {% elseif characteristic.equipment == "wifi" %}
+                        <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
+                    {% endif %}
+                {% endfor %}
+
+                <h3>Prix</h3>
+                <p>{{ advert.price }} € par heure </p>
+            </div>
+            <div class="col-md-6">
+
+                {% if app.user != null %}
+                    {% if app.user == advert.user %}
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for reservation in advert.reservations %}
+                                <tr>
+                                    <td>{{ reservation.date|date('Y d m') }}</td>
+                                    <td>{{ reservation.user.name ~ ' ' ~ reservation.user.firstname }}</td>
+                                    <td>{{ reservation.user.email }}</td>
+                                    <td>action</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        {#TODO: Create form builder#}
+                        <h2>Chercher une disponibilitée</h2>
+                        <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
+                            <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
+                            <input class="btn btn-primary btn-sm" type="submit" value="Vérifier la disponibilité">
+                        </form>
+                    {% endif %}
+                {% else %}
+                    {#TODO: Create form builder#}
+                    <h2>Chercher une disponibilitée</h2>
+                    <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
+                        <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
+                        <input class="btn btn-primary btn-sm" type="submit" value="Vérifier la disponibilité">
+                    </form>
+                {% endif %}
 
 
-        {% endfor %}
+                <div id="resultDispo">
 
-        <h2>Prix</h2>
-        <p>{{ advert.price }} € par heure </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <section class="map">
+                <div id="map" style="height:400px; width: 100%;"></div>
+            </section>
+        </div>
 
-        <section class="map">
-            <h2>Carte</h2>
-            <div id="map" style="height:400px; width: 100%;"></div>
-        </section>
     <input id="markers_locations" type="hidden" value='{{ events_json }}' />
     </div>
 
@@ -85,14 +133,17 @@
 
     <script>
         function initMap(){
+
+            var marker = JSON.parse(document.querySelector('#markers_locations').value);
+
             var options = {
                 zoom:15,
-                center:{lat:48.856614,lng:2.3522219000000177}
+                center: marker
             };
             var map = new google.maps.Map(document.getElementById('map'), options);
-            var markers = JSON.parse(document.querySelector('#markers_locations').value);
+
             var marker = new google.maps.Marker({
-                position: markers,
+                position: marker,
                 map: map
             });
         }
@@ -100,6 +151,38 @@
 
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCtKFN02dRtmY2eFP81FarwROMTEXq9Fc&callback=initMap">
+    </script>
+
+    <script>
+        $("#formReservation").submit(function (e) {
+            e.preventDefault();
+            var start = $("#startDate").val();
+            var idAvert = $("#startDate").data('advert');
+
+            if (start === '') {
+                alert('Veuillez selectionner une date');
+            } else if(new Date(start) < new Date()) {
+                alert("Veuillez saisir une date supérieur à aujourd'hui");
+            } else{
+                $.ajax({
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    data: {'start': start, 'advert': idAvert},
+                    success: function(response){
+                        if (response.status == true){
+                            $("#resultDispo").html(
+                                "Veuillez nous excusez, le bien n'est pas disponible à cette date"
+                            );
+                        } else {
+                            $("#resultDispo").html(
+                                "<p>Le bien est disponible</p> <a href='" + response.url + "' class='btn btn-primary btn-md'>Reserver</a>"
+                            );
+                        }
+                    }
+                })
+            }
+
+        })
     </script>
 
 {% endblock %}

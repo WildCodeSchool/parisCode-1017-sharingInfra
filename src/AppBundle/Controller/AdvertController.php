@@ -43,19 +43,25 @@ class AdvertController extends Controller
 
 
     /**
-     * Creates a new advert entity.
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \AppBundle\Services\GoogleMap             $googleMap
+     * @param \AppBundle\Services\FileUploader          $fileUploader
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("/new", name="advert_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request, GoogleMap $googleMap, FileUploader $fileUploader)
     {
+        // TODO: If not user, create User and Advert
         $advert = new Advert();
         $form = $this->createForm(AdvertType::class, $advert);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $advert->setUser($this->getUser());
             $fileUploader->upload($advert);
 
             $em = $this->getDoctrine()->getManager();
@@ -84,10 +90,6 @@ class AdvertController extends Controller
     public function showAction(Advert $advert)
     {
         $deleteForm = $this->createDeleteForm($advert);
-
-        /*$location = $googleMap->getLatLng($advert->getAddress(), $advert->getZipcode(), $advert->getCity());
-        $advert->setLatitude($location['lat']);
-        $advert->setLongitude($location['lng']);*/
 
         return $this->render('advert/show.html.twig', array(
             'advert' => $advert,
