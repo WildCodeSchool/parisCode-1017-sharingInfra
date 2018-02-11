@@ -31,8 +31,6 @@ class Advert implements JsonSerializable
         $this->characteristics = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
 
-        $reservation = new Reservation();
-        $this->addReservation($reservation);
     }
 
     /**
