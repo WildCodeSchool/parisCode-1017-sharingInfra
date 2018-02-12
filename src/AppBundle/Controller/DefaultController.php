@@ -79,7 +79,7 @@ class DefaultController extends Controller
 
             if ($form->isValid()) {
                 // Send mail
-                if ($this->sendEmail($form->getData())) {
+                if (0 < $this->sendEmail($form->getData())) {
 
                     // Everything OK, redirect to wherever you want ! :
 
@@ -107,28 +107,20 @@ class DefaultController extends Controller
     }
 
     /**
-     * @param $data
-     * @return int|\Symfony\Component\HttpFoundation\Response
+     * @param array $form
      *
-     * @Route("/mail", name="mail")
+     * @return int
+     * @throws \Twig\Error\Error
      */
-    public function sendEmail($form)
+    public function sendEmail(array $form)
     {
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Demande d\'information')
-            ->setFrom($this->getParameter('mailer_user'))
-            ->setTo('teamhobbea@gmail.com')
-            ->setBody(
-                $this->renderView(
-                    'default/mail_template.html.twig', array(
-                    'form' => $form
-                )),
-                'text/html'
-            );
-
-        $this->get('mailer')->send($message);
-
-        return $this->render('default/legal_mentions.html.twig');
+        return $this->get('AppBundle\Services\SendMail')->sendMail(
+            "Demande d'information",
+            'teamhobbea@gmail.com',
+            'default/mail_template.html.twig',
+            ['form' => $form],
+            $form['email']
+        );
     }
 
 }

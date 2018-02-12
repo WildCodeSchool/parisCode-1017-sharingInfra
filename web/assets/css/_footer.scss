@@ -1,0 +1,25 @@
+footer {
+  background-color: $blue;
+  margin-top: 100px;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  font-size: 1.2em;
+  a {
+    color: white;
+  }
+  a:hover {
+    color: $orange !important;
+    text-decoration: none;
+  }
+  li {
+    list-style: none;
+  }
+  h4 {
+    color: white;
+  }
+  .social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
