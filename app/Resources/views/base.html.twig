@@ -62,6 +62,15 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    {#TODO: Remove this#}
+    <style>
+        .jumbotron {
+            background-image: url("{{ asset('assets/pictures/tennis-banner.jpg') }}");
+        }
+    </style>
+    {#TODO: Remove this#}
+
+
     {% block stylesheets %}{% endblock %}
 </head>
 
@@ -156,7 +165,7 @@
 
 <!-- Javascripts -->
 <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
-<script src="http://maps.googleapis.com/maps/api/js?key= AIzaSyAI0h8gx2p2sWcChQB4u6dgP-FxVQNex1M&sensor=false&amp;libraries=places" type="text/javascript"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key= AIzaSyAI0h8gx2p2sWcChQB4u6dgP-FxVQNex1M&sensor=false&libraries=places" type="text/javascript"></script>
 <script type="text/javascript">
     function initialize() {
         var options = {
