@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <h1 class="text-center">Recapitulatif de la reservation</h1>
+    <h1 class="text-center">Récapitulatif de la réservation</h1>
 
     <div class="container">
         <div class="row">
@@ -24,14 +24,14 @@
                     {% elseif characteristic.equipment == "wc" %}
                         <p>XX picto WC WC</p>
                     {% elseif characteristic.equipment == "raquettes" %}
-                        <p>XX picto Raquette Raquettes</p>
+                        <p>XX picto Raquettes Raquettes</p>
                     {% elseif characteristic.equipment == "wifi" %}
                         <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
                     {% endif %}
                 {% endfor %}
 
                 <h3>Prix</h3>
-                <p>{{ advert.price }} € par heure </p>
+                <p>{{ advert.price }}€ par heure </p>
             </div>
             <div class="col-md-6">
                 <h2>Le {{ reservation.date|date('Y d m') }}</h2>
@@ -45,7 +45,7 @@
         {{ form_widget(form) }}
 
         {% if app.user == null %}
-            <p>Pour valider votre reservation, veuillez vous connecter</p>
+            <p>Pour valider votre réservation, veuillez vous connecter</p>
             <a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_login') }}">Se connecter</a>
             <a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}">S'enregistrer</a>
         {% else %}
