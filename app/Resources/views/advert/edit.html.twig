@@ -9,15 +9,13 @@
             <div class="row">
                 {{ form_start(edit_form) }}
                 {{ form_widget(edit_form) }}
-                <div class="text-center">
-                    <input class="btn btn-primary btn-lg" type="submit" value="Enregistrer les modifications"/>
-                </div>
+
 
                 <div class="row">
                     <h3>Images actuelles</h3>
                     {% for img in advert.pictures %}
                         <div class="col-md-2 text-center">
-                            <img width="100%" src="{{ asset('uploads/' ~ img.name) }}" alt="{{ advert.title }}">
+                            <img class="miniature" width="100%" src="{{ asset('uploads/' ~ img.name) }}" alt="{{ advert.title }}">
                             <button
                                     class="deleteImgAdvertEdit"
                                     data-id_img="{{ img.id }}"
@@ -26,6 +24,9 @@
                             >Supprimer</button>
                         </div>
                     {% endfor %}
+                </div>
+                <div class="text-center">
+                    <input class="btn btn-primary btn-lg" type="submit" value="Enregistrer les modifications"/>
                 </div>
                 {{ form_end(edit_form) }}
             </div>
