@@ -36,6 +36,16 @@ html {
     .bold {
       font-weight: 900;
     }
+
+    .btn-primary {
+      background-color: $blue;
+      border-color: #16174f;
+    }
+
+    .btn-primary:hover {
+      background-color: $orange;
+      border-color: $orange;
+    }
   }
 }
 /* end of body */

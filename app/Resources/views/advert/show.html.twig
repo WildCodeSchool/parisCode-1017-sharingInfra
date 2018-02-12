@@ -67,7 +67,7 @@
                 {% endfor %}
 
                 <h3>Prix</h3>
-                <p>{{ advert.price }} € par heure </p>
+                <p>{{ advert.price }}€ par heure </p>
             </div>
             <div class="col-md-6">
 
@@ -95,7 +95,7 @@
                         </table>
                     {% else %}
                         {#TODO: Create form builder#}
-                        <h2>Chercher une disponibilitée</h2>
+                        <h2>Chercher une disponibilité</h2>
                         <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
                             <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
                             <input class="btn btn-primary btn-sm" type="submit" value="Vérifier la disponibilité">
@@ -103,7 +103,7 @@
                     {% endif %}
                 {% else %}
                     {#TODO: Create form builder#}
-                    <h2>Chercher une disponibilitée</h2>
+                    <h2>Chercher une disponibilité</h2>
                     <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
                         <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
                         <input class="btn btn-primary btn-sm" type="submit" value="Vérifier la disponibilité">
@@ -160,9 +160,9 @@
             var idAvert = $("#startDate").data('advert');
 
             if (start === '') {
-                alert('Veuillez selectionner une date');
+                alert('Veuillez sélectionner une date');
             } else if(new Date(start) < new Date()) {
-                alert("Veuillez saisir une date supérieur à aujourd'hui");
+                alert("Veuillez saisir une date supérieure à aujourd'hui");
             } else{
                 $.ajax({
                     type: $(this).attr('method'),
@@ -171,11 +171,11 @@
                     success: function(response){
                         if (response.status == true){
                             $("#resultDispo").html(
-                                "Veuillez nous excusez, le bien n'est pas disponible à cette date"
+                                "Veuillez nous excusez, le bien n'est pas disponible à cette date."
                             );
                         } else {
                             $("#resultDispo").html(
-                                "<p>Le bien est disponible</p> <a href='" + response.url + "' class='btn btn-primary btn-md'>Reserver</a>"
+                                "<p>Le bien est disponible</p> <a href='" + response.url + "' class='btn btn-primary btn-md'>Réserver</a>"
                             );
                         }
                     }
