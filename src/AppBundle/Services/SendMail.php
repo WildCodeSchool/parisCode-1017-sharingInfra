@@ -37,15 +37,24 @@ class SendMail
      * @param string $subject
      * @param string $to
      * @param string $view
-     * @param array  $params
+     * @param array $params
+     * @param null $replyTo
+     *
+     * @return int Number of mail send
+     * @throws \Twig\Error\Error
      */
-    public function sendMail(string $subject, string $to, string $view, array $params){
+    public function sendMail(string $subject, string $to, string $view, array $params, $replyTo = null)
+    {
         $message = (new \Swift_Message($subject))
             ->setFrom($this->mailerUser)
             ->setTo($to)
             ->setBody($this->container->get('templating')->render($view, $params), 'text/html')
         ;
 
-        $this->container->get('mailer')->send($message);
+        if (null !== $replyTo) {
+            $message->setReplyTo($replyTo);
+        }
+
+        return $this->container->get('mailer')->send($message);
     }
 }
