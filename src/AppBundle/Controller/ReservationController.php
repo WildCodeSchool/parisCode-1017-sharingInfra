@@ -85,7 +85,7 @@ class ReservationController extends Controller{
 
             $mailer->sendMail(
                 'Demande de réservation',
-                $this->getParameter('mailer_user'),
+                $advert->getUser()->getEmail(),
                 'default/mail_template_reservation.html.twig',
                 array(
                     'reservation' => $reservation,
@@ -118,14 +118,12 @@ class ReservationController extends Controller{
      * @ParamConverter("advert",   options={"mapping": {"advert_id": "id"}})
      */
     public function confirmeReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer){
-        if ($this->getUser() != $advert->getUser()){
-            $this->redirectToRoute('homepage');
-        } else {
+
             $em = $this->getDoctrine()->getManager();
             $reservation->setStatus(Reservation::RESERVATION_CONFIRMED);
 
             $em->flush();
-
+            $this->addFlash('success', 'Réservation confirmée');
             $mailer->sendMail(
                 'Confirmation de réservation',
                 $reservation->getUser()->getEmail(),
@@ -136,9 +134,9 @@ class ReservationController extends Controller{
                 )
             );
 
-            $this->addFlash('success', 'Réservation confirmée');
+
 
             return $this->redirectToRoute('fos_user_profile_show');
         }
-    }
+
 }

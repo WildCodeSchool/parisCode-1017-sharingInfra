@@ -15,6 +15,7 @@ class Reservation
     const RESERVATION_DONE = 0;
     const RESERVATION_CONFIRMED = 1;
     const RESERVATION_PENDING = 2;
+    const RESERVATION_CANCELLED = 3;
 
     /**
      * @return string
