@@ -10,61 +10,61 @@ class PictureFixtures extends Fixture
 {
     public function load(ObjectManager $manager){
 
-            //create new Picture hipster
-            $hipster = new Picture();
-            $hipster->setName('http://i.telegraph.co.uk/multimedia/archive/03046/hipster-tash_3046941b.jpg');
-            $manager->persist($hipster);
+            //create new Picture piscine1
+            $piscine1 = new Picture();
+            $piscine1->setName('piscine1.jpg');
+            $manager->persist($piscine1);
 
-            $this->addReference('picture-hipster', $hipster);
+            $this->addReference('picture-piscine1', $piscine1);
 
-            //create new Picture mickey
-            $mickey = new Picture();
-            $mickey->setName('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Mickey_Mouse_head_and_ears.svg/2000px-Mickey_Mouse_head_and_ears.svg.png');
-            $manager->persist($mickey);
+            //create new Picture piscine2
+            $piscine2 = new Picture();
+            $piscine2->setName('piscine2.jpg');
+            $manager->persist($piscine2);
 
-            $this->addReference('picture-mickey', $mickey);
+            $this->addReference('picture-piscine2', $piscine2);
 
-            //create new Picture minnie
-            $minnie = new Picture();
-            $minnie->setName('https://i.pinimg.com/736x/8c/86/0a/8c860a94adc544d2c7590253f6672ad3--minnie-mouse-party-mouse-parties.jpg');
-            $manager->persist($minnie);
+            //create new Picture piscine3
+            $piscine3 = new Picture();
+            $piscine3->setName('piscine3.jpeg');
+            $manager->persist($piscine3);
 
-            $this->addReference('picture-minnie', $minnie);
+            $this->addReference('picture-piscine3', $piscine3);
 
-            //create new Picture gumball
-            $gumball = new Picture();
-            $gumball->setName('http://i.cdn.turner.com/v5cache/CARTOON/site/Images/i79/gumball_gumball_180x180.png');
-            $manager->persist($gumball);
+            //create new Picture piscine4
+            $piscine4 = new Picture();
+            $piscine4->setName('piscine4.jpeg');
+            $manager->persist($piscine4);
 
-            $this->addReference('picture-gumball', $gumball);
+            $this->addReference('picture-piscine4', $piscine4);
 
-            //create new Picture bordeaux
-            $bordeaux = new Picture();
-            $bordeaux->setName('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Place_de_la_Bourse%2C_Bordeaux%2C_France.jpg/280px-Place_de_la_Bourse%2C_Bordeaux%2C_France.jpg');
-            $manager->persist($bordeaux);
+            //create new Picture piscine5
+            $piscine5 = new Picture();
+            $piscine5->setName('piscine5.jpeg');
+            $manager->persist($piscine5);
 
-            $this->addReference('picture-bordeaux', $bordeaux);
+            $this->addReference('picture-piscine5', $piscine5);
 
-            //create new Picture nice
-            $nice = new Picture();
-            $nice->setName('http://iloveniceparis.com/wp-content/uploads/2017/03/1463569446.jpeg');
-            $manager->persist($nice);
+            //create new Picture piscine6
+            $piscine6 = new Picture();
+            $piscine6->setName('piscine6.jpeg');
+            $manager->persist($piscine6);
 
-            $this->addReference('picture-nice', $nice);
+            $this->addReference('picture-piscine6', $piscine6);
 
-            //create new Picture neuilly
-            $neuilly = new Picture();
-            $neuilly->setName('https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Mairie_de_Neuilly-sur-Seine.JPG/280px-Mairie_de_Neuilly-sur-Seine.JPG');
-            $manager->persist($neuilly);
+            //create new Picture piscine7
+            $piscine7 = new Picture();
+            $piscine7->setName('piscine7.jpeg');
+            $manager->persist($piscine7);
 
-            $this->addReference('picture-neuilly', $neuilly);
+            $this->addReference('picture-piscine7', $piscine7);
 
-            //create new Picture brest
-            $brest = new Picture();
-            $brest->setName('http://www.tourismebretagne.com/var/crtbre/storage/images/media/images/decouvrir/explorer-les-destinations/brest-terres-oceanes/brest-telepherique/15148787-1-fre-FR/brest-telepherique_large_rwd.jpg');
-            $manager->persist($brest);
+            //create new Picture tennis1
+            $tennis1 = new Picture();
+            $tennis1->setName('tennis1.jpg');
+            $manager->persist($tennis1);
 
-            $this->addReference('picture-brest', $brest);
+            $this->addReference('picture-tennis1', $tennis1);
 
             $manager->flush();
     }
