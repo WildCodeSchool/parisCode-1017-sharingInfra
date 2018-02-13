@@ -16,6 +16,7 @@ class Reservation
     const RESERVATION_CONFIRMED = 1;
     const RESERVATION_PENDING = 2;
     const RESERVATION_CANCELLED = 3;
+    const RESERVATION_REFUSED = 4;
 
     /**
      * @return string

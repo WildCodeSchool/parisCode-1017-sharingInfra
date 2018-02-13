@@ -117,7 +117,7 @@ class ReservationController extends Controller{
      * @ParamConverter("reservation", options={"mapping": {"reservation_id": "id"}})
      * @ParamConverter("advert",   options={"mapping": {"advert_id": "id"}})
      */
-    public function confirmeReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer){
+    public function confirmReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer){
         if ($this->getUser() != $advert->getUser()){
             return $this->redirectToRoute('homepage');
         } else {
@@ -140,5 +140,44 @@ class ReservationController extends Controller{
 
             return $this->redirectToRoute('fos_user_profile_show');
         }
+    }
+
+    /**
+     * @param \AppBundle\Entity\Reservation $reservation
+     * @param \AppBundle\Entity\Advert      $advert
+     * @param \AppBundle\Services\SendMail  $mailer
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/cancelReservation/{reservation_id}/{advert_id}", name="reservation_cancel")
+     *
+     * @ParamConverter("reservation", options={"mapping": {"reservation_id": "id"}})
+     * @ParamConverter("advert",   options={"mapping": {"advert_id": "id"}})
+     */
+    public function cancelReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer){
+        $em = $this->getDoctrine()->getManager();
+        $reservation->setStatus(Reservation::RESERVATION_CANCELLED);
+        $em->flush();
+
+        $mailer->sendMail(
+            'Réservation annulée',
+            $advert->getUser()->getEmail(),
+            'default/mail_template_cancel.html.twig',
+            array(
+                'reservation'=>$reservation,
+                'advert'=>$advert
+            )
+        );
+
+        $mailer->sendMail(
+            'Réservation annulée',
+            $reservation->getUser()->getEmail(),
+            'default/mail_template_cancel.html.twig',
+            array(
+                'reservation'=>$reservation,
+                'advert'=>$advert
+            )
+        );
+
+        $this->addFlash('success', 'Réservation annulée');
+        return $this->redirectToRoute('fos_user_profile_show');
     }
 }
