@@ -2,11 +2,11 @@
 
 {% block body %}
 
-    <h1 class="text-center">Récapitulatif de la réservation</h1>
+    <h1 class="text-center">RÉCAPITULATIF DE LA RÉSERVATION</h1>
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h2>{{ advert.title }}</h2>
 
                 {% if advert.type == "piscine" %}
@@ -22,20 +22,20 @@
                     {% if characteristic.equipment=="douche" %}
                         <p><i class="fa fa-shower fa-2x" aria-hidden="true"></i> Douche</p>
                     {% elseif characteristic.equipment == "wc" %}
-                        <p>XX picto WC WC</p>
+                        <p><i class="fa fa-wheelchair fa-2x" aria-hidden="true"></i> Douche</p>
                     {% elseif characteristic.equipment == "raquettes" %}
-                        <p>XX picto Raquettes Raquettes</p>
+                        <p><i class="fa fa-futbol-o fa-2x" aria-hidden="true"></i> Raquettes</p>
                     {% elseif characteristic.equipment == "wifi" %}
                         <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
                     {% endif %}
                 {% endfor %}
 
                 <h3>Prix</h3>
-                <p>{{ advert.price }}€ par heure </p>
+                <p>{{ advert.price }}€ par jour </p>
             </div>
             <div class="col-md-6">
-                <h2>Le {{ reservation.date|date('Y d m') }}</h2>
-                <p>Coup total: ADD_PRICE</p>
+                <h2>Vous souhaitez réserver ce bien pour la journée du {{ reservation.date|date('d-m-Y') }}</h2>
+                <p>Coût total : {{ advert.price }}€ TTC</p>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@
         {{ form_widget(form) }}
 
         {% if app.user == null %}
-            <p>Pour valider votre réservation, veuillez vous connecter</p>
+            <p>Pour valider votre réservation, veuillez vous connecter.</p>
             <a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_login') }}">Se connecter</a>
             <a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}">S'enregistrer</a>
         {% else %}
