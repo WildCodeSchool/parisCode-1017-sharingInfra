@@ -5,7 +5,6 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Characteristic;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -37,6 +36,7 @@ class AdvertType extends AbstractType
             ))
             ->add('type')
             ->add('characteristics', EntityType::class, array(
+                'label'=> "Caractéristiques",
                 'expanded' => true,
                 'multiple' => true,
                 'class' => Characteristic::class,
@@ -46,7 +46,7 @@ class AdvertType extends AbstractType
             ))
             ->add('pictures', PictureType::class, array(
                 'data_class' => null,
-                'label' => "Vos photos"
+                'label' => "Ajouter des photos"
             ));
     }
 

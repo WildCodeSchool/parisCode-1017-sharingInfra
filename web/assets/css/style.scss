@@ -46,6 +46,11 @@ html {
       background-color: $orange;
       border-color: $orange;
     }
+
+    .btn-danger:hover{
+      background-color: #963019;
+      border-bottom-color: #963019;
+    }
   }
 }
 /* end of body */
