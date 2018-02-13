@@ -17,7 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
  * Class ReservationController
  * @Route("reservation")
  */
-class ReservationController extends Controller{
+class ReservationController extends Controller
+{
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
@@ -27,15 +28,16 @@ class ReservationController extends Controller{
      *
      * @Route("checkDisponibility", name="check_disponibility")
      */
-    public function reservationCheckAction(Request $request){
-        if($request->isXmlHttpRequest()){
+    public function reservationCheckAction(Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
             $start = new \DateTime($request->get('start'));
             $idAvert = $request->get('advert');
 
             $em = $this->getDoctrine()->getManager();
             $dispo = $em->getRepository(Reservation::class)->findByOnlyDate($start, $idAvert);
 
-            if ($dispo == null){
+            if ($dispo == null) {
                 $response = array(
                     'status' => false,
                     'url' => $this->generateUrl('create_reservation', array(
@@ -43,26 +45,27 @@ class ReservationController extends Controller{
                         'date' => $request->get('start')
                     ))
                 );
-            } else{
+            } else {
                 $response = array('status' => true);
             }
             return new JsonResponse($response);
-        } else{
+        } else {
             throw new \HttpResponseException('call method error');
         }
     }
 
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \AppBundle\Entity\Advert                  $advert
+     * @param \AppBundle\Entity\Advert $advert
      * @param                                           $date
-     * @param \AppBundle\Services\SendMail              $mailer
+     * @param \AppBundle\Services\SendMail $mailer
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("createReservation/{id}/{date}", name="create_reservation")
      */
-    public function reservationAction(Request $request, Advert $advert, $date, SendMail $mailer){
+    public function reservationAction(Request $request, Advert $advert, $date, SendMail $mailer)
+    {
         $currentUser = $this->getUser();
         $reservation = new Reservation();
         $reservation->setUser($currentUser);
@@ -77,7 +80,7 @@ class ReservationController extends Controller{
         ));
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservation);
             $em->flush();
@@ -107,8 +110,8 @@ class ReservationController extends Controller{
 
     /**
      * @param \AppBundle\Entity\Reservation $reservation
-     * @param \AppBundle\Entity\Advert      $advert
-     * @param \AppBundle\Services\SendMail  $mailer
+     * @param \AppBundle\Entity\Advert $advert
+     * @param \AppBundle\Services\SendMail $mailer
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
@@ -117,8 +120,9 @@ class ReservationController extends Controller{
      * @ParamConverter("reservation", options={"mapping": {"reservation_id": "id"}})
      * @ParamConverter("advert",   options={"mapping": {"advert_id": "id"}})
      */
-    public function confirmReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer){
-        if ($this->getUser() != $advert->getUser()){
+    public function confirmReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer)
+    {
+        if ($this->getUser() != $advert->getUser()) {
             return $this->redirectToRoute('homepage');
         } else {
             $em = $this->getDoctrine()->getManager();
@@ -144,40 +148,45 @@ class ReservationController extends Controller{
 
     /**
      * @param \AppBundle\Entity\Reservation $reservation
-     * @param \AppBundle\Entity\Advert      $advert
-     * @param \AppBundle\Services\SendMail  $mailer
+     * @param \AppBundle\Entity\Advert $advert
+     * @param \AppBundle\Services\SendMail $mailer
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/cancelReservation/{reservation_id}/{advert_id}", name="reservation_cancel")
      *
      * @ParamConverter("reservation", options={"mapping": {"reservation_id": "id"}})
      * @ParamConverter("advert",   options={"mapping": {"advert_id": "id"}})
      */
-    public function cancelReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer){
-        $em = $this->getDoctrine()->getManager();
-        $reservation->setStatus(Reservation::RESERVATION_CANCELLED);
-        $em->flush();
+    public function cancelReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer)
+    {
+        if ($this->getUser() != ($advert->getUser() && $reservation->getUser())) { //TODO don't know if it's right syntax
+            return $this->redirectToRoute('homepage');
+        } else {
+            $em = $this->getDoctrine()->getManager();
+            $reservation->setStatus(Reservation::RESERVATION_CANCELLED);
+            $em->flush();
 
-        $mailer->sendMail(
-            'Réservation annulée',
-            $advert->getUser()->getEmail(),
-            'default/mail_template_cancel.html.twig',
-            array(
-                'reservation'=>$reservation,
-                'advert'=>$advert
-            )
-        );
+            $mailer->sendMail(
+                'Réservation annulée',
+                $advert->getUser()->getEmail(),
+                'default/mail_template_cancel.html.twig',
+                array(
+                    'reservation' => $reservation,
+                    'advert' => $advert
+                )
+            );
 
-        $mailer->sendMail(
-            'Réservation annulée',
-            $reservation->getUser()->getEmail(),
-            'default/mail_template_cancel.html.twig',
-            array(
-                'reservation'=>$reservation,
-                'advert'=>$advert
-            )
-        );
+            $mailer->sendMail(
+                'Réservation annulée',
+                $reservation->getUser()->getEmail(),
+                'default/mail_template_cancel.html.twig',
+                array(
+                    'reservation' => $reservation,
+                    'advert' => $advert
+                )
+            );
 
-        $this->addFlash('success', 'Réservation annulée');
-        return $this->redirectToRoute('fos_user_profile_show');
+            $this->addFlash('success', 'Réservation annulée');
+            return $this->redirectToRoute('fos_user_profile_show');
+        }
     }
 }
