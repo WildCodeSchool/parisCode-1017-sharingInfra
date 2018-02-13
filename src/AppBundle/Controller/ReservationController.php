@@ -118,12 +118,14 @@ class ReservationController extends Controller{
      * @ParamConverter("advert",   options={"mapping": {"advert_id": "id"}})
      */
     public function confirmeReservationAction(Reservation $reservation, Advert $advert, SendMail $mailer){
-
+        if ($this->getUser() != $advert->getUser()){
+            return $this->redirectToRoute('homepage');
+        } else {
             $em = $this->getDoctrine()->getManager();
             $reservation->setStatus(Reservation::RESERVATION_CONFIRMED);
 
             $em->flush();
-            $this->addFlash('success', 'Réservation confirmée');
+
             $mailer->sendMail(
                 'Confirmation de réservation',
                 $reservation->getUser()->getEmail(),
@@ -134,9 +136,9 @@ class ReservationController extends Controller{
                 )
             );
 
-
+            $this->addFlash('success', 'Réservation confirmée');
 
             return $this->redirectToRoute('fos_user_profile_show');
         }
-
+    }
 }
