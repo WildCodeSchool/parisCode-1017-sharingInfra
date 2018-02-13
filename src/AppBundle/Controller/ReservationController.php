@@ -81,10 +81,10 @@ class ReservationController extends Controller{
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservation);
             $em->flush();
-            $this->addFlash('success', "Reservation confirmée, un message a été envoyé à l'administrateur, il vous répondra dans les plus bres délais");
+            $this->addFlash('success', "Réservation confirmée. Un message a été envoyé au propriétaire, qui vous répondra dans les plus brefs délais.");
 
             $mailer->sendMail(
-                'Demande de reservation',
+                'Demande de réservation',
                 $this->getParameter('mailer_user'),
                 'default/mail_template_reservation.html.twig',
                 array(
@@ -127,7 +127,7 @@ class ReservationController extends Controller{
             $em->flush();
 
             $mailer->sendMail(
-                'Confirmation de reservation',
+                'Confirmation de réservation',
                 $reservation->getUser()->getEmail(),
                 'default/mail_template_confirmation.html.twig',
                 array(
@@ -136,7 +136,7 @@ class ReservationController extends Controller{
                 )
             );
 
-            $this->addFlash('success', 'Reservation confirmée');
+            $this->addFlash('success', 'Réservation confirmée');
 
             return $this->redirectToRoute('fos_user_profile_show');
         }
