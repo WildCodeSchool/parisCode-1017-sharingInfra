@@ -47,7 +47,7 @@
         {% if app.user == null %}
             <p>Pour valider votre réservation, veuillez vous connecter</p>
             <a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_login') }}">Se connecter</a>
-            <a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}">S'enregistrer</a>
+            <a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
         {% else %}
             <input class="btn btn-primary btn-lg" type="submit" value="Valider la réservation"/>
         {% endif %}
