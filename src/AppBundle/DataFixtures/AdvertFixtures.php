@@ -23,8 +23,11 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $poolABordeaux->setLatitude(44.953308);
         $poolABordeaux->setLongitude(-0.597129);
         $poolABordeaux->setType($this->getReference('type-swimmingpool'));
-        $poolABordeaux->addPicture($this->getReference('picture-bordeaux'));
-        $poolABordeaux->addCharacteristic($this->getReference('characteristic-restroom'));
+        $poolABordeaux->addPicture($this->getReference('picture-piscine6'));
+        $poolABordeaux->addPicture($this->getReference('picture-piscine7'));
+        $poolABordeaux->addCharacteristic($this->getReference('characteristic-wc'));
+        $poolABordeaux->addCharacteristic($this->getReference('characteristic-wifi'));
+        $poolABordeaux->addCharacteristic($this->getReference('characteristic-douche'));
         $poolABordeaux->setUser($this->getReference('user-cindy'));
 
         $manager->persist($poolABordeaux);
@@ -43,8 +46,9 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $courtANice->setLatitude(43.7101728);
         $courtANice->setLongitude(7.2619532);
         $courtANice->setType($this->getReference('type-tenniscourt'));
-        $courtANice->addPicture($this->getReference('picture-nice'));
-        $courtANice->addCharacteristic($this->getReference('characteristic-cloakroom'));
+        $courtANice->addPicture($this->getReference('picture-tennis1'));
+        $courtANice->addCharacteristic($this->getReference('characteristic-vestiaire'));
+        $courtANice->addCharacteristic($this->getReference('characteristic-raquettes'));
         $courtANice->setUser($this->getReference('user-caroline'));
 
         $manager->persist($courtANice);
@@ -64,8 +68,10 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $courtANeuilly->setLatitude(48.8846000);
         $courtANeuilly->setLongitude(2.2696500);
         $courtANeuilly->setType($this->getReference('type-tenniscourt'));
-        $courtANeuilly->addPicture($this->getReference('picture-neuilly'));
-        $courtANeuilly->addCharacteristic($this->getReference('characteristic-cloakroom'));
+        $courtANeuilly->addPicture($this->getReference('picture-tennis1'));
+        $courtANeuilly->addCharacteristic($this->getReference('characteristic-vestiaire'));
+        $courtANeuilly->addCharacteristic($this->getReference('characteristic-wc'));
+        $courtANeuilly->addCharacteristic($this->getReference('characteristic-wifi'));
         $courtANeuilly->setUser($this->getReference('user-emeline'));
 
         $manager->persist($courtANeuilly);
@@ -84,8 +90,9 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $poolABrest->setLatitude(48.390394);
         $poolABrest->setLongitude(-4.486076);
         $poolABrest->setType($this->getReference('type-swimmingpool'));
-        $poolABrest->addPicture($this->getReference('picture-brest'));
-        $poolABrest->addCharacteristic($this->getReference('characteristic-restroom'));
+        $poolABrest->addPicture($this->getReference('picture-piscine1'));
+        $poolABrest->addPicture($this->getReference('picture-piscine2'));
+        $poolABrest->addCharacteristic($this->getReference('characteristic-wc'));
         $poolABrest->setUser($this->getReference('user-valeriane'));
 
         $manager->persist($poolABrest);
@@ -103,8 +110,11 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $poolAParis->setLatitude(48.8846000);
         $poolAParis->setLongitude(2.2696500);
         $poolAParis->setType($this->getReference('type-swimmingpool'));
-        $poolAParis->addPicture($this->getReference('picture-brest'));
-        $poolAParis->addCharacteristic($this->getReference('characteristic-cloakroom'));
+        $poolAParis->addPicture($this->getReference('picture-piscine3'));
+        $poolAParis->addPicture($this->getReference('picture-piscine4'));
+        $poolAParis->addPicture($this->getReference('picture-piscine5'));
+        $poolAParis->addCharacteristic($this->getReference('characteristic-wifi'));
+        $poolAParis->addCharacteristic($this->getReference('characteristic-serviettes'));
         $poolAParis->setUser($this->getReference('user-emeline'));
 
         $manager->persist($poolAParis);
