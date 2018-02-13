@@ -24,7 +24,9 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $poolABordeaux->setLongitude(-0.597129);
         $poolABordeaux->setType($this->getReference('type-swimmingpool'));
         $poolABordeaux->addPicture($this->getReference('picture-bordeaux'));
-        $poolABordeaux->addCharacteristic($this->getReference('characteristic-restroom'));
+        $poolABordeaux->addCharacteristic($this->getReference('characteristic-wc'));
+        $poolABordeaux->addCharacteristic($this->getReference('characteristic-wifi'));
+        $poolABordeaux->addCharacteristic($this->getReference('characteristic-douche'));
         $poolABordeaux->setUser($this->getReference('user-cindy'));
 
         $manager->persist($poolABordeaux);
@@ -44,7 +46,8 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $courtANice->setLongitude(7.2619532);
         $courtANice->setType($this->getReference('type-tenniscourt'));
         $courtANice->addPicture($this->getReference('picture-nice'));
-        $courtANice->addCharacteristic($this->getReference('characteristic-cloakroom'));
+        $courtANice->addCharacteristic($this->getReference('characteristic-vestiaire'));
+        $courtANice->addCharacteristic($this->getReference('characteristic-raquettes'));
         $courtANice->setUser($this->getReference('user-caroline'));
 
         $manager->persist($courtANice);
@@ -65,7 +68,9 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $courtANeuilly->setLongitude(2.2696500);
         $courtANeuilly->setType($this->getReference('type-tenniscourt'));
         $courtANeuilly->addPicture($this->getReference('picture-neuilly'));
-        $courtANeuilly->addCharacteristic($this->getReference('characteristic-cloakroom'));
+        $courtANeuilly->addCharacteristic($this->getReference('characteristic-vestiaire'));
+        $courtANeuilly->addCharacteristic($this->getReference('characteristic-wc'));
+        $courtANeuilly->addCharacteristic($this->getReference('characteristic-wifi'));
         $courtANeuilly->setUser($this->getReference('user-emeline'));
 
         $manager->persist($courtANeuilly);
@@ -85,7 +90,7 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $poolABrest->setLongitude(-4.486076);
         $poolABrest->setType($this->getReference('type-swimmingpool'));
         $poolABrest->addPicture($this->getReference('picture-brest'));
-        $poolABrest->addCharacteristic($this->getReference('characteristic-restroom'));
+        $poolABrest->addCharacteristic($this->getReference('characteristic-wc'));
         $poolABrest->setUser($this->getReference('user-valeriane'));
 
         $manager->persist($poolABrest);
@@ -104,7 +109,8 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $poolAParis->setLongitude(2.2696500);
         $poolAParis->setType($this->getReference('type-swimmingpool'));
         $poolAParis->addPicture($this->getReference('picture-brest'));
-        $poolAParis->addCharacteristic($this->getReference('characteristic-cloakroom'));
+        $poolAParis->addCharacteristic($this->getReference('characteristic-wifi'));
+        $poolAParis->addCharacteristic($this->getReference('characteristic-serviettes'));
         $poolAParis->setUser($this->getReference('user-emeline'));
 
         $manager->persist($poolAParis);
