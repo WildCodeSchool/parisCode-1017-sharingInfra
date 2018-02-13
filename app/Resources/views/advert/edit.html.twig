@@ -9,15 +9,13 @@
             <div class="row">
                 {{ form_start(edit_form) }}
                 {{ form_widget(edit_form) }}
-                <div class="text-center">
-                    <input class="btn btn-primary btn-lg" type="submit" value="Modifier"/>
-                </div>
+
 
                 <div class="row">
                     <h3>Images actuelles</h3>
                     {% for img in advert.pictures %}
                         <div class="col-md-2 text-center">
-                            <img width="100%" src="{{ asset('uploads/' ~ img.name) }}" alt="{{ advert.title }}">
+                            <img class="miniature" width="100%" src="{{ asset('uploads/' ~ img.name) }}" alt="{{ advert.title }}">
                             <button
                                     class="deleteImgAdvertEdit"
                                     data-id_img="{{ img.id }}"
@@ -27,11 +25,14 @@
                         </div>
                     {% endfor %}
                 </div>
+                <div class="text-center">
+                    <input class="btn btn-primary btn-lg" type="submit" value="Enregistrer les modifications"/>
+                </div>
                 {{ form_end(edit_form) }}
             </div>
             <div class="row text-center">
                 {{ form_start(delete_form) }}
-                <input class="btn btn-primary btn-lg" type="submit" value="Supprimer l'annonce">
+                <input class="btn btn-danger btn-lg" type="submit" value="Supprimer l'annonce">
                 {{ form_end(delete_form) }}
             </div>
         </div>
