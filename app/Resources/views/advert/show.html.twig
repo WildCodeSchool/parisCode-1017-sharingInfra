@@ -59,11 +59,8 @@
                         <p><i class="fa fa-shower fa-2x" aria-hidden="true"></i> Douche</p>
                     {% elseif characteristic.equipment == "wc" %}
                         <p>WC</p>
-                    {% elseif characteristic.equipment == "raquettes" %}
-                        <p>Raquettes</p>
                     {% elseif characteristic.equipment == "wifi" %}
                         <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
-                    {% endif %}
                     {% elseif characteristic.equipment == "serviettes" %}
                         <p>Serviettes</p>
                     {% elseif characteristic.equipment == "bouee" %}
@@ -72,6 +69,9 @@
                         <p>Vestiaire</p>
                     {% elseif characteristic.equipment == "parasol" %}
                         <p>Parasol</p>
+                    {% elseif characteristic.equipment == "raquettes" %}
+                        <p>Raquettes</p>
+                    {% endif %}
                 {% endfor %}
 
                 <h3>Prix</h3>
