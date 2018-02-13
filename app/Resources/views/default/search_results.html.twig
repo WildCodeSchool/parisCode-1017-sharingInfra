@@ -55,7 +55,7 @@
                         <div class="caption">
                             <h4>{{ advert.title }}</h4>
                             <p class="type">{{ advert.type }}</p>
-                            <p>{{ advert.price }}€/heure</p>
+                            <p>{{ advert.price }}€/jour</p>
                             <p class="text-right">{{ advert.zipcode }} {{ advert.city }}</p>
                             {#{{ advert.rate }}</p>#}
                         </div>
@@ -63,8 +63,11 @@
                 </div>
 
                 {% else %}
-
+                    <div class="container">
                         <h3>Aucun résultat</h3>
+                        <p>(mais regardez les îles en street view!)</p>
+                    </div>
+
 
             {% endfor %}
 
