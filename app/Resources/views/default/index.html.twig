@@ -19,7 +19,7 @@
                         {{ form_widget(form.city) }}
                     </div>
                     <div class="form-check checkbox-custom col-md-4 col-xs-12">
-                        {{ form_widget(form.type) }}
+                        {{ form_widget(form.type, { 'attr': {'checked': 'checked'}}) }}
                     </div>
                     <div class="form-group col-md-2 col-xs-12">
                         <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Go !</button>
