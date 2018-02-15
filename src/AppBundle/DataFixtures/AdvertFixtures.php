@@ -105,7 +105,7 @@ class AdvertFixtures extends Fixture implements DependentFixtureInterface
         $poolAParis->setZipcode(75005);
         $poolAParis->setCity('Paris');
         $poolAParis->setTitle('Une piscine à Paris');
-        $poolAParis->setDescription('Une piscine à Paris! What else ?');
+        $poolAParis->setDescription('Une piscine à Paris ! What else ?');
         $poolAParis->setPrice(85);
         $poolAParis->setLatitude(48.8846000);
         $poolAParis->setLongitude(2.2696500);

@@ -62,13 +62,13 @@
                     {% elseif characteristic.equipment == "wifi" %}
                         <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
                     {% elseif characteristic.equipment == "serviettes" %}
-                        <p>Serviettes</p>
+                        <p><i class="fa fa-clone fa-2x" aria-hidden="true"></i> Serviettes</p>
                     {% elseif characteristic.equipment == "bouee" %}
-                        <p>Bouée</p>
+                        <p><i class="fa fa-circle-notch fa-2x" aria-hidden="true"></i> Bouées</p>
                     {% elseif characteristic.equipment == "vestiaire" %}
-                        <p>Vestiaire</p>
+                        <p><i class="fa fa-map fa-2x" aria-hidden="true"></i> Vestiaire</p>
                     {% elseif characteristic.equipment == "parasol" %}
-                        <p>Parasol</p>
+                        <p><i class="fa fa-umbrella fa-2x" aria-hidden="true"></i> Parasol</p>
                     {% elseif characteristic.equipment == "raquettes" %}
                         <p><i class="fa fa-futbol-o fa-2x" aria-hidden="true"></i> Raquettes</p>
                     {% endif %}
@@ -106,7 +106,7 @@
                         <h2>Chercher une disponibilité</h2>
                         <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
                             <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
-                            <input class="btn btn-primary btn-sm" type="submit" value="Vérifier la disponibilité">
+                            <input class="btn btn-primary btn-md" type="submit" value="Vérifier la disponibilité">
                         </form>
                     {% endif %}
                 {% else %}
@@ -114,7 +114,7 @@
                     <h2>Chercher une disponibilité</h2>
                     <form id="formReservation" action="{{ path('check_disponibility') }}" method="POST">
                         <input id="startDate" data-advert="{{ advert.id }}" type="date" name="startDate">
-                        <input class="btn btn-primary btn-sm" type="submit" value="Vérifier la disponibilité">
+                        <input class="btn btn-primary btn-md" type="submit" value="Vérifier la disponibilité">
                     </form>
                 {% endif %}
 
