@@ -6,7 +6,7 @@ Hobbea is the third and last project from three backend-engineering students wit
 
 ### Prerequisites
 
-The project uses the latest update of Symfony 3.4 for the whole architecture. We chose to conceive a service-oriented app and experimented with Webpack to handle the interpretation of the assets. Plus, the search box is powered with Google Places API. 
+The project uses the latest update of Symfony 3.4 for the whole architecture. We chose to conceive a service-oriented app and experimented with Webpack to handle the interpretation of the assets. Plus, the search box is powered with Google Places API Web Service. 
 We coded with PHP 7.1.11.
 
 ### Installing
@@ -14,12 +14,15 @@ We coded with PHP 7.1.11.
 After cloning the project in your CLI, go to the directory and install the dependencies with Composer:
 ``composer install``
 
-* Then, in order for the SCSS files to be compiled, install NPM and install Webpack Encore. Follow the instructions in the Symfony documentation : http://symfony.com/doc/3.4/frontend.html
+* Then, in order for the SCSS files to be compiled, install NPM and install Webpack Encore. Follow the [instructions in the Symfony documentation](http://symfony.com/doc/3.4/frontend.html).
 
 Before running the app and in order to visualize potential changes in SCSS files, don't forget to compile them with the following command in your CLI:
 ``./node_modules/.bin/encore dev --watch``
 
-* Finally, get yourself an available Google API Key through the Google Developer Console : 
+* Finally, get yourself an available Google API Key and activate it through the [Google Developer Console](https://console.developers.google.com/apis/).
+Copy and paste it in the footer of the view layout (``app/Resources/views/base.html.twig``):
+``<script src="http://maps.googleapis.com/maps/api/js?key=[YOUR_KEY]&sensor=false&libraries=places" type="text/javascript"></script>``
+This will make the autocomplete feature of the searchbox up operational.
 
 ## Testing
 To make you able to test the app, we used the Fixtures component 
