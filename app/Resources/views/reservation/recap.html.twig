@@ -10,9 +10,9 @@
                 <h2>{{ advert.title }}</h2>
 
                 {% if advert.type == "piscine" %}
-                    <p>XX picto | Piscine  à {{ advert.city }}</p>
+                    <p><i class="fa fa-umbrella fa-2x" aria-hidden="true"></i> Piscine à {{ advert.city }}</p>
                 {% elseif advert.type == "court de tennis" %}
-                    <p> XX picto | Court de tennis à {{ advert.city }}</p>
+                    <p><i class="fa fa-futbol-o fa-2x" aria-hidden="true"></i> Court de tennis à {{ advert.city }}</p>
                 {% endif %}
 
                 <h3>Description</h3>
@@ -26,13 +26,13 @@
                     {% elseif characteristic.equipment == "wifi" %}
                         <p><i class="fa fa-wifi fa-2x" aria-hidden="true"></i> Wifi</p>
                     {% elseif characteristic.equipment == "serviettes" %}
-                        <p>Serviettes</p>
+                        <p><i class="fa fa-clone fa-2x" aria-hidden="true"></i> Serviettes</p>
                     {% elseif characteristic.equipment == "bouee" %}
-                        <p>Bouée</p>
+                        <p><i class="fa fa-circle-notch fa-2x" aria-hidden="true"></i> Bouées</p>
                     {% elseif characteristic.equipment == "vestiaire" %}
-                        <p>Vestiaire</p>
+                        <p><i class="fa fa-map fa-2x" aria-hidden="true"></i> Vestiaire</p>
                     {% elseif characteristic.equipment == "parasol" %}
-                        <p>Parasol</p>
+                        <p><i class="fa fa-umbrella fa-2x" aria-hidden="true"></i> Parasol</p>
                     {% elseif characteristic.equipment == "raquettes" %}
                         <p><i class="fa fa-futbol-o fa-2x" aria-hidden="true"></i> Raquettes</p>
                     {% endif %}

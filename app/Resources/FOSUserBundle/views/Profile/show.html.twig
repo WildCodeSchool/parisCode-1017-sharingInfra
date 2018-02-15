@@ -207,7 +207,7 @@
                                             </div>
                                     </a>
                                     <div class="caption">
-                                        <h4>Vous avez réservé {{ reservation.advert.title }}</h4>
+                                        <h4>Vous avez réservé {{ reservation.advert.title|upper }}</h4>
                                         <h4>pour le {{ reservation.date|date('d-m-Y') }}</h4>
                                         <p class="type">{{ reservation.advert.type }}</p>
                                         <p>{{ reservation.advert.price }}€/jour</p>
