@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Advert;
+
+
 /**
  * AdvertRepository
  *
@@ -10,4 +13,18 @@ namespace AppBundle\Repository;
  */
 class AdvertRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByCriteria($city, $type)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->andWhere('a.city = :city');
+        $qb->setParameter('city', $city);
+
+        $qb->join('a.type', 't');
+        $qb->andWhere('t.gearType = :gearType');
+        $qb->setParameter('gearType', $type);
+
+        return $qb->getQuery()->getResult();
+        //récupérer un tableau
+    }
 }

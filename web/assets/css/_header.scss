@@ -1,0 +1,70 @@
+/* ================= Header and search bar ================= */
+
+/* Jumbotron */
+
+.jumbotron {
+  //background-image: url("../assets/pictures/tennis-banner.jpg");
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1, h2, label {
+    color: white;
+  }
+
+  .btn-primary {
+    background-color: $blue;
+    border-color: #16174f;
+  }
+
+  .btn-primary:hover {
+    background-color: $orange;
+    border-color: $orange;
+  }
+
+  .checkbox-custom {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    #search_type_28 {
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+    }
+
+    .btn-primary:hover {
+      background-color: $orange;
+      border-color: $orange;
+    }
+
+    #search_type_29 {
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+    }
+  }
+}
+
+.bandeau {
+  background-color: rgba(251, 105, 0, 0.8);
+}
+
+#search_type {
+  label {
+    padding-right: 1em;
+
+  }
+}

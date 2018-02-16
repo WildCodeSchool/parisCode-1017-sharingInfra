@@ -1,21 +1,40 @@
 {% extends 'base.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_horizontal_layout.html.twig' %}
 
 {% block body %}
-    <h1>Advert edit</h1>
+    <div class="container">
+        <div class="col-md-12">
+            <h1>Modifier l'annonce</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+            <div class="row">
+                {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('advert_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+                <div class="row">
+                    <h3>Images actuelles</h3>
+                    {% for img in advert.pictures %}
+                        <div class="col-md-2 text-center">
+                            <img class="miniature" src="{{ asset('uploads/' ~ img.name) }}" alt="{{ advert.title }}">
+                            <button
+                                    class="deleteImgAdvertEdit"
+                                    data-id_img="{{ img.id }}"
+                                    data-id_advert="{{ advert.id }}"
+                                    data-url_action="{{ path('advert_delete_img') }}"
+                            >Supprimer</button>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center">
+                    <input class="btn btn-primary btn-lg btn-advert" type="submit" value="Enregistrer les modifications"/>
+                </div>
+                {{ form_end(edit_form) }}
+            </div>
+            <div class="row text-center">
+                {{ form_start(delete_form) }}
+                <input class="btn btn-danger btn-lg btn-advert" type="submit" value="Supprimer l'annonce">
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}

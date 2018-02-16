@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 
-{% block content %}
+{% block body %}
 
     {# Jumbotron #}
     <section>
 
         <div class="jumbotron">
-            <div class="container">
+            <div class="container bandeau">
                 <h1>Restez sportifs pendant vos vacances !</h1>
                 <h2>Avec Hobbea, louez une piscine ou un court de tennis chez des particuliers.</h2>
 
@@ -15,16 +15,19 @@
                 {{ form_start(form) }}
 
                 <div class="row">
-                    <div class="form-group col-md-10 col-xs-12">
-                        {{ form_widget(form.address) }}
+                    <div class="form-group col-md-6 col-xs-12">
+                        {{ form_widget(form.city) }}
+                    </div>
+                    <div class="form-check checkbox-custom col-md-4 col-xs-12">
+                        {{ form_widget(form.type, { 'attr': {'checked': 'checked'}}) }}
                     </div>
                     <div class="form-group col-md-2 col-xs-12">
-                        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Go!</button>
+                        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Go !</button>
                         {{ form_end(form) }}
                     </div>
                 </div>
             </div>
-            {# End of search box#}
+            {# End of search box #}
         </div>
 
     </section>
@@ -33,34 +36,83 @@
     {# Highlights #}
     <section>
         <div class="container">
-            <h2 class="">Nos coups de cœur</h2>
+            <h2 class="">NOS COUPS DE CŒUR</h2>
+            {#<div class="row">
+                <a href="#}{# showOneKindOfRoute #}{#">
+                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
+                        <img src="#}{# advert.url #}{#">
+                        <p>#}{# advert.title #}{#</p>
+                        <p>#}{# advert.address #}{#</p>
+                    </div>
+                </a>
+                <a href="#}{# showOneKindOfRoute #}{#">
+                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
+                        <img src="#}{# advert.url #}{#">
+                        <p>#}{# advert.title #}{#</p>
+                        <p>#}{# advert.address #}{#</p>
+                    </div>
+                </a>
+            </div>#}
             <div class="row">
-                <a href="{# showOneKindOfRoute #}">
-                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
-                        <img src="{# advert.url #}">
-                        <p>{# advert.title #}</p>
-                        <p>{# advert.address #}</p>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{ asset('assets/pictures/piscine1.jpeg') }}" alt="..." class="crush-img">
+                        <div class="caption">
+                            <h3>Grande piscine en Provence</h3>
+                            <h4>Hyères</h4>
+                            <p>Piscine avec palmiers, transats, bouées et cocktails !</p>
+                        </div>
                     </div>
-                </a>
-                <a href="{# showOneKindOfRoute #}">
-                    <div class="col col-md-offset-2 col-md-3 col-sm-6 col-xs-12">
-                        <img src="{# advert.url #}">
-                        <p>{# advert.title #}</p>
-                        <p>{# advert.address #}</p>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{ asset('assets/pictures/piscineparis.jpg') }}" alt="..." class="crush-img">
+                        <div class="caption">
+                            <h3>Rare : piscine parisienne !</h3>
+                            <h4>Paris</h4>
+                            <p>Piscine chauffée en plein cœur de la capitale.</p>
+                        </div>
                     </div>
-                </a>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{ asset('assets/pictures/tennis1.jpeg') }}" alt="..." class="crush-img">
+                        <div class="caption">
+                            <h3>Grand court de tennis privé</h3>
+                            <h4>La Loupe</h4>
+                            <p>Venez défier vos amis !</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         {# End of highlights #}
-
-        {# Owner benefits #}
+    </section>
+    {# Owner benefits #}
+    <section>
         <div class="container">
-            <h2 class="homepage--subtitle">Propriétaires, gagnez jusqu'à 1.000.000 euros par an</h2>
-
-                <p>Donnez une seconde vie à vos infrastructures sportives et louez-les à des voyageurs.</p>
-                <button type="button" class="btn-default">+ d'informations</button>
-
+            <h2>PROPRIÉTAIRES, AUGMENTEZ VOS REVENUS !</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Donnez une seconde vie à vos infrastructures sportives en les louant à des voyageurs.</p>
+                    <p>Créez gratuitement une annonce pour la location de votre piscine ou court de tennis à d’autres particuliers.
+                        Grande piscine, jacuzzi, gazon ou terre battue, tous les équipements sont les bienvenus sur Hobbea !</p>
+                    <p>Louez votre bien à qui vous voulez, quand vous voulez et au prix que vous voulez. Hobbea
+                        vous permet de rentabiliser votre infrastructure et ainsi de couvrir les frais liés à son entretien et à
+                        son utilisation.</p>
+                    <p>Assurance tous risques en option jusqu’à 8 millions d’euros de couverture et dépôt de caution
+                        sécurisé. Confiez-nous la location de votre piscine ou de votre court de tennis, nous avons pensé à tout.</p>
+                    {#<button type="button" class="btn-default">+ d'informations</button>#}
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('assets/pictures/owner.jpg') }}" width="100%">
+                </div>
+            </div>
         </div>
+
+
         {# End of owner benefits #}
 
     </section>

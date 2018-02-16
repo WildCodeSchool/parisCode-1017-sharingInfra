@@ -12,12 +12,25 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reservation
 {
+    const RESERVATION_DONE = 0;
+    const RESERVATION_CONFIRMED = 1;
+    const RESERVATION_PENDING = 2;
+    const RESERVATION_CANCELLED = 3;
+    const RESERVATION_REFUSED = 4;
+
     /**
      * @return string
      */
     public function __toString()
     {
         return $this->id;
+    }
+
+    /**
+     * Reservation constructor.
+     */
+    public function __construct(){
+        $this->status = self::RESERVATION_PENDING;
     }
 
     /**
@@ -86,6 +99,7 @@ class Reservation
      * Get date
      *
      * @return \DateTime
+
      */
     public function getDate()
     {

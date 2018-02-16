@@ -1,0 +1,44 @@
+/* ================= Navigation ================= */
+
+nav {
+  white-space: nowrap;
+  padding: 10px;
+  transition: all 0.8s;
+
+  .btn-hobbea {
+    background-color: $blue;
+    color: white !important;
+    font-weight: bold;
+  }
+
+  .btn-hobbea:hover {
+    background-color: $orange !important;
+    color: white !important;
+  }
+
+  a {
+    text-transform: uppercase;
+    color: $blue !important;
+    font-weight: bold;
+  }
+
+  a:hover {
+    color: $orange !important;
+  }
+
+  .logo-navbar {
+    position: relative;
+    bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+
+}

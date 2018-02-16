@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,6 +15,21 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+
+    public function setEmail($email)
+    {
+        parent::setEmail($email);
+        $this->username = $email;
+        $this->usernameCanonical = strtolower($email);
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->adverts = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
+
     /**
      * @return string
      */
@@ -36,56 +52,56 @@ class User extends BaseUser
      *
      * @ORM\Column(name="name", type="string", length=45)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=45)
      */
-    private $firstname;
+    protected $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=45)
+     * @ORM\Column(name="phone", type="string", length=45, nullable=true)
      */
-    private $phone;
+    protected $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * One user has many reservations
      *
      * @ORM\OneToMany(targetEntity="Reservation", mappedBy="user")
      */
-    private $reservations;
+    protected $reservations;
 
     /**
      * One user has many adverts
      *
      * @ORM\OneToMany(targetEntity="Advert", mappedBy="user")
      */
-    private $adverts;
+    protected $adverts;
 
     /**
      * One user has many comments
      *
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
      */
-    private $comments;
+    protected $comments;
 
     /**
      * One user has one picture
      *
-     * @ORM\OneToOne(targetEntity="Picture")
+     * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
      */
-    private $picture;
+    protected $picture;
 
 
     /**
@@ -144,54 +160,6 @@ class User extends BaseUser
     public function getFirstname()
     {
         return $this->firstname;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return User
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
     }
 
     /**
@@ -357,7 +325,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setPicture(\AppBundle\Entity\Picture $picture = null)
+    public function setPicture(Picture $picture = null)
     {
         $this->picture = $picture;
 

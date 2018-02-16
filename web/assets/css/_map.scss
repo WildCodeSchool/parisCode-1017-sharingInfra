@@ -1,0 +1,21 @@
+/* ================= MAP ================= */
+.container-infowindow {
+  width: 20vw;
+  padding: 0;
+}
+.img-infowindow {
+  width: 100% !important;
+}
+
+.p-infowindow {
+  margin-top: 1em;
+  font-weight: bold;
+  a {
+    text-decoration: none;
+    color: $orange;
+    text-transform: uppercase;
+  }
+  a:hover {
+    color: $blue;
+  }
+}

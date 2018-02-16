@@ -1,18 +1,165 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
+    <div class="container">
+        <h2>Résultats de votre recherche</h2>
 
-    {{ form(form) }}
+        <div class="row">
 
-    {% for advert in adverts %}
-        <div>
-            <div>
-                {#<img src="{{ advert.picture }}">
-                <p>{{ advert.type }}</p>#}
-                <p>{{ advert.title }}</p>
-                <p>{{ advert.address }}  {#{{ advert.rate }}</p>#}
-            </div>
+            {% for advert in adverts %}
+                <div class="col-md-4 col-xs-12">
+                    <div class="thumbnail">
+                        <a href="{{ path('advert_show', { 'id': advert.id }) }}">
+
+                            <div id="{{ advert.id }}" class="carousel slide" data-ride="carousel" data-interval="false">
+
+                                <ol class="carousel-indicators">
+                                    {% set isFirst = true %}
+                                    {% for picture in advert.pictures %}
+                                        {% if isFirst == true %}
+                                            <li data-target="#{{ advert.id }}" data-slide-to="{{ loop.index0 }}"
+                                                class="active"></li>
+                                        {% else %}
+                                            <li data-target="#{{ advert.id }}" data-slide-to="{{ loop.index0 }}"></li>
+                                        {% endif %}
+
+                                        {% set isFirst = false %}
+                                    {% endfor %}
+                                </ol>
+                                <div id="carousel_results" class="carousel-inner" role="listbox">
+                                    {% set isFirst = true %}
+                                    {% for picture  in advert.pictures %}
+                                    {% if isFirst == true %}
+                                    <div class="item active">
+                                        {% else %}
+                                        <div class="item">
+
+                                            {% endif %}
+                                            <img src="{{ app.request.basepath }}/uploads/{{ picture.name }}"
+                                                 alt="{{ advert.title }}" class="crush-img">
+                                        </div>
+                                        {% set isFirst = false %}
+                                        {% endfor %}
+                                    </div>
+                                    <a class="left carousel-control" href="#{{ advert.id }}" role="button"
+                                       data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#{{ advert.id }}" role="button"
+                                       data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+
+                        </a>
+                        {#<img src="{{ advert.picture }}">#}
+                        <div class="caption">
+                            <h4>{{ advert.title }}</h4>
+                            <p class="type">{{ advert.type }}</p>
+                            <p>{{ advert.price }}€/jour</p>
+                            <p class="text-right">{{ advert.zipcode }} {{ advert.city }}</p>
+                            {#{{ advert.rate }}</p>#}
+                        </div>
+                    </div>
+                </div>
+
+                {% else %}
+                    <div class="container">
+                        <h3>Aucun résultat</h3>
+                        <p>(mais regardez les îles en street view !)</p>
+                    </div>
+
+            {% endfor %}
+
         </div>
-    {% endfor %}
+
+
+        <section class="map">
+            <h3>Carte</h3>
+            <div id="map" style="height:400px; width: 100%;"></div>
+        </section>
+        <input id="markers_locations" type="hidden" value='{{ events_json }}'/>
+
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        var locations = [
+            {% for advert in adverts %}
+            {
+                lat: {{ advert.latitude }},
+                lng: {{ advert.longitude }},
+                info: '<div class="container-infowindow"><div><a href="{{ path('advert_show', { 'id': advert.id }) }}" target="_blank">{% if advert.pictures[0] is defined %}{% set first = advert.pictures[0] %}<img src="{{ asset('uploads/' ~ first.name) }}" alt="advert picture" class="img-infowindow">{% endif %}</a></div></div><p class="p-infowindow"><a href="{{ path('advert_show', { 'id': advert.id }) }}" target="_blank">{{ advert.title|upper }}</a></p><p>{{ advert.price }}€ par jour</p></div>'
+            },
+            {% endfor %}
+        ]
+        ;
+
+        function initMap() {
+
+            var maxZoom = 13;
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: {
+                    lat: 48.864716,
+                    lng: 2.349014
+                }
+            });
+
+            // bounds : zoom automatique sur la zone recherchée
+            var bounds = new google.maps.LatLngBounds();
+
+            // Create an array of alphabetical characters used to label the markers.
+            var labels = [];
+
+            var infoWin = new google.maps.InfoWindow();
+            // Add some markers to the map.
+            // Note: The code uses the JavaScript Array.prototype.map() method to
+            // create an array of markers based on a given "locations" array.
+            // The map() method here has nothing to do with the Google Maps API.
+            var markers = locations.map(function (location, i) {
+                bounds.extend(location);
+                var marker = new google.maps.Marker({
+                    position: location,
+                    label: labels[i % labels.length]
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    infoWin.setContent(location.info);
+                    infoWin.open(map, marker);
+                })
+                return marker;
+            });
+
+            map.fitBounds(bounds);
+
+            // markerCluster.setMarkers(markers);
+            // Add a marker clusterer to manage the markers.
+            var markerCluster = new MarkerClusterer(map, markers, {
+                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+            });
+
+            var listener = google.maps.event.addListener(map, 'idle', function () {
+                var currentZoom = map.getZoom();
+                map.setZoom(Math.min(maxZoom, currentZoom));
+                google.maps.event.removeListener(listener);
+            })
+        }
+
+    </script>
+
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCtKFN02dRtmY2eFP81FarwROMTEXq9Fc&callback=initMap">
+    </script>
 
 {% endblock %}

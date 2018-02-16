@@ -29,12 +29,35 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    app.form.registration:
-            class: AppBundle\Form\RegistrationType
-            tags:
-                - { name: form.type, alias: app_user_registration }
+#    Custom services
+    AppBundle\Services\FileUploader:
+        arguments:
+            $targetDir: '%pictures_directory%'
 
-    # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
+    AppBundle\Services\SendMail:
+        arguments:
+            $mailerUser: '%mailer_user%'
+            $container: '@service_container'
+
+#    Override FOS User Form
+    app.form.registration:
+           class: AppBundle\Form\RegistrationType
+           tags:
+               - { name: form.type, alias: app_user_registration }
+    app.form.profile:
+           class: AppBundle\Form\EditProfileType
+           tags:
+               - { name: form.type, alias: app_user_registration }
+
+#    Event listener
+    user.profile_pic:
+            class: AppBundle\EventListener\ProfilePicListener
+            arguments: ['@router', '@AppBundle\Services\FileUploader']
+            tags:
+                - { name: kernel.event_subscriber }
+
+    user.resgitration:
+            class: AppBundle\EventListener\RegistrationListener
+            arguments: ['@router']
+            tags:
+                - { name: kernel.event_subscriber }

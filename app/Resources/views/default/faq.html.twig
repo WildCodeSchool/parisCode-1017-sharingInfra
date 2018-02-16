@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
 
-    <img src="{{ asset('assets/pictures/doggo.jpg') }}" alt="good doggo" width="100%">
+    <img src="{{ asset('assets/pictures/doggo-banner.jpg') }}" alt="good doggo" class="advert-img">
 
     <div class="container-faq faq-div faq-parent">
 
@@ -16,7 +16,8 @@
                 </h3>
             </div>
             <div class="toggle-inner faq-div">
-                <p class="faq-answer">Ça marche comme ça.</p>
+                <p class="faq-answer">Que vous soyez l'heureux.se proprétaire d'une piscine ou d'un court de tennis, ou un.e potentiel.le locataire : créez gratuitement votre compte sur Hobbea.</p>
+                <p class="faq-answer">Gérez vos annonces, échangez via notre messagerie et réglez vos réservations simplement.</p>
             </div>
         </div><!-- END OF TOGGLE -->
 
@@ -29,7 +30,7 @@
             </div>
 
             <div class="toggle-inner faq-div">
-                <p class="faq-answer">Parce que.</p>
+                <p class="faq-answer">Et pourquoi pas ? Hobbea, c'est la première plateforme dédiée à la location d'infrastructures sportives privées. Avec nous, redonnez une seconde vie à vos installations et faites-en profiter les vacanciers.</p>
             </div>
         </div><!-- END OF TOGGLE -->
 
@@ -37,18 +38,49 @@
             <div class="toggle-title faq-div">
                 <h3 class="faq-question">
                     <i></i>
-                    <span class="title-name">Ça va sinon ?</span>
+                    <span class="title-name">Qui sommes-nous ?</span>
                 </h3>
             </div>
 
             <div class="toggle-inner faq-div">
-                <p class="faq-answer">On fait aller.</p>
+                <p class="faq-answer">Vous l'aurez compris : nous sommes des fous de sports ! Voyageurs aguerris, nous ne pouvons nous passer d'une activité physique. Avec Hobbea, nous avons souhaité permettre aux uns de réaliser de belles expériences sportives, et aux autres de gagner de l'argent tout en faisant plaisir.</p>
             </div>
         </div><!-- END OF TOGGLE -->
 
-        <h2 class="faq-title">UNE AUTRE QUESTION ? CONTACTEZ-NOUS !</h2>
+        <h2 class="faq-title" id="contact-form">UNE AUTRE QUESTION ? CONTACTEZ-NOUS !</h2>
 
-            <p class="faq-answer">Insérer ici le formulaire de contact</p>
+
+            <div class="contact-form">
+
+                {{ form_start(form) }}
+
+                <div class="contact-input form-group">
+                    {{ form_widget(form.name) }}
+                    {{ form_errors(form.name) }}
+                </div>
+                <div class="contact-input form-group">
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+                <div class="contact-input form-group">
+                    {{ form_widget(form.message) }}
+                    {{ form_errors(form.message) }}
+                </div>
+
+                {# Render CSRF token etc .#}
+                <div style="display:none">
+                    {{ form_rest(form) }}
+                </div>
+
+                <div class="contact-input form-group">
+                    <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+                    {{ form_end(form) }}
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+
 
     </div>
 
@@ -57,14 +89,15 @@
 {% block javascripts %}
 
     <script>
-        if( jQuery(".toggle .toggle-title").hasClass('active') ){
+        if (jQuery(".toggle .toggle-title").hasClass('active')) {
             jQuery(".toggle .toggle-title.active").closest('.toggle').find('.toggle-inner').show();
         }
-        jQuery(".toggle .toggle-title").click(function(){
-            if( jQuery(this).hasClass('active') ){
+        jQuery(".toggle .toggle-title").click(function () {
+            if (jQuery(this).hasClass('active')) {
                 jQuery(this).removeClass("active").closest('.toggle').find('.toggle-inner').slideUp(200);
             }
-            else{	jQuery(this).addClass("active").closest('.toggle').find('.toggle-inner').slideDown(200);
+            else {
+                jQuery(this).addClass("active").closest('.toggle').find('.toggle-inner').slideDown(200);
             }
         });
     </script>
