@@ -15,7 +15,7 @@ After cloning the project in your CLI, go to the directory and install the depen
 
 ``composer install``
 
-* Then, in order for the SCSS files to be compiled, install NPM and install Webpack Encore. Follow the [instructions in the Symfony documentation](http://symfony.com/doc/3.4/frontend.html).
+* Then, in order to compile the SCSS files, install NPM and install Webpack Encore. Follow the [instructions in the Symfony documentation](http://symfony.com/doc/3.4/frontend.html).
 
 Before running the app and in order to visualize potential changes in SCSS files, don't forget to compile them with the following command in your CLI:
 
