@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Advert;
 use AppBundle\Entity\Picture;
 use AppBundle\Form\AdvertType;
-use AppBundle\Form\SearchType;
 use AppBundle\Services\FileUploader;
 use AppBundle\Services\GoogleMap;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -176,7 +175,7 @@ class AdvertController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('advert_index');
+        return $this->redirectToRoute('homepage');
     }
 
     /**
